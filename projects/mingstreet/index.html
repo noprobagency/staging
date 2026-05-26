@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ming Street — Independent Chinese Labels. Shipped Worldwide.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" />
+<style>
+  :root {
+    --ink: #121212;
+    --paper: #FFFFFF;
+    --mist: #EBEBEB;
+    --divider: rgba(18,18,18,0.12);
+    --dark-bg: #0F0F0F;
+    --sans: "Satoshi", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --sc: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --float-margin: 12px;
+    --float-radius: 6px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  button { font-family: inherit; cursor: pointer; border: 0; background: none; padding: 0; color: inherit; }
+  .sc { font-family: var(--sc); }
+
+  /* ============================================================
+     FLOATING HEADER (ticker + nav grouped as one floating island)
+     ============================================================ */
+  .floating-header {
+    position: fixed;
+    top: var(--float-margin);
+    left: var(--float-margin);
+    right: var(--float-margin);
+    z-index: 100;
+    border-radius: var(--float-radius);
+    overflow: hidden;
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    background: rgba(255,255,255,0.55);
+    border: 0.5px solid rgba(255,255,255,0.4);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.04);
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .floating-header.is-scrolled {
+    background: rgba(255,255,255,0.85);
+    border-color: rgba(18,18,18,0.06);
+    box-shadow: 0 6px 26px rgba(0,0,0,0.08);
+  }
+
+  /* TICKER */
+  .ticker {
+    height: 30px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border-bottom: 0.5px solid rgba(18,18,18,0.08);
+    background: rgba(255,255,255,0.0);
+  }
+  .ticker__track {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker 110s linear infinite;
+  }
+  .ticker__group {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .ticker__item {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0 18px;
+    color: rgba(18,18,18,0.75);
+  }
+  .ticker__item .sc {
+    letter-spacing: 0.06em;
+    text-transform: none;
+    font-weight: 400;
+    font-size: 11px;
+    opacity: 0.85;
+    margin-left: 4px;
+  }
+  .ticker__sep {
+    color: rgba(18,18,18,0.3);
+    font-size: 10px;
+    font-weight: 400;
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* NAV */
+  .nav {
+    height: 56px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0 22px;
+  }
+  .nav__left, .nav__right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .nav__right { justify-content: flex-end; }
+  .nav__link {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.7;
+    transition: opacity 0.18s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+    white-space: nowrap;
+  }
+  .nav__link:hover, .nav__link.is-active { opacity: 1; }
+  .nav__link .sc { font-size: 10px; opacity: 0.8; letter-spacing: 0.06em; font-weight: 400; }
+  .nav__link .caret { font-size: 8px; opacity: 0.6; }
+
+  .nav__brand {
+    line-height: 1;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav__brand-char {
+    font-family: var(--sc);
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  /* Shop dropdown */
+  .nav__shop { position: relative; }
+  .shop-dropdown {
+    position: absolute;
+    top: calc(100% + 16px);
+    left: -14px;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(20px);
+    border: 0.5px solid var(--divider);
+    border-radius: 4px;
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    gap: 8px 28px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    min-width: 320px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  }
+  .nav__shop:hover .shop-dropdown,
+  .nav__shop:focus-within .shop-dropdown {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .shop-dropdown__item {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    padding: 4px 0;
+    transition: opacity 0.18s ease;
+  }
+  .shop-dropdown__item:hover { opacity: 1; }
+  .shop-dropdown__item .sc {
+    font-size: 11px; letter-spacing: 0.06em; opacity: 0.5;
+    text-transform: none; font-weight: 400;
+  }
+
+  .nav__icon { width: 16px; height: 16px; }
+
+  /* ============================================================
+     HERO — full bleed, real image, small overlay caption
+     ============================================================ */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 620px;
+    overflow: hidden;
+    background: #0e0c0b;
+    color: #fff;
+  }
+  .hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: brightness(0.92) contrast(1.02);
+  }
+  .hero__grade {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.5) 100%),
+      linear-gradient(90deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0) 30%);
+    pointer-events: none;
+  }
+  .hero__caption {
+    position: absolute;
+    bottom: 44px;
+    left: 40px;
+    color: #fff;
+    max-width: 380px;
+  }
+  .hero__caption-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+  .hero__caption-line {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    margin-top: 8px;
+  }
+  .hero__caption-rule {
+    width: 30px;
+    height: 1px;
+    background: rgba(255,255,255,0.4);
+    margin: 14px 0 12px;
+  }
+  .hero__caption-cta {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 2px;
+    border-bottom: 0.5px solid rgba(255,255,255,0.6);
+    transition: border-color 0.18s ease;
+  }
+  .hero__caption-cta:hover { border-bottom-color: #fff; }
+  .hero__mark {
+    position: absolute;
+    bottom: 44px;
+    right: 40px;
+    font-family: var(--sc);
+    font-weight: 700;
+    font-size: 20px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1;
+  }
+  .hero__index {
+    position: absolute;
+    top: calc(var(--float-margin) + 30px + 56px + 18px);
+    left: 40px;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ============================================================
+     SECTIONS — FULL WIDTH (no horizontal padding on grids)
+     ============================================================ */
+  .section { padding: 56px 0 16px; }
+  .section__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-bottom: 22px;
+  }
+  .section__head-left {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .section__title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .section__title-sc {
+    font-family: var(--sc);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    opacity: 0.4;
+    font-weight: 400;
+  }
+  .section__view-all {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .section__view-all:hover { opacity: 1; }
+
+  /* PRODUCT GRID — full bleed */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+  .card {
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .card__thumb {
+    aspect-ratio: 3 / 4;
+    background: var(--mist);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card__placeholder-char {
+    position: absolute;
+    inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--sc);
+    font-weight: 700;
+    font-size: 90px;
+    color: rgba(18,18,18,0.06);
+    line-height: 1;
+    user-select: none;
+    z-index: 0;
+  }
+  .card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+    position: relative;
+    z-index: 1;
+  }
+  .card:hover .card__img { transform: scale(1.03); }
+  .card__badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4px 7px;
+    background: var(--ink);
+    color: #fff;
+    z-index: 3;
+    white-space: nowrap;
+  }
+  .card__wishlist {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(18,18,18,0.6);
+    opacity: 0;
+    transition: opacity 0.18s ease;
+    z-index: 3;
+    background: rgba(255,255,255,0.7);
+    border-radius: 50%;
+    backdrop-filter: blur(6px);
+  }
+  .card:hover .card__wishlist { opacity: 1; }
+  .card__info {
+    padding: 12px 14px 4px;
+  }
+  .card__brand {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    margin-bottom: 4px;
+  }
+  .card__name {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .card__price {
+    font-size: 12px;
+    font-weight: 400;
+    opacity: 0.55;
+  }
+  .card.is-soldout .card__img,
+  .card.is-soldout .card__placeholder-char { opacity: 0.45; }
+
+  /* ============================================================
+     CATEGORY ROW — full width
+     ============================================================ */
+  .cat-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-top: 0.5px solid var(--divider);
+    border-bottom: 0.5px solid var(--divider);
+    margin-top: 8px;
+  }
+  .cat-row__item {
+    text-align: center;
+    padding: 22px 8px 20px;
+    border-right: 0.5px solid var(--divider);
+    transition: background 0.18s ease;
+    cursor: pointer;
+  }
+  .cat-row__item:last-child { border-right: 0; }
+  .cat-row__item:hover { background: #f5f5f5; }
+  .cat-row__item:hover .cat-row__name { opacity: 1; }
+  .cat-row__name {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.6;
+    transition: opacity 0.18s ease;
+  }
+  .cat-row__count {
+    font-size: 9px;
+    font-weight: 400;
+    opacity: 0.32;
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ============================================================
+     STYLE BUCKETS — full width
+     ============================================================ */
+  .buckets {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .bucket {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    cursor: pointer;
+    background: #1a1a1a;
+  }
+  .bucket__img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    filter: brightness(0.85) saturate(0.9);
+  }
+  .bucket:hover .bucket__img { transform: scale(1.04); filter: brightness(0.9) saturate(0.95); }
+  .bucket__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.05) 55%, rgba(0,0,0,0) 100%);
+  }
+  .bucket__label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 22px 24px;
+    color: #fff;
+  }
+  .bucket__index {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .bucket__name {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin: 8px 0 2px;
+    line-height: 1;
+  }
+  .bucket__name-sc {
+    font-family: var(--sc);
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 10px;
+  }
+  .bucket__count {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  .footer {
+    background: var(--ink);
+    color: #fff;
+    padding: 64px 28px 24px;
+    margin-top: 24px;
+  }
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 56px;
+  }
+  .footer__brand-char {
+    font-family: var(--sc);
+    font-weight: 700;
+    font-size: 44px;
+    color: #fff;
+    line-height: 1;
+  }
+  .footer__brand-name {
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.3);
+    margin-top: 12px;
+  }
+  .footer__brand-desc {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.4);
+    margin-top: 18px;
+    max-width: 320px;
+  }
+  .footer__col-head {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 16px;
+  }
+  .footer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .footer__list a {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+    transition: color 0.18s ease;
+    display: inline-flex;
+    gap: 6px;
+    align-items: baseline;
+    white-space: nowrap;
+  }
+  .footer__list a:hover { color: #fff; }
+  .footer__list a .sc { font-size: 10px; opacity: 0.55; }
+  .footer__bottom {
+    border-top: 0.5px solid rgba(255,255,255,0.08);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.22);
+  }
+  .footer__bottom .sc { letter-spacing: 0.06em; text-transform: none; font-weight: 400; font-size: 10px; }
+  .footer__legal { display: flex; gap: 18px; }
+  .footer__legal a:hover { color: rgba(255,255,255,0.6); }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 900px) {
+    :root { --float-margin: 8px; }
+    .nav { padding: 0 14px; }
+    .nav__left { gap: 0; }
+    .nav__left .nav__link { display: none; }
+    .nav__left .nav__hamburger { display: inline-flex; }
+    .nav__right { gap: 14px; }
+    .nav__right .nav__link-text { display: none; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .cat-row { grid-template-columns: repeat(5, 50%); overflow-x: auto; }
+    .buckets { grid-template-columns: repeat(2, 1fr); }
+    .footer { padding: 40px 16px 20px; }
+    .footer__grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .hero__caption { left: 18px; bottom: 22px; }
+    .hero__mark { right: 18px; bottom: 22px; }
+    .hero__index { left: 18px; }
+    .section__head { padding: 0 14px; }
+  }
+  .nav__hamburger { display: none; width: 16px; height: 16px; }
+</style>
+</head>
+<body data-screen-label="Homepage">
+
+  <!-- ============== FLOATING HEADER ============== -->
+  <header class="floating-header" id="floatingHeader" data-screen-label="Header">
+
+    <div class="ticker" aria-label="announcements">
+      <div class="ticker__track">
+        <!-- duplicated 4x for seamless slow loop -->
+        <div class="ticker__group">
+          <span class="ticker__item">Worldwide Shipping</span>
+          <span class="ticker__sep">|</span>
+          <span class="ticker__item">© Ming Street, 2026 — Independent Chinese Labels <span class="sc">独立品牌</span></span>
+          <span class="ticker__sep">|</span>
+          <span class="ticker__item">Worldwide Shipping</span>
+          <span class="ticker__sep">|</span>
+          <span class="ticker__item">© Ming Street, 2026 — Independent Chinese Labels <span class="sc">独立品牌</span></span>
+          <span class="ticker__sep">|</span>
+        </div>
+        <div class="ticker__group" aria-hidden="true">
+          <span class="ticker__item">Worldwide Shipping</span>
+          <span class="ticker__sep">|</span>
+          <span class="ticker__item">© Ming Street, 2026 — Independent Chinese Labels <span class="sc">独立品牌</span></span>
+          <span class="ticker__sep">|</span>
+          <span class="ticker__item">Worldwide Shipping</span>
+          <span class="ticker__sep">|</span>
+          <span class="ticker__item">© Ming Street, 2026 — Independent Chinese Labels <span class="sc">独立品牌</span></span>
+          <span class="ticker__sep">|</span>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="Primary">
+      <div class="nav__left">
+        <svg class="nav__hamburger" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1"><line x1="0" y1="4" x2="16" y2="4"></line><line x1="0" y1="12" x2="16" y2="12"></line></svg>
+        <a href="#new-in" class="nav__link is-active">New In <span class="sc">新品</span></a>
+        <a href="#brands" class="nav__link">Brands</a>
+        <div class="nav__shop">
+          <a href="#shop" class="nav__link">Shop <span class="caret">▾</span></a>
+          <div class="shop-dropdown" role="menu">
+            <a class="shop-dropdown__item" href="#"><span>Street</span><span class="sc">街头</span></a>
+            <a class="shop-dropdown__item" href="#"><span>Form</span><span class="sc">型</span></a>
+            <a class="shop-dropdown__item" href="#"><span>Function</span><span class="sc">用</span></a>
+            <a class="shop-dropdown__item" href="#"><span>Ground</span><span class="sc">根</span></a>
+            <a class="shop-dropdown__item" href="#"><span>Outerwear</span><span class="sc">外套</span></a>
+            <a class="shop-dropdown__item" href="#"><span>Tops</span><span class="sc">上衣</span></a>
+            <a class="shop-dropdown__item" href="#"><span>Bottoms</span><span class="sc">裤装</span></a>
+            <a class="shop-dropdown__item" href="#"><span>Accessories</span><span class="sc">配饰</span></a>
+          </div>
+        </div>
+        <a href="#bestsellers" class="nav__link">Bestsellers</a>
+      </div>
+
+      <a href="#" class="nav__brand" aria-label="Ming Street home">
+        <div class="nav__brand-char">明</div>
+      </a>
+
+      <div class="nav__right">
+        <a href="#" class="nav__link" aria-label="Search">
+          <svg class="nav__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1"><circle cx="7" cy="7" r="5"></circle><line x1="11" y1="11" x2="15" y2="15"></line></svg>
+          <span class="nav__link-text">Search</span>
+        </a>
+        <a href="#" class="nav__link" aria-label="Wishlist">
+          <svg class="nav__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1"><path d="M8 13.5s-5-3.2-5-7A3 3 0 0 1 8 4.5 3 3 0 0 1 13 6.5c0 3.8-5 7-5 7z"></path></svg>
+        </a>
+        <a href="#" class="nav__link"><span class="nav__link-text">Bag</span> (0)</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============== HERO ============== -->
+  <section class="hero" data-screen-label="Hero" aria-label="SS26 New Arrivals">
+    <img class="hero__img" src="https://images.unsplash.com/photo-1611042553365-9b101441c135?w=2200&q=85&auto=format&fit=crop" alt="" loading="eager" />
+    <div class="hero__grade"></div>
+
+    <div class="hero__index">SS26 / 01</div>
+
+    <div class="hero__caption">
+      <div class="hero__caption-eyebrow">SS26 · New Arrivals</div>
+      <div class="hero__caption-line">Independent Chinese Labels — eighteen houses, one shop.</div>
+      <div class="hero__caption-rule"></div>
+      <a href="#new-in" class="hero__caption-cta">Shop New In <span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="hero__mark" aria-hidden="true">明</div>
+  </section>
+
+  <!-- ============== NEW IN ============== -->
+  <section class="section" id="new-in" data-screen-label="New In">
+    <div class="section__head">
+      <div class="section__head-left">
+        <h2 class="section__title">New In</h2>
+        <span class="section__title-sc sc">新品</span>
+      </div>
+      <a href="#" class="section__view-all">View All <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="grid" id="new-in-grid"></div>
+  </section>
+
+  <!-- ============== CATEGORY NAV ============== -->
+  <div class="cat-row" aria-label="Shop by category">
+    <a href="#" class="cat-row__item">
+      <div class="cat-row__name">Outerwear</div>
+      <div class="cat-row__count">43 pieces</div>
+    </a>
+    <a href="#" class="cat-row__item">
+      <div class="cat-row__name">Tops</div>
+      <div class="cat-row__count">88 pieces</div>
+    </a>
+    <a href="#" class="cat-row__item">
+      <div class="cat-row__name">Bottoms</div>
+      <div class="cat-row__count">52 pieces</div>
+    </a>
+    <a href="#" class="cat-row__item">
+      <div class="cat-row__name">Footwear</div>
+      <div class="cat-row__count">19 pieces</div>
+    </a>
+    <a href="#" class="cat-row__item">
+      <div class="cat-row__name">Accessories</div>
+      <div class="cat-row__count">31 pieces</div>
+    </a>
+  </div>
+
+  <!-- ============== STYLE BUCKETS ============== -->
+  <section class="buckets" aria-label="Shop by style" data-screen-label="Style Buckets">
+    <a href="#" class="bucket">
+      <img class="bucket__img" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy" />
+      <div class="bucket__overlay"></div>
+      <div class="bucket__label">
+        <div class="bucket__index">01 / Style</div>
+        <div class="bucket__name">Street</div>
+        <div class="bucket__name-sc sc">街头</div>
+        <div class="bucket__count">13 Labels · 135+ Pieces</div>
+      </div>
+    </a>
+    <a href="#" class="bucket">
+      <img class="bucket__img" src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy" />
+      <div class="bucket__overlay"></div>
+      <div class="bucket__label">
+        <div class="bucket__index">02 / Style</div>
+        <div class="bucket__name">Form</div>
+        <div class="bucket__name-sc sc">型</div>
+        <div class="bucket__count">9 Labels · 84 Pieces</div>
+      </div>
+    </a>
+    <a href="#" class="bucket">
+      <img class="bucket__img" src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy" />
+      <div class="bucket__overlay"></div>
+      <div class="bucket__label">
+        <div class="bucket__index">03 / Style</div>
+        <div class="bucket__name">Function</div>
+        <div class="bucket__name-sc sc">用</div>
+        <div class="bucket__count">7 Labels · 62 Pieces</div>
+      </div>
+    </a>
+    <a href="#" class="bucket">
+      <img class="bucket__img" src="https://images.unsplash.com/photo-1496950866446-3253e1470e8e?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy" />
+      <div class="bucket__overlay"></div>
+      <div class="bucket__label">
+        <div class="bucket__index">04 / Style</div>
+        <div class="bucket__name">Ground</div>
+        <div class="bucket__name-sc sc">根</div>
+        <div class="bucket__count">11 Labels · 96 Pieces</div>
+      </div>
+    </a>
+  </section>
+
+  <!-- ============== BESTSELLERS (now on white) ============== -->
+  <section class="section" id="bestsellers" data-screen-label="Bestsellers">
+    <div class="section__head">
+      <div class="section__head-left">
+        <h2 class="section__title">Bestsellers</h2>
+        <span class="section__title-sc sc">畅销</span>
+      </div>
+      <a href="#" class="section__view-all">View All <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="grid" id="bestsellers-grid"></div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="footer" data-screen-label="Footer">
+    <div class="footer__grid">
+      <div class="footer__col">
+        <div class="footer__brand-char sc">明</div>
+        <div class="footer__brand-name">MING STREET</div>
+        <p class="footer__brand-desc">The only English-language destination for independent Chinese fashion. Shipped worldwide.</p>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-head">Shop</div>
+        <ul class="footer__list">
+          <li><a href="#">New In <span class="sc">新品</span></a></li>
+          <li><a href="#">Street <span class="sc">街头</span></a></li>
+          <li><a href="#">Form <span class="sc">型</span></a></li>
+          <li><a href="#">Function <span class="sc">用</span></a></li>
+          <li><a href="#">Ground <span class="sc">根</span></a></li>
+          <li><a href="#">Bestsellers</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-head">Brands</div>
+        <ul class="footer__list">
+          <li><a href="#">MASONPRINCE</a></li>
+          <li><a href="#">SHUSHUTONG</a></li>
+          <li><a href="#">D5OVE</a></li>
+          <li><a href="#">MEDM</a></li>
+          <li><a href="#">UNKNOWNWORLD</a></li>
+          <li><a href="#">All Brands →</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-head">Info</div>
+        <ul class="footer__list">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div>© Ming Street 2026 — Independent Chinese Labels <span class="sc">独立品牌</span></div>
+      <div class="footer__legal">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ====== Floating header scroll state ====== */
+    const fh = document.getElementById('floatingHeader');
+    let last = 0;
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (y > 12 && last <= 12) fh.classList.add('is-scrolled');
+      else if (y <= 12 && last > 12) fh.classList.remove('is-scrolled');
+      last = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ====== Product data — real Unsplash editorial fashion photos ======
+       Each card uses a real image; the SC placeholder character sits behind
+       in case an image fails to load.                                        */
+    const u = (id, w=900) => `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
+
+    const newIn = [
+      { brand: "MEDM",         name: "Nylon Stand Collar Coach Jacket",      price: 101, badge: "NEW IN", img: u('1551028719-00167b16eac5') },
+      { brand: "D5OVE",        name: "Raw Hem Boxy Short Sleeve Shirt",      price: 107, badge: "NEW IN", img: u('1620799140408-edc6dcb6d633') },
+      { brand: "UNKNOWNWORLD", name: "Brushed Fleece Zip Hoodie",            price: 131, badge: "NEW IN", img: u('1556821840-3a63f95609a7') },
+      { brand: "MASONPRINCE",  name: "Distressed Canvas Double Knee Pants",  price: 238, badge: "NEW IN", img: u('1542272604-787c3835535d') },
+      { brand: "FPA",          name: "Quick Dry Crewneck T-Shirt",           price: 64,  badge: "NEW IN", img: u('1521572163474-6864f9cf17ab') },
+      { brand: "PERSONSOUL",   name: "Layered Color Block Knit Top",         price: 118, badge: "NEW IN", img: u('1583744946564-b52ac1c389c8') },
+      { brand: "BLINDNOPLAN",  name: "Distressed Washed Zip Up Hoodie",      price: 171, badge: "NEW IN", img: u('1593030668930-8e2cd76de9c9') },
+      { brand: "BLACKHEAD",    name: "Cowhide Leather Automatic Buckle Belt",price: 19,  badge: "NEW IN", img: u('1624222247344-550fb60583dc') },
+    ];
+
+    const bestsellers = [
+      { brand: "SHUSHUTONG",  name: "Bow Tie Cotton Mini Dress",         price: 284, badge: "BESTSELLER", img: u('1483985988355-763728e1935b') },
+      { brand: "MEDM",        name: "Logo Print Hooded Sweatshirt",      price: 152, badge: "BESTSELLER", img: u('1594938298603-c46c1f3c1227') },
+      { brand: "MASONPRINCE", name: "Washed Denim Carpenter Pants",      price: 219, badge: "2 LEFT",     img: u('1591047139829-d91aecb6caea') },
+      { brand: "D5OVE",       name: "Boxy Striped Long Sleeve Knit",     price: 138, badge: "BESTSELLER", img: u('1618354691373-d851c5c3a990') },
+      { brand: "OLDORDER",    name: "Padded Liner Work Jacket",          price: 247, badge: "BESTSELLER", img: u('1551488831-00ddcb6c6bd3') },
+      { brand: "FPA",         name: "Tech Cargo Wide Trouser",           price: 184, badge: "SOLD OUT",   img: u('1542060748-10c28b62716f'), soldout: true },
+      { brand: "PERSONSOUL",  name: "Asymmetric Hem Wool Vest",          price: 162, badge: "BESTSELLER", img: u('1515886657613-9f3515b0c78f') },
+      { brand: "BEERBRO",     name: "Distressed Logo Tee",               price: 78,  badge: "2 LEFT",     img: u('1586790170083-2f9ceadc732d') },
+    ];
+
+    function buildCard(p) {
+      const soldOut = p.soldout ? " is-soldout" : "";
+      return `
+        <article class="card${soldOut}">
+          <div class="card__thumb">
+            <span class="card__placeholder-char sc">明</span>
+            <span class="card__badge">${p.badge}</span>
+            <button class="card__wishlist" aria-label="Add to wishlist">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 13.5s-5-3.2-5-7A3 3 0 0 1 8 4.5 3 3 0 0 1 13 6.5c0 3.8-5 7-5 7z"></path></svg>
+            </button>
+            <img class="card__img" src="${p.img}" alt="${p.brand} — ${p.name}" loading="lazy" onerror="this.style.display='none'" />
+          </div>
+          <div class="card__info">
+            <div class="card__brand">${p.brand}</div>
+            <div class="card__name">${p.name}</div>
+            <div class="card__price">$${p.price}</div>
+          </div>
+        </article>`;
+    }
+
+    document.getElementById("new-in-grid").innerHTML       = newIn.map(buildCard).join("");
+    document.getElementById("bestsellers-grid").innerHTML  = bestsellers.map(buildCard).join("");
+  </script>
+</body>
+</html>
