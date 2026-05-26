@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Staging — Noprob Agency</title>
+  <style>
+    :root {
+      --bg: #0e0e0e;
+      --fg: #f4f1ec;
+      --muted: #8a8782;
+      --accent: #f5a623;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    header, footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      max-width: 900px;
+    }
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    h1 .dot { color: var(--accent); }
+    p.lead {
+      margin-top: 1.5rem;
+      max-width: 540px;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+    .projects {
+      margin-top: 3rem;
+      width: 100%;
+      max-width: 540px;
+    }
+    .projects h2 {
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .projects ul { list-style: none; }
+    .projects li a {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.85rem 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--fg);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.15s;
+    }
+    .projects li:last-child a { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .projects li a:hover { color: var(--accent); }
+    .projects .empty {
+      padding: 0.85rem 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span>Noprob Agency</span>
+    <span>Staging</span>
+  </header>
+
+  <main>
+    <h1>Staging Noprob Agency<span class="dot">.</span></h1>
+    <p class="lead">
+      Ambiente di anteprima per i progetti in lavorazione. Ogni sottocartella è una build standalone.
+    </p>
+
+    <section class="projects">
+      <h2>Progetti</h2>
+      <ul>
+        <li class="empty">Nessun progetto ancora pubblicato.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <span>hello@noprob.agency</span>
+    <span>2026</span>
+  </footer>
+</body>
+</html>
