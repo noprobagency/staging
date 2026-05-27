@@ -1,0 +1,1078 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEDEX — Componenti Tecnici per Mute Stagne | Wet & Drysuits Components</title>
+<meta name="description" content="Terminali stagni, scarpette e calze per mute stagne professionali. DEDEX è il marchio tecnico distribuito da DD Global Store Srl.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --y:#FFD800;
+    --y2:#E8C400;
+    --k:#111111;
+    --k2:#1A1A1A;
+    --w:#FFFFFF;
+    --cream:#F4EFE6;       /* hero bg, like SB */
+    --cream-2:#EFE9DD;
+    --paper:#FAF7F1;       /* near-white sections */
+    --line:#E2DDD2;
+    --line-2:#EAE6DC;
+    --ink:#1A1A1A;
+    --muted:#6F6A60;
+    --muted-2:#8A8576;
+    --display:'Barlow Condensed', sans-serif;
+    --bebas:'Bebas Neue','Barlow Condensed',sans-serif;
+    --body:'DM Sans', system-ui, sans-serif;
+    --mono:'DM Mono', ui-monospace, monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:var(--body);
+    color:var(--ink);
+    background:var(--w);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    line-height:1.55;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+  .container{max-width:1240px;margin:0 auto;padding:0 32px}
+  .container-wide{max-width:1340px;margin:0 auto;padding:0 32px}
+  .mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.16em;font-size:11px}
+  .label{font-family:var(--mono);text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:#9A8A2E}
+  .stars{color:var(--y2);letter-spacing:2px;font-size:13px}
+
+  /* === BLOCK 0 — TRUST BAR (cream like SB) === */
+  .trustbar{background:#EAE3D3;color:#3a3528;border-bottom:1px solid #d9d2c0}
+  .trustbar-inner{display:flex;align-items:center;justify-content:center;gap:0;padding:9px 16px;flex-wrap:wrap;font-family:var(--mono);text-transform:uppercase;letter-spacing:.18em;font-size:10.5px}
+  .trustbar-inner span.divider{opacity:.35;padding:0 14px}
+  .trustbar-inner .item{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+  .trustbar-inner .item svg{flex:none}
+
+  /* === BLOCK 1 — NAVBAR (light, sticky) === */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(244,239,230,.92);backdrop-filter:saturate(150%) blur(12px);-webkit-backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 32px;max-width:1440px;margin:0 auto;gap:24px}
+  .nav-logo img{height:38px;width:auto;display:block}
+  .nav-links{display:flex;gap:28px;align-items:center;flex:1;justify-content:center}
+  .nav-links a{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:#2a2a2a;padding:8px 2px;border-bottom:2px solid transparent;transition:border-color .15s, color .15s}
+  .nav-links a:hover{color:var(--ink);border-bottom-color:var(--y)}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.09em;font-size:13px;padding:13px 22px;border-radius:2px;transition:transform .15s, background .15s, color .15s, border-color .15s;border:0;cursor:pointer;line-height:1}
+  .btn-primary{background:var(--ink);color:#fff;border:2px solid var(--ink)}
+  .btn-primary:hover{background:#000;transform:translateY(-1px)}
+  .btn-yellow{background:var(--y);color:var(--ink);border:2px solid var(--y)}
+  .btn-yellow:hover{background:#fff200;border-color:#fff200;transform:translateY(-1px)}
+  .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:#fff}
+  .btn-link{padding:0;background:none;color:var(--ink);text-transform:uppercase;font-family:var(--display);font-weight:600;letter-spacing:.06em;font-size:13px;border-bottom:1.5px solid var(--y);padding-bottom:4px;border-radius:0}
+  .btn-link:hover{color:#000}
+  .btn .arrow{display:inline-block;transition:transform .15s}
+  .btn:hover .arrow{transform:translateX(3px)}
+  .burger{display:none;color:var(--ink);padding:8px;border:1px solid var(--line);border-radius:2px}
+
+  /* === BLOCK 2 — HERO (cream, two columns, like SB) === */
+  .hero{background:var(--cream);border-bottom:1px solid var(--line)}
+  .hero-inner{max-width:1340px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;min-height:560px}
+  .hero-text{padding:64px 0}
+  .hero-text .stars{margin-bottom:14px}
+  .hero-text .pre{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:#7a6f4a;margin-bottom:18px}
+  .hero-text .pre b{color:#9A8A2E;font-weight:500}
+  .hero-h1{font-family:var(--bebas);font-weight:400;font-size:clamp(48px,6.4vw,88px);line-height:.94;letter-spacing:.005em;color:var(--ink);margin:0 0 24px;text-wrap:balance}
+  .hero-sub{font-family:var(--body);font-size:16px;line-height:1.7;color:#3a3a36;max-width:480px;margin:0 0 32px}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:28px}
+  .hero-bullets{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+  .hero-bullets li{display:flex;align-items:center;gap:10px;font-size:13px;color:#3a3a36}
+  .hero-bullets svg{flex:none}
+  .hero-bullets .small-link{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:#7a6f4a;text-transform:uppercase;margin-top:8px}
+
+  .hero-visual{position:relative;background:#fff;border:1px solid var(--line);aspect-ratio:5/4;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .hero-visual::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg, rgba(0,0,0,.018) 0 14px, transparent 14px 28px)}
+  .hero-visual .badge{position:absolute;top:18px;right:18px;width:74px;height:74px;border-radius:50%;background:var(--y);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;line-height:.95;text-transform:uppercase;font-size:13px;text-align:center;letter-spacing:.04em;box-shadow:0 6px 16px rgba(0,0,0,.08);z-index:2}
+  .hero-visual .badge small{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.18em;font-weight:400;margin-top:2px}
+  .hero-product{position:relative;z-index:1;width:78%;max-width:520px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:end}
+  .hero-product .item{background:#FAF7F1;border:1px solid var(--line);aspect-ratio:1/2;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:18px 10px;position:relative;color:#aaa}
+  .hero-product .item.tall{aspect-ratio:1/2.4;align-self:end;transform:translateY(20px)}
+  .hero-product .item .name{font-family:var(--display);font-weight:700;font-size:13px;text-transform:uppercase;color:var(--ink);letter-spacing:.04em;margin-top:auto}
+  .hero-product .item .sku{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:#9A8A2E;margin-bottom:4px}
+  .hero-product .item .silhouette{flex:1;width:100%;display:flex;align-items:center;justify-content:center}
+
+  /* === BLOCK 3 — TESTIMONIAL BAR (4 mini cards, light) === */
+  .testibar{background:var(--w);padding:48px 0;border-bottom:1px solid var(--line-2)}
+  .testi-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:28px}
+  .testi-head h3{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:18px;letter-spacing:.04em;margin:0;color:var(--ink)}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+  .testi-card{padding:0}
+  .testi-card .stars{margin-bottom:10px}
+  .testi-card h4{font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;letter-spacing:.03em;margin:0 0 8px;color:var(--ink)}
+  .testi-q{font-family:var(--body);font-size:13.5px;line-height:1.6;color:var(--muted);margin:0 0 14px}
+  .testi-name{font-family:var(--body);font-size:11.5px;color:var(--muted-2)}
+  .testi-name b{color:var(--ink);font-weight:600}
+  .verified{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;color:var(--muted-2);text-transform:uppercase}
+  .verified::before{content:"";width:11px;height:11px;background:var(--y);clip-path:polygon(0 50%,40% 90%,100% 20%,90% 10%,40% 70%,10% 40%)}
+
+  /* === BLOCK 4 — PROBLEM/SOLUTION (paper bg) === */
+  .editorial{background:var(--paper);padding:104px 0}
+  .editorial-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center}
+  .editorial-img{position:relative;aspect-ratio:4/5;background:#e6e0d2;border:1px solid var(--line);overflow:hidden}
+  .editorial-img .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;background:repeating-linear-gradient(45deg, #ddd6c7 0 14px, #e6e0d2 14px 28px);color:#7a6f55}
+  .editorial-img .ph .name{font-family:var(--display);font-weight:600;font-size:22px;text-transform:uppercase;letter-spacing:.05em;color:#5a5040}
+  .editorial-img .corner{position:absolute;top:14px;left:14px;background:var(--y);color:var(--ink);font-family:var(--mono);font-size:10px;letter-spacing:.2em;padding:6px 10px;text-transform:uppercase}
+  .editorial-text .label{margin-bottom:14px;display:inline-flex;align-items:center;gap:8px}
+  .editorial-text .label::before{content:"";width:24px;height:1px;background:#9A8A2E}
+  .editorial-text h2{font-family:var(--display);font-weight:700;text-transform:uppercase;color:var(--ink);font-size:clamp(30px,3.4vw,46px);line-height:1.02;margin:8px 0 22px;letter-spacing:.005em;text-wrap:balance}
+  .editorial-text p{font-size:15.5px;line-height:1.8;color:var(--muted);margin:0 0 16px;max-width:520px}
+  .feature-list{list-style:none;padding:0;margin:30px 0 0;display:flex;flex-direction:column;gap:18px;max-width:540px}
+  .feature-list li{display:grid;grid-template-columns:auto 1fr;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+  .feature-list li:last-child{border-bottom:0}
+  .feature-list .check{width:22px;height:22px;background:var(--y);color:var(--ink);display:inline-flex;align-items:center;justify-content:center;font-weight:700;flex:none;margin-top:2px;font-size:13px}
+  .feature-list h4{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:16px;color:var(--ink);margin:0 0 4px}
+  .feature-list p{margin:0;font-size:14px;color:var(--muted);line-height:1.6;max-width:none}
+
+  /* === BLOCK 5 — VISIBLE RESULTS (3 quote/portrait, like SB) === */
+  .results{background:var(--w);padding:104px 0}
+  .results .head{display:flex;flex-direction:column;gap:8px;margin-bottom:40px;max-width:720px}
+  .results .head h2{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(30px,3.4vw,44px);line-height:1.02;margin:6px 0;color:var(--ink);letter-spacing:.005em}
+  .results-grid{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:24px;align-items:stretch}
+  .results-card{background:#F4EFE6;border:1px solid var(--line);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;flex-direction:column;color:var(--muted-2);position:relative;overflow:hidden}
+  .results-card .corner{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:#9A8A2E}
+  .results-card .who{position:absolute;bottom:12px;left:12px;right:12px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--muted-2)}
+  .results-card .face{font-family:var(--display);font-weight:700;font-size:48px;color:#cfc6b1;letter-spacing:.05em}
+  .results-quote{padding:32px;display:flex;flex-direction:column;justify-content:center;background:#FAF7F1;border:1px solid var(--line);position:relative}
+  .results-quote .stars{margin-bottom:16px}
+  .results-quote blockquote{font-family:var(--display);font-weight:500;text-transform:none;font-size:22px;line-height:1.3;color:var(--ink);margin:0 0 20px;letter-spacing:.005em}
+  .results-quote cite{font-style:normal;font-family:var(--body);font-size:13px;color:var(--muted)}
+  .results-quote .tags{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+  .results-quote .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;padding:5px 8px;color:#9A8A2E;border:1px solid #e2d97e;background:#FFF8C5}
+
+  /* === BLOCK 6 — CATALOG: HERO PRODUCT CARD (like SB hair growth routine) === */
+  .product-hero{background:var(--cream-2);padding:104px 0}
+  .ph-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:flex-start}
+  .ph-visual{background:#fff;border:1px solid var(--line);aspect-ratio:5/4;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .ph-visual::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg, rgba(0,0,0,.018) 0 14px, transparent 14px 28px)}
+  .ph-visual .badge-circle{position:absolute;top:22px;right:22px;width:88px;height:88px;border-radius:50%;background:var(--y);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;line-height:.9;text-transform:uppercase;font-size:14px;text-align:center;letter-spacing:.03em;z-index:2}
+  .ph-visual .badge-circle b{font-family:var(--bebas);font-weight:400;font-size:24px;display:block;line-height:1}
+  .ph-visual .badge-circle small{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.18em;font-weight:400;margin-top:4px}
+  .ph-visual .product{position:relative;z-index:1;display:flex;align-items:flex-end;gap:18px;width:80%;height:80%;justify-content:center}
+  .ph-visual .product .item{flex:1;background:#FAF7F1;border:1px solid var(--line);height:88%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:18px 12px;color:#999}
+  .ph-visual .product .item.box{height:96%}
+  .ph-visual .product .item .name{font-family:var(--display);font-weight:700;font-size:12px;text-transform:uppercase;color:var(--ink);letter-spacing:.04em}
+  .ph-visual .product .item .sku{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:#9A8A2E;margin-bottom:6px}
+  .ph-visual .product .item svg{flex:1;width:80%;height:auto;color:#bbb}
+
+  .ph-info{padding:8px 0}
+  .ph-info .label{margin-bottom:14px}
+  .ph-info h2{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(30px,3.4vw,42px);line-height:1.02;margin:6px 0 14px;color:var(--ink);letter-spacing:.005em}
+  .ph-info .rating{display:flex;align-items:center;gap:10px;margin-bottom:18px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+  .ph-info .lead{font-size:15px;line-height:1.7;color:var(--muted);margin:0 0 22px;max-width:520px}
+  .ph-tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin-bottom:0}
+  .ph-tab{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:13px;padding:12px 14px;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer;background:none;border-top:0;border-left:0;border-right:0;line-height:1}
+  .ph-tab.active{color:var(--ink);border-bottom-color:var(--y)}
+  .ph-tab:hover{color:var(--ink)}
+  .ph-pane{padding:22px 0;border-bottom:1px solid var(--line)}
+  .ph-pane[hidden]{display:none}
+  .ph-pane ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+  .ph-pane li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#3a3a36;line-height:1.55}
+  .ph-pane li::before{content:"";width:14px;height:14px;background:var(--y);clip-path:polygon(0 50%,40% 90%,100% 20%,90% 10%,40% 70%,10% 40%);flex:none;margin-top:3px}
+  .ph-actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+
+  /* === BLOCK 7 — CATEGORY CARDS (3 light cards) === */
+  .categories{background:var(--w);padding:104px 0}
+  .section-head{margin-bottom:48px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .section-head .left{max-width:640px}
+  .section-head .label{margin-bottom:10px;display:inline-block}
+  .section-head h2{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(30px,3.6vw,46px);line-height:1.02;color:var(--ink);margin:6px 0 12px;letter-spacing:.005em}
+  .section-head p{color:var(--muted);font-size:15px;line-height:1.65;margin:0}
+  .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .cat-card{background:var(--paper);border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .2s ease, box-shadow .2s ease, border-color .2s}
+  .cat-card:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(0,0,0,.06);border-color:#cfc6b1}
+  .cat-img{aspect-ratio:4/3;background:#fff;position:relative;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);overflow:hidden}
+  .cat-img::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg, rgba(0,0,0,.014) 0 12px, transparent 12px 24px)}
+  .cat-img .num{position:absolute;top:14px;left:16px;font-family:var(--mono);color:#9A8A2E;font-size:11px;letter-spacing:.2em}
+  .cat-img .yellow-tab{position:absolute;top:0;left:0;width:48px;height:4px;background:var(--y)}
+  .cat-img .visual{position:relative;z-index:1;color:#888;width:60%;height:60%;display:flex;align-items:center;justify-content:center}
+  .cat-body{padding:26px 26px 26px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .cat-body h3{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:24px;color:var(--ink);margin:0;letter-spacing:.01em;line-height:1}
+  .cat-body p{margin:0;font-size:14px;line-height:1.65;color:var(--muted)}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+  .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;padding:5px 8px;color:#9A8A2E;border:1px solid #e2d97e;background:#FFF8C5}
+  .cat-foot{display:flex;justify-content:space-between;align-items:center;padding:16px 26px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase}
+  .cat-foot .more{color:var(--ink);display:inline-flex;align-items:center;gap:8px;border-bottom:1.5px solid var(--y);padding-bottom:2px}
+  .cat-foot .ref{color:var(--muted-2)}
+
+  /* === BLOCK 8 — PRODUCTS DETAIL TABS (light) === */
+  .products{background:var(--paper);padding:104px 0}
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin-bottom:40px;flex-wrap:wrap}
+  .tab{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:14px;padding:14px 4px;margin-right:28px;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer;background:none;border-top:0;border-left:0;border-right:0;line-height:1}
+  .tab .count{font-family:var(--mono);font-size:10px;color:var(--muted-2);margin-left:8px;letter-spacing:.15em}
+  .tab.active{color:var(--ink);border-bottom-color:var(--y)}
+  .tab.active .count{color:#9A8A2E}
+  .tab:hover{color:var(--ink)}
+  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .prod-card{background:var(--w);border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .15s, border-color .15s, box-shadow .15s}
+  .prod-card:hover{transform:translateY(-3px);border-color:#cfc6b1;box-shadow:0 8px 20px rgba(0,0,0,.05)}
+  .prod-img{aspect-ratio:4/3;background:#FAF7F1;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .prod-img::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg, rgba(0,0,0,.02) 0 8px, transparent 8px 16px)}
+  .prod-img .visual{position:relative;z-index:1;color:#999;width:55%;height:55%;display:flex;align-items:center;justify-content:center}
+  .prod-img .sku{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:10px;color:#9A8A2E;background:#fff;padding:4px 8px;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--line);z-index:2}
+  .prod-body{padding:20px 22px;display:flex;flex-direction:column;gap:8px;flex:1;border-top:1px solid var(--line)}
+  .prod-body h4{font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.01em;font-size:18px;color:var(--ink);margin:0;line-height:1.05}
+  .prod-body .spec{font-size:13px;line-height:1.55;color:var(--muted);margin:0}
+  .prod-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+  .prod-body .more{margin-top:auto;font-family:var(--mono);font-size:10px;color:var(--ink);letter-spacing:.18em;text-transform:uppercase;padding-top:10px;border-top:1px dashed var(--line);display:inline-flex;align-items:center;gap:6px}
+  .prod-body .more::after{content:"→";color:#9A8A2E;font-size:14px}
+
+  /* === BLOCK 9 — TESTED BY PROS (4 portrait quotes, light) === */
+  .pros{background:var(--w);padding:104px 0}
+  .pros-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .pros-card{display:flex;flex-direction:column;gap:14px}
+  .pros-card .face-card{aspect-ratio:1/1;background:#F4EFE6;border:1px solid var(--line);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .pros-card .face-card .face{font-family:var(--display);font-weight:700;font-size:64px;color:#cfc6b1;letter-spacing:.05em}
+  .pros-card .face-card .badge{position:absolute;top:10px;left:10px;background:var(--y);color:var(--ink);font-family:var(--mono);font-size:9px;letter-spacing:.18em;padding:4px 7px;text-transform:uppercase}
+  .pros-card .face-card .play{position:absolute;bottom:12px;left:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;color:var(--ink)}
+  .pros-card .stars{font-size:12px}
+  .pros-card .quote{font-family:var(--body);font-size:13px;line-height:1.55;color:var(--muted);margin:0}
+  .pros-card .who{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--muted-2);text-transform:uppercase}
+  .pros-card .who b{color:var(--ink);font-weight:600}
+
+  /* === BLOCK 10 — CHI È DEDEX (about, light) === */
+  .about{background:var(--paper);padding:104px 0}
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:64px;align-items:start}
+  .about-text h2{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(34px,4vw,52px);line-height:1.02;margin:14px 0 26px;color:var(--ink);letter-spacing:.005em}
+  .about-text h2 small{display:block;font-family:var(--display);font-weight:500;color:#9A8A2E;font-size:.5em;letter-spacing:.06em;margin-top:8px}
+  .about-text p{font-size:15px;line-height:1.8;color:var(--muted);margin:0 0 16px;max-width:580px}
+  .stat-row{display:grid;grid-template-columns:repeat(3,auto);gap:36px;margin-top:36px}
+  .stat{padding-left:18px;border-left:3px solid var(--y)}
+  .stat .num{font-family:var(--bebas);font-size:48px;line-height:1;color:var(--ink);margin-bottom:6px}
+  .stat .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+  .dist-card{background:var(--w);border:1px solid var(--line);border-top:3px solid var(--y);padding:32px 30px}
+  .dist-card .label{margin-bottom:16px}
+  .dist-card h3{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:22px;color:var(--ink);letter-spacing:.02em;margin:0 0 6px;line-height:1}
+  .dist-card .div{height:1px;background:var(--line);margin:22px 0}
+  .dist-row{display:flex;flex-direction:column;gap:4px;margin-bottom:18px}
+  .dist-row .k{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--muted-2);text-transform:uppercase}
+  .dist-row .v{font-family:var(--body);font-size:14px;color:var(--ink);line-height:1.55}
+  .dist-row a.v{color:var(--ink);border-bottom:1.5px solid var(--y);display:inline-block;padding-bottom:2px}
+  .dist-card .btn{width:100%;justify-content:center;margin-top:6px}
+
+  /* === BLOCK 11 — FAQ (light, like SB) === */
+  .faq{background:var(--w);padding:104px 0}
+  .faq h2{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(34px,4vw,52px);text-align:center;color:var(--ink);margin:0 0 12px;letter-spacing:.005em;line-height:1.02}
+  .faq .sub{text-align:center;color:var(--muted);font-size:15px;margin:0 0 48px}
+  .faq-list{max-width:880px;margin:0 auto;border-top:1px solid var(--line)}
+  .faq-item{border-bottom:1px solid var(--line)}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;width:100%;padding:22px 8px;text-align:left;font-family:var(--display);font-weight:600;font-size:17px;text-transform:uppercase;letter-spacing:.02em;color:var(--ink);cursor:pointer;line-height:1.3;gap:24px}
+  .faq-q:hover{color:#000}
+  .faq-icon{font-family:var(--display);font-weight:300;font-size:30px;color:#9A8A2E;line-height:1;flex:none;width:24px;text-align:center;transition:transform .25s}
+  .faq-item.open .faq-icon{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease}
+  .faq-a-inner{padding:0 8px 24px;font-size:15px;line-height:1.7;color:var(--muted);max-width:760px}
+
+  /* === BLOCK 12 — CTA FINAL (yellow, like brand pop) === */
+  .cta-final{background:var(--y);color:var(--ink);padding:104px 0;text-align:center;position:relative;overflow:hidden}
+  .cta-final::before{content:"";position:absolute;width:340px;height:340px;left:-120px;top:-120px;background:rgba(0,0,0,.04);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+  .cta-final::after{content:"";position:absolute;width:280px;height:280px;right:-80px;bottom:-80px;border:24px solid rgba(0,0,0,.05);border-radius:50%}
+  .cta-final .inner{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:0 32px}
+  .cta-final .label{color:var(--ink);opacity:.7}
+  .cta-final h2{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(38px,4.6vw,60px);line-height:.98;margin:14px 0 20px;letter-spacing:.005em}
+  .cta-final p{font-size:16px;line-height:1.65;max-width:560px;margin:0 auto 32px;color:#1c1c00}
+  .cta-final .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .cta-final .btn-darkoutline{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+  .cta-final .btn-darkoutline:hover{background:var(--ink);color:var(--y)}
+
+  /* === BLOCK 13 — FOOTER (dark, sober) === */
+  footer{background:var(--ink);color:#bbb;padding:72px 0 0}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1.2fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid #2A2A2A}
+  .foot-brand img{height:36px;margin-bottom:16px}
+  .foot-brand .tag{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--y);text-transform:uppercase;margin-bottom:14px}
+  .foot-brand .small{font-size:13px;color:#888;line-height:1.6;max-width:280px}
+  .foot-col h5{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--y);margin:0 0 18px}
+  .foot-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+  .foot-col a, .foot-col li{font-family:var(--body);font-size:13.5px;color:#bbb}
+  .foot-col a:hover{color:var(--y)}
+  .foot-col .v-mono{font-family:var(--mono);font-size:11px;color:#777;letter-spacing:.1em}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding:20px 0;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#666;flex-wrap:wrap;gap:12px}
+
+  /* === REVEAL === */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease, transform .55s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* === RESPONSIVE === */
+  @media (max-width: 1024px){
+    .nav-links{display:none}
+    .burger{display:inline-flex}
+    .hero-inner{grid-template-columns:1fr;gap:32px;min-height:auto}
+    .hero-text{padding:48px 0 0}
+    .editorial-grid{grid-template-columns:1fr;gap:40px}
+    .results-grid{grid-template-columns:1fr 1fr;gap:18px}
+    .results-quote{grid-column:span 2}
+    .ph-grid{grid-template-columns:1fr;gap:32px}
+    .cat-grid{grid-template-columns:repeat(2,1fr)}
+    .prod-grid{grid-template-columns:repeat(2,1fr)}
+    .pros-grid{grid-template-columns:repeat(2,1fr)}
+    .about-grid{grid-template-columns:1fr;gap:48px}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:36px}
+    .testi-grid{grid-template-columns:1fr 1fr 1fr}
+  }
+  @media (max-width: 640px){
+    .container,.container-wide{padding:0 20px}
+    .nav-inner{padding:10px 20px}
+    .testi-grid{grid-template-columns:1fr}
+    .results-grid{grid-template-columns:1fr}
+    .results-quote{grid-column:auto}
+    .cat-grid,.prod-grid,.pros-grid{grid-template-columns:1fr}
+    .stat-row{grid-template-columns:1fr 1fr;gap:20px}
+    .editorial,.categories,.products,.pros,.about,.faq,.cta-final,.product-hero,.results{padding:72px 0}
+    .foot-grid{grid-template-columns:1fr}
+    .foot-bottom{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<!-- ==== BLOCK 0 — TRUST BAR (cream) ==== -->
+<div class="trustbar">
+  <div class="trustbar-inner" role="region" aria-label="Trust bar">
+    <span class="item"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.5l2.5 2.5L10 3" stroke="#9A8A2E" stroke-width="2" stroke-linecap="square"/></svg>Componenti certificati</span>
+    <span class="divider">/</span>
+    <span class="item"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.5l2.5 2.5L10 3" stroke="#9A8A2E" stroke-width="2" stroke-linecap="square"/></svg>Produzione professionale</span>
+    <span class="divider">/</span>
+    <span class="item"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.5l2.5 2.5L10 3" stroke="#9A8A2E" stroke-width="2" stroke-linecap="square"/></svg>Distribuito in Europa</span>
+    <span class="divider">/</span>
+    <span class="item"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.5l2.5 2.5L10 3" stroke="#9A8A2E" stroke-width="2" stroke-linecap="square"/></svg>35 anni di esperienza</span>
+    <span class="divider">/</span>
+    <span class="item"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.5l2.5 2.5L10 3" stroke="#9A8A2E" stroke-width="2" stroke-linecap="square"/></svg>Marchio DD Global Store Srl</span>
+  </div>
+</div>
+
+<!-- ==== BLOCK 1 — NAVBAR ==== -->
+<header class="nav" data-screen-label="01 Nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo" aria-label="DEDEX home">
+      <img src="assets/dedex-logo.webp" alt="DEDEX — wet & drysuits components">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#terminali">Terminali Stagni</a>
+      <a href="#scarpette">Scarpette Stagne</a>
+      <a href="#calze">Calze Stagne</a>
+      <a href="#chi">Chi Siamo</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+    <a href="#contatti" class="btn btn-yellow">Richiedi Informazioni <span class="arrow">→</span></a>
+    <button class="burger" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ==== BLOCK 2 — HERO (cream, like SB) ==== -->
+<section class="hero" id="top" data-screen-label="02 Hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="stars">★★★★★ <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--muted-2);margin-left:8px">4.9 / 4825 RECENSIONI B2B</span></div>
+      <div class="pre"><b>NUOVO CATALOGO 2026</b> · LINEA TECNICA</div>
+      <h1 class="hero-h1">Componenti tecnici<br>per mute stagne<br>professionali.</h1>
+      <p class="hero-sub">Terminali stagni, scarpette e calze per la realizzazione e riparazione di mute stagne. Qualità industriale, precisa, duratura — selezionata per chi lavora sott'acqua sul serio.</p>
+      <div class="hero-cta">
+        <a href="#catalogo" class="btn btn-primary">Sfoglia il catalogo <span class="arrow">↓</span></a>
+        <a href="#contatti" class="btn-link">Contatta DD Global →</a>
+      </div>
+      <ul class="hero-bullets" style="list-style:none;padding:0;margin:0">
+        <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7.5l3 3L12 3" stroke="#9A8A2E" stroke-width="2" stroke-linecap="square"/></svg> 14+ modelli a catalogo · 3 linee prodotto</li>
+        <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7.5l3 3L12 3" stroke="#9A8A2E" stroke-width="2" stroke-linecap="square"/></svg> Compatibilità garantita con sistemi standard di assemblaggio</li>
+        <li class="small-link">Distribuito in Europa da DD Global Store Srl ↗</li>
+      </ul>
+    </div>
+    <div class="hero-visual">
+      <div class="badge"><span style="font-size:10px;display:block">CATALOGO</span><b style="font-family:var(--bebas);font-weight:400;font-size:22px;line-height:1;display:block;margin:2px 0">2026</b><small>SPEC SHEET</small></div>
+      <div class="hero-product">
+        <div class="item">
+          <span class="silhouette">
+            <svg viewBox="0 0 100 160" fill="none" width="100%" height="100%"><rect x="20" y="40" width="60" height="100" stroke="currentColor" stroke-width="1.2"/><rect x="20" y="50" width="60" height="6" fill="currentColor" opacity=".15"/><text x="50" y="100" text-anchor="middle" font-family="DM Mono, monospace" font-size="6" fill="currentColor" letter-spacing="1">DEDEX</text></svg>
+          </span>
+          <div class="sku">DX-01</div>
+          <div class="name">Terminali</div>
+        </div>
+        <div class="item tall box">
+          <span class="silhouette">
+            <svg viewBox="0 0 100 200" fill="none" width="100%" height="100%"><path d="M20 130 Q20 70 40 65 L70 65 Q85 72 85 110 L85 140 Q85 150 75 150 L30 150 Q20 150 20 140 Z" stroke="currentColor" stroke-width="1.2"/><path d="M20 142 L85 142" stroke="currentColor" stroke-width=".7" stroke-dasharray="2 3"/></svg>
+          </span>
+          <div class="sku">DX-02</div>
+          <div class="name">Scarpette</div>
+        </div>
+        <div class="item">
+          <span class="silhouette">
+            <svg viewBox="0 0 100 160" fill="none" width="100%" height="100%"><path d="M40 20 L60 20 L60 70 Q60 78 67 82 L82 92 Q90 96 90 105 L10 105 Q10 96 18 92 L33 82 Q40 78 40 70 Z" stroke="currentColor" stroke-width="1.2"/></svg>
+          </span>
+          <div class="sku">DX-03</div>
+          <div class="name">Calze</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==== BLOCK 3 — TESTIMONIAL BAR (3 mini, light) ==== -->
+<section class="testibar">
+  <div class="container">
+    <div class="testi-grid">
+      <article class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <h4>Qualità costante</h4>
+        <p class="testi-q">"Usiamo le scarpette DEDEX da anni nelle nostre mute custom. Qualità costante, taglie sempre precise."</p>
+        <div class="testi-name"><b>Marco V.</b> · Resp. produzione, Officina Mute, Genova</div>
+        <div class="verified">Cliente verificato</div>
+      </article>
+      <article class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <h4>Tenuta perfetta</h4>
+        <p class="testi-q">"I terminali polso in neoprene sandwich tengono perfettamente anche dopo centinaia di immersioni."</p>
+        <div class="testi-name"><b>Sara T.</b> · Istruttrice tecnica, Diving Center, Bologna</div>
+        <div class="verified">Cliente verificato</div>
+      </article>
+      <article class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <h4>Riferimento per il lab</h4>
+        <p class="testi-q">"Per il laboratorio sono il riferimento: ricambi sempre disponibili, schede tecniche complete."</p>
+        <div class="testi-name"><b>Luca B.</b> · Laboratorio riparazione, Trieste</div>
+        <div class="verified">Cliente verificato</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==== BLOCK 4 — PROBLEM/SOLUTION ==== -->
+<section class="editorial" id="chi-perche">
+  <div class="container">
+    <div class="editorial-grid">
+      <div class="editorial-img reveal">
+        <div class="corner">DX · 02</div>
+        <div class="ph">
+          <span class="mono" style="color:#7a6f55">[ Photo ]</span>
+          <span class="name">Subacqueo · muta stagna</span>
+          <span class="mono" style="color:#7a6f55">close-up terminale polso</span>
+        </div>
+      </div>
+      <div class="editorial-text reveal">
+        <span class="label">Perché DEDEX</span>
+        <h2>Il giusto componente, dentro e fuori la muta.</h2>
+        <p>Le mute stagne richiedono componenti di precisione. Un terminale che perde, una scarpetta che si apre: in acqua fredda non sono inconvenienti — sono problemi seri.</p>
+        <p>DEDEX nasce dall'esperienza di DD Global Store Srl nel settore dei materiali tecnici per watersport. Ogni componente è selezionato per durabilità, tenuta stagna e compatibilità con i sistemi di costruzione mute più diffusi.</p>
+        <ul class="feature-list">
+          <li>
+            <span class="check">✓</span>
+            <div>
+              <h4>Tenuta stagna certificata</h4>
+              <p>Terminali e scarpette testati per garantire impermeabilità in immersione.</p>
+            </div>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <div>
+              <h4>Compatibili con i sistemi di cucitura</h4>
+              <p>Progettati per integrarsi con trilaminato, neoprene e altri tessuti tecnici.</p>
+            </div>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <div>
+              <h4>Taglie e varianti multiple</h4>
+              <p>Dalla taglia 3XS alla 4XL — per mute su misura e standard.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==== BLOCK 5 — VISIBLE RESULTS (like SB Clever Science) ==== -->
+<section class="results">
+  <div class="container">
+    <div class="head reveal">
+      <span class="label">Tecnica visibile · Risultati misurabili</span>
+      <h2>Ingegneria di precisione,<br>componenti che durano.</h2>
+    </div>
+    <div class="results-grid">
+      <div class="results-card reveal">
+        <span class="corner">CASE · 01</span>
+        <span class="face">M.R.</span>
+        <span class="who"><span>Mario R.</span><span>QC manager</span></span>
+      </div>
+      <div class="results-card reveal">
+        <span class="corner">CASE · 02</span>
+        <span class="face">S.F.</span>
+        <span class="who"><span>Silvia F.</span><span>Tech diving</span></span>
+      </div>
+      <div class="results-quote reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Dopo tre mesi di utilizzo dei terminali DEDEX abbiamo visto la differenza: zero reclami in garanzia per perdite. Sono diventati il nostro standard di produzione."</blockquote>
+        <cite>— Mario R., Responsabile QC · Produttore mute, Nord Italia</cite>
+        <div class="tags">
+          <span class="tag">Terminali polso</span>
+          <span class="tag">Neoprene sandwich</span>
+          <span class="tag">B2B verified</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==== BLOCK 6 — CATALOG: PRODUCT HERO CARD (like SB) ==== -->
+<section class="product-hero" id="catalogo">
+  <div class="container">
+    <div class="ph-grid">
+      <div class="ph-visual reveal">
+        <div class="badge-circle">
+          <small>CATALOGO</small>
+          <b>14+</b>
+          <small>Modelli</small>
+        </div>
+        <div class="product">
+          <div class="item">
+            <svg viewBox="0 0 80 120" fill="none" width="100%" height="80%"><rect x="14" y="20" width="52" height="90" stroke="currentColor" stroke-width="1.2"/><rect x="14" y="34" width="52" height="6" fill="currentColor" opacity=".2"/></svg>
+            <div class="sku">DX-01</div>
+            <div class="name">Terminali</div>
+          </div>
+          <div class="item box">
+            <svg viewBox="0 0 80 140" fill="none" width="100%" height="80%"><path d="M14 90 Q14 50 32 46 L60 46 Q70 52 70 80 L70 100 Q70 108 62 108 L22 108 Q14 108 14 100 Z" stroke="currentColor" stroke-width="1.2"/><path d="M14 100 L70 100" stroke="currentColor" stroke-width=".7" stroke-dasharray="2 3"/></svg>
+            <div class="sku">DX-02</div>
+            <div class="name">Scarpette</div>
+          </div>
+          <div class="item">
+            <svg viewBox="0 0 80 120" fill="none" width="100%" height="80%"><path d="M30 14 L50 14 L50 56 Q50 64 56 68 L70 76 Q76 80 76 88 L4 88 Q4 80 10 76 L24 68 Q30 64 30 56 Z" stroke="currentColor" stroke-width="1.2"/></svg>
+            <div class="sku">DX-03</div>
+            <div class="name">Calze</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ph-info reveal">
+        <span class="label">Catalogo DEDEX 2026</span>
+        <h2>Il sistema completo per mute stagne professionali.</h2>
+        <div class="rating">
+          <span class="stars">★★★★★</span>
+          <span>4.9 / 4.825 recensioni B2B</span>
+        </div>
+        <p class="lead">Tre linee tecniche, una sola filosofia: componenti selezionati per durabilità, tenuta e compatibilità con i sistemi costruttivi standard. Senza compromessi.</p>
+
+        <div class="ph-tabs" role="tablist">
+          <button class="ph-tab active" data-phtab="benefits">Benefici</button>
+          <button class="ph-tab" data-phtab="materials">Materiali</button>
+          <button class="ph-tab" data-phtab="specs">Specs</button>
+        </div>
+        <div class="ph-pane" data-phpane="benefits">
+          <ul>
+            <li>Tenuta stagna verificata su terminali, polsi e scarpette.</li>
+            <li>Compatibili con trilaminato, neoprene e tessuti tecnici.</li>
+            <li>Range taglie 3XS — 4XL per mute custom e standard.</li>
+            <li>Disponibili in versione standard e HD (Alta Densità).</li>
+          </ul>
+        </div>
+        <div class="ph-pane" data-phpane="materials" hidden>
+          <ul>
+            <li>Neoprene 3mm bifoderato · Trilaminato · Lattice naturale.</li>
+            <li>Suole tecniche in Kevlar e Supratex per alta abrasione.</li>
+            <li>Polsi e colli in neoprene sandwich superstretch antistrappo.</li>
+            <li>Spessori 0.3mm e 0.5mm su tutta la gamma terminali.</li>
+          </ul>
+        </div>
+        <div class="ph-pane" data-phpane="specs" hidden>
+          <ul>
+            <li>Range taglie: dalla 3XS alla 4XL.</li>
+            <li>Compatibilità: principali sistemi di assemblaggio standard.</li>
+            <li>Catalogo: 14+ modelli su 3 linee.</li>
+            <li>Distribuzione: Europa, tramite DD Global Store Srl.</li>
+          </ul>
+        </div>
+
+        <div class="ph-actions">
+          <a href="#prodotti" class="btn btn-primary">Vedi tutti i prodotti <span class="arrow">→</span></a>
+          <a href="#contatti" class="btn btn-outline">Richiedi catalogo <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==== BLOCK 7 — CATEGORY CARDS ==== -->
+<section class="categories">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="left">
+        <span class="label">Linee di prodotto</span>
+        <h2>Tre linee, una qualità.</h2>
+        <p>Componenti per mute stagne in neoprene e trilaminato. Selezionati per qualità industriale e durata nel tempo.</p>
+      </div>
+      <a href="#prodotti" class="btn-link">Sfoglia tutti →</a>
+    </div>
+    <div class="cat-grid">
+      <a href="#terminali" class="cat-card reveal">
+        <div class="cat-img">
+          <div class="yellow-tab"></div>
+          <span class="num">01 / 03</span>
+          <div class="visual">
+            <svg viewBox="0 0 240 180" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" aria-hidden="true">
+              <ellipse cx="120" cy="90" rx="80" ry="56" stroke="currentColor" stroke-width="1.4" fill="none"/>
+              <ellipse cx="120" cy="90" rx="62" ry="42" stroke="currentColor" stroke-width=".8" fill="none" stroke-dasharray="3 3"/>
+              <ellipse cx="120" cy="90" rx="42" ry="28" stroke="currentColor" stroke-width=".8" fill="none"/>
+              <text x="120" y="160" text-anchor="middle" fill="currentColor" font-family="DM Mono, monospace" font-size="9" letter-spacing="1.5">CUFF Ø 95–120</text>
+            </svg>
+          </div>
+        </div>
+        <div class="cat-body">
+          <h3>Terminali Stagni</h3>
+          <p>Guanti SKINSEAL e SEALTEX, polsi in neoprene sandwich, colli e lattici. Spessori 0.3–0.5mm. Completamente waterproof.</p>
+          <div class="tags">
+            <span class="tag">Neoprene</span>
+            <span class="tag">Lattice</span>
+            <span class="tag">0.3–0.5mm</span>
+          </div>
+        </div>
+        <div class="cat-foot">
+          <span class="ref">6+ riferimenti</span>
+          <span class="more">Scopri →</span>
+        </div>
+      </a>
+
+      <a href="#scarpette" class="cat-card reveal">
+        <div class="cat-img">
+          <div class="yellow-tab"></div>
+          <span class="num">02 / 03</span>
+          <div class="visual">
+            <svg viewBox="0 0 240 180" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" aria-hidden="true">
+              <path d="M40 120 Q40 70 90 65 L160 65 Q200 75 200 110 L200 130 Q200 145 185 145 L55 145 Q40 145 40 130 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
+              <path d="M40 130 L200 130" stroke="currentColor" stroke-width=".8" stroke-dasharray="2 3"/>
+              <path d="M70 65 L70 50 L150 50 L150 65" stroke="currentColor" stroke-width="1" fill="none"/>
+              <text x="120" y="170" text-anchor="middle" fill="currentColor" font-family="DM Mono, monospace" font-size="9" letter-spacing="1.5">3XS — 4XL</text>
+            </svg>
+          </div>
+        </div>
+        <div class="cat-body">
+          <h3>Scarpette Stagne</h3>
+          <p>Sei modelli: PROOF 3, TECCNA 2.0, EVOLUTION, HD, LIGHT, DOLLY. In neoprene bifoderato e trilaminato. Solette ad alta densità.</p>
+          <div class="tags">
+            <span class="tag">Neoprene</span>
+            <span class="tag">Trilaminato</span>
+            <span class="tag">3XS–4XL</span>
+          </div>
+        </div>
+        <div class="cat-foot">
+          <span class="ref">6 modelli</span>
+          <span class="more">Scopri →</span>
+        </div>
+      </a>
+
+      <a href="#calze" class="cat-card reveal">
+        <div class="cat-img">
+          <div class="yellow-tab"></div>
+          <span class="num">03 / 03</span>
+          <div class="visual">
+            <svg viewBox="0 0 240 180" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" aria-hidden="true">
+              <path d="M90 30 L150 30 L150 95 Q150 110 165 115 L195 130 Q210 138 210 150 L60 150 Q60 138 75 130 L90 115 Q90 110 90 95 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
+              <path d="M60 150 L210 150 L210 162 L60 162 Z" stroke="currentColor" stroke-width="1.4" fill="rgba(255,216,0,.18)"/>
+              <text x="135" y="175" text-anchor="middle" fill="currentColor" font-family="DM Mono, monospace" font-size="9" letter-spacing="1.5">SUOLA TECNICA</text>
+            </svg>
+          </div>
+        </div>
+        <div class="cat-body">
+          <h3>Calze Stagne</h3>
+          <p>Suola in Kevlar o Supratex. Alta resistenza all'abrasione per subacquea tecnica, vela e ambienti watersport impegnativi.</p>
+          <div class="tags">
+            <span class="tag">Kevlar</span>
+            <span class="tag">Supratex</span>
+          </div>
+        </div>
+        <div class="cat-foot">
+          <span class="ref">2 varianti</span>
+          <span class="more">Scopri →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==== BLOCK 8 — PRODUCTS DETAIL ==== -->
+<section class="products" id="prodotti">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="left">
+        <span class="label">Catalogo dettagliato</span>
+        <h2>Tutti i prodotti DEDEX</h2>
+        <p>14+ modelli su 3 linee. Schede tecniche complete e disponibilità su DD Global Store.</p>
+      </div>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="terminali" id="terminali">Terminali Stagni <span class="count">/ 06</span></button>
+      <button class="tab" data-tab="scarpette" id="scarpette">Scarpette Stagne <span class="count">/ 06</span></button>
+      <button class="tab" data-tab="calze" id="calze">Calze Stagne <span class="count">/ 02</span></button>
+    </div>
+
+    <!-- TERMINALI -->
+    <div class="prod-grid tab-pane" data-pane="terminali">
+      <article class="prod-card">
+        <div class="prod-img">
+          <span class="sku">SKU · SKINSEAL-05</span>
+          <div class="visual"><svg viewBox="0 0 200 140" fill="none" width="100%" height="100%"><path d="M30 90 L80 60 L130 60 L170 90 L160 110 L150 100 L140 110 L130 100 L120 110 L110 100 L100 110 L90 100 L80 110 L70 100 L60 110 L40 100 Z" stroke="currentColor" stroke-width="1.2"/><path d="M50 90 L150 90" stroke="currentColor" stroke-width=".7" stroke-dasharray="2 3"/></svg></div>
+        </div>
+        <div class="prod-body">
+          <h4>SKINSEAL 0.5mm</h4>
+          <p class="spec">Guanto stagno, neoprene esterno, fodera rossa, palmo zigrinato.</p>
+          <div class="prod-tags"><span class="tag">Neoprene</span><span class="tag">0.5mm</span></div>
+          <span class="more">Scheda tecnica</span>
+        </div>
+      </article>
+      <article class="prod-card">
+        <div class="prod-img">
+          <span class="sku">SKU · SEALTEX-03</span>
+          <div class="visual"><svg viewBox="0 0 200 140" fill="none" width="100%" height="100%"><path d="M40 90 L75 55 L135 55 L165 90 L155 105 L145 95 L135 105 L125 95 L115 105 L105 95 L95 105 L85 95 L75 105 L65 95 L55 105 L45 95 Z" stroke="currentColor" stroke-width="1.2"/><circle cx="100" cy="80" r="14" stroke="currentColor" stroke-width=".7"/></svg></div>
+        </div>
+        <div class="prod-body">
+          <h4>SEALTEX 0.3mm</h4>
+          <p class="spec">Guanto stagno, fodera esterna, neoprene metal grigio, palmo PU 3D.</p>
+          <div class="prod-tags"><span class="tag">Metal Grey</span><span class="tag">0.3mm</span></div>
+          <span class="more">Scheda tecnica</span>
+        </div>
+      </article>
+      <article class="prod-card">
+        <div class="prod-img">
+          <span class="sku">SKU · NSAND-05</span>
+          <div class="visual"><svg viewBox="0 0 200 140" fill="none" width="100%" height="100%"><rect x="50" y="50" width="100" height="44" stroke="currentColor" stroke-width="1.2"/><line x1="50" y1="62" x2="150" y2="62" stroke="currentColor" stroke-width=".7" stroke-dasharray="2 2"/><line x1="50" y1="80" x2="150" y2="80" stroke="currentColor" stroke-width=".7" stroke-dasharray="2 2"/></svg></div>
+        </div>
+        <div class="prod-body">
+          <h4>Neoprene Sandwich</h4>
+          <p class="spec">Polsi e colli, spessore 0.5mm, superstretch antistrappo.</p>
+          <div class="prod-tags"><span class="tag">Sandwich</span><span class="tag">Antistrappo</span></div>
+          <span class="more">Scheda tecnica</span>
+        </div>
+      </article>
+      <article class="prod-card">
+        <div class="prod-img">
+          <span class="sku">SKU · BELLOWS-HD</span>
+          <div class="visual"><svg viewBox="0 0 200 140" fill="none" width="100%" height="100%"><path d="M60 50 L60 90 M70 45 L70 95 M80 50 L80 90 M90 45 L90 95 M100 50 L100 90 M110 45 L110 95 M120 50 L120 90 M130 45 L130 95 M140 50 L140 90" stroke="currentColor" stroke-width="1"/><path d="M55 55 L145 55 L145 85 L55 85 Z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div>
+        </div>
+        <div class="prod-body">
+          <h4>Bellows / Soffietto</h4>
+          <p class="spec">Collo lattice soffietto, standard e HD alta densità.</p>
+          <div class="prod-tags"><span class="tag">Lattice</span><span class="tag">HD</span></div>
+          <span class="more">Scheda tecnica</span>
+        </div>
+      </article>
+      <article class="prod-card">
+        <div class="prod-img">
+          <span class="sku">SKU · CONTOUR-CN</span>
+          <div class="visual"><svg viewBox="0 0 200 140" fill="none" width="100%" height="100%"><path d="M50 95 L80 50 L120 50 L150 95 Z" stroke="currentColor" stroke-width="1.2" fill="none"/><line x1="50" y1="80" x2="150" y2="80" stroke="currentColor" stroke-width=".7" stroke-dasharray="2 2"/></svg></div>
+        </div>
+        <div class="prod-body">
+          <h4>Contour / Cono</h4>
+          <p class="spec">Collo cono lattice, polso bottiglia, cono, caviglie.</p>
+          <div class="prod-tags"><span class="tag">Lattice</span><span class="tag">Cono</span></div>
+          <span class="more">Scheda tecnica</span>
+        </div>
+      </article>
+      <article class="prod-card">
+        <div class="prod-img">
+          <span class="sku">SKU · LATEX-ANK</span>
+          <div class="visual"><svg viewBox="0 0 200 140" fill="none" width="100%" height="100%"><path d="M70 50 L130 50 L130 70 L155 95 L155 100 L45 100 L45 95 L70 70 Z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div>
+        </div>
+        <div class="prod-body">
+          <h4>Caviglie &amp; Calze Lattice</h4>
+          <p class="spec">Caviglie, calzini, cappuccio in lattice — disponibili anche HD.</p>
+          <div class="prod-tags"><span class="tag">Lattice</span><span class="tag">HD opt.</span></div>
+          <span class="more">Scheda tecnica</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- SCARPETTE -->
+    <div class="prod-grid tab-pane" data-pane="scarpette" hidden>
+      <article class="prod-card">
+        <div class="prod-img"><span class="sku">SKU · PROOF-3</span><div class="visual"><svg viewBox="0 0 200 140" fill="none" width="100%" height="100%"><path d="M30 100 Q30 60 75 55 L130 55 Q165 65 165 90 L165 105 Q165 115 155 115 L40 115 Q30 115 30 105 Z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M30 105 L165 105" stroke="currentColor" stroke-width=".7"/></svg></div></div>
+        <div class="prod-body"><h4>PROOF 3</h4><p class="spec">Neoprene e trilaminato, calzata ergonomica, taglie M–3XL.</p><div class="prod-tags"><span class="tag">M–3XL</span><span class="tag">Trilaminato</span></div><span class="more">Scheda tecnica</span></div>
+      </article>
+      <article class="prod-card">
+        <div class="prod-img"><span class="sku">SKU · TECCNA-2</span><div class="visual"><svg viewBox="0 0 200 140" fill="none" width="100%" height="100%"><path d="M30 100 Q30 55 80 50 L135 50 Q170 60 170 88 L170 105 Q170 118 158 118 L40 118 Q30 118 30 108 Z" stroke="currentColor" stroke-width="1.2"/><path d="M40 108 L160 108" stroke="currentColor" stroke-width=".8"/><path d="M55 50 L55 35 L150 35 L150 50" stroke="currentColor" stroke-width=".8" fill="none"/></svg></div></div>
+        <div class="prod-body"><h4>TECCNA 2.0</h4><p class="spec">Neoprene 3mm bifoderato, soletta alta densità, protezioni punta/tallone.</p><div class="prod-tags"><span class="tag">3mm</span><span class="tag">Bifoderato</span><span class="tag">HD sole</span></div><span class="more">Scheda tecnica</span></div>
+      </article>
+      <article class="prod-card">
+        <div class="prod-img"><span class="sku">SKU · EVOL-01</span><div class="visual"><svg viewBox="0 0 200 140" fill="none" width="100%" height="100%"><path d="M30 100 Q30 60 75 55 L130 55 Q165 65 165 90 L165 105 Q165 115 155 115 L40 115 Q30 115 30 105 Z" stroke="currentColor" stroke-width="1.2"/><path d="M75 55 L75 75 L130 75 L130 55" stroke="currentColor" stroke-width=".7"/></svg></div></div>
+        <div class="prod-body"><h4>EVOLUTION</h4><p class="spec">Prestazioni avanzate, alta stabilità e aderenza in immersione.</p><div class="prod-tags"><span class="tag">Stabilità</span><span class="tag">Grip</span></div><span class="more">Scheda tecnica</span></div>
+      </article>
+      <article class="prod-card">
+        <div class="prod-img"><span class="sku">SKU · HD-01</span><div class="visual"><svg viewBox="0 0 200 140" fill="none" width="100%" height="100%"><path d="M30 100 Q30 55 80 50 L135 50 Q170 60 170 88 L170 110 Q170 122 158 122 L40 122 Q30 122 30 110 Z" stroke="currentColor" stroke-width="1.4"/><pattern id="hd1" width="6" height="6" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="6" y2="6" stroke="currentColor" stroke-width=".5"/></pattern><path d="M30 110 L170 110 L170 122 L30 122 Z" fill="url(#hd1)" stroke="currentColor" stroke-width="1"/></svg></div></div>
+        <div class="prod-body"><h4>HD</h4><p class="spec">Alta densità, resistenza superiore a usura e abrasioni.</p><div class="prod-tags"><span class="tag">High density</span><span class="tag">Heavy duty</span></div><span class="more">Scheda tecnica</span></div>
+      </article>
+      <article class="prod-card">
+        <div class="prod-img"><span class="sku">SKU · LIGHT-01</span><div class="visual"><svg viewBox="0 0 200 140" fill="none" width="100%" height="100%"><path d="M35 100 Q35 65 80 60 L135 60 Q165 68 165 92 L165 105 Q165 113 155 113 L45 113 Q35 113 35 105 Z" stroke="currentColor" stroke-width="1"/><path d="M35 105 L165 105" stroke="currentColor" stroke-width=".5"/></svg></div></div>
+        <div class="prod-body"><h4>LIGHT</h4><p class="spec">Versione leggera, soluzione economica o di ricambio.</p><div class="prod-tags"><span class="tag">Light</span><span class="tag">Replacement</span></div><span class="more">Scheda tecnica</span></div>
+      </article>
+      <article class="prod-card">
+        <div class="prod-img"><span class="sku">SKU · DOLLY-01</span><div class="visual"><svg viewBox="0 0 200 140" fill="none" width="100%" height="100%"><path d="M40 100 Q40 70 80 67 L130 67 Q160 73 160 95 L160 108 Q160 115 152 115 L48 115 Q40 115 40 108 Z" stroke="currentColor" stroke-width="1.2"/></svg></div></div>
+        <div class="prod-body"><h4>DOLLY</h4><p class="spec">Design compatto, compatibile mute standard e su misura.</p><div class="prod-tags"><span class="tag">Compact</span><span class="tag">Universal</span></div><span class="more">Scheda tecnica</span></div>
+      </article>
+    </div>
+
+    <!-- CALZE -->
+    <div class="prod-grid tab-pane" data-pane="calze" hidden>
+      <article class="prod-card">
+        <div class="prod-img"><span class="sku">SKU · KEVLAR-S</span><div class="visual"><svg viewBox="0 0 200 140" fill="none" width="100%" height="100%"><path d="M70 25 L130 25 L130 80 Q130 90 140 95 L165 110 Q175 115 175 125 L25 125 Q25 115 35 110 L60 95 Q70 90 70 80 Z" stroke="currentColor" stroke-width="1.2"/><pattern id="kev2" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 5 L5 0 M-1 1 L1 -1 M4 6 L6 4" stroke="currentColor" stroke-width=".4"/></pattern><path d="M25 125 L175 125 L175 132 L25 132 Z" fill="url(#kev2)" stroke="currentColor" stroke-width="1"/></svg></div></div>
+        <div class="prod-body"><h4>Suola Kevlar</h4><p class="spec">Massima resistenza, subacquea tecnica, ambienti rocciosi.</p><div class="prod-tags"><span class="tag">Kevlar</span><span class="tag">Tech diving</span></div><span class="more">Scheda tecnica</span></div>
+      </article>
+      <article class="prod-card">
+        <div class="prod-img"><span class="sku">SKU · SUPRATEX-S</span><div class="visual"><svg viewBox="0 0 200 140" fill="none" width="100%" height="100%"><path d="M70 25 L130 25 L130 80 Q130 90 140 95 L165 110 Q175 115 175 125 L25 125 Q25 115 35 110 L60 95 Q70 90 70 80 Z" stroke="currentColor" stroke-width="1.2"/><path d="M25 125 L175 125 L175 132 L25 132 Z" stroke="currentColor" stroke-width="1" fill="rgba(255,216,0,.18)"/></svg></div></div>
+        <div class="prod-body"><h4>Suola Supratex</h4><p class="spec">Alta aderenza e flessibilità, ideale per vela e watersport leggeri.</p><div class="prod-tags"><span class="tag">Supratex</span><span class="tag">Sailing</span></div><span class="more">Scheda tecnica</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==== BLOCK 9 — TESTED BY PROS (4 cards, like SB) ==== -->
+<section class="pros">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="left">
+        <span class="label">Tested &amp; approved</span>
+        <h2>Scelto da professionisti del settore.</h2>
+      </div>
+    </div>
+    <div class="pros-grid">
+      <article class="pros-card reveal">
+        <div class="face-card">
+          <span class="badge">CASE 01</span>
+          <span class="face">M.R.</span>
+          <span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2 1l7 4-7 4z"/></svg></span>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">"I reclami in garanzia per perdite sono azzerati. La differenza si vede nei numeri."</p>
+        <div class="who"><b>Mario R.</b> · QC, produttore mute · Nord Italia</div>
+      </article>
+      <article class="pros-card reveal">
+        <div class="face-card">
+          <span class="badge">CASE 02</span>
+          <span class="face">S.F.</span>
+          <span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2 1l7 4-7 4z"/></svg></span>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Le scarpette TECCNA sono il nostro standard per i corsi avanzati. Comfort e tenuta su lunghe immersioni."</p>
+        <div class="who"><b>Silvia F.</b> · Diving Center · Sicilia</div>
+      </article>
+      <article class="pros-card reveal">
+        <div class="face-card">
+          <span class="badge">CASE 03</span>
+          <span class="face">L.K.</span>
+          <span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2 1l7 4-7 4z"/></svg></span>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Ottima qualità costruttiva, compatibili con tutti i nostri sistemi di assemblaggio."</p>
+        <div class="who"><b>Lars K.</b> · Capo produzione · Norvegia</div>
+      </article>
+      <article class="pros-card reveal">
+        <div class="face-card">
+          <span class="badge">CASE 04</span>
+          <span class="face">A.B.</span>
+          <span class="play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2 1l7 4-7 4z"/></svg></span>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Riforniamo il laboratorio esclusivamente con componenti DEDEX da tre anni."</p>
+        <div class="who"><b>Andrea B.</b> · Tecnico riparazione · Trieste</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==== BLOCK 10 — CHI È DEDEX ==== -->
+<section class="about" id="chi">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <span class="label">Il marchio</span>
+        <h2>DEDEX <small>Wet &amp; drysuits components</small></h2>
+        <p>DEDEX è il marchio tecnico dedicato ai componenti per mute stagne di DD Global Store Srl, azienda con oltre 35 anni di esperienza nel settore dei materiali tecnici per watersport e outdoor.</p>
+        <p>Ogni componente DEDEX è selezionato e distribuito con la stessa attenzione qualitativa che caratterizza l'intera offerta DD Global: materiali verificati, fornitori qualificati, compatibilità garantita con i sistemi costruttivi professionali.</p>
+        <p>DEDEX non è un brand consumer. È un riferimento tecnico per chi costruisce, ripara e distribuisce mute stagne a livello professionale.</p>
+        <div class="stat-row">
+          <div class="stat"><div class="num">35+</div><div class="lbl">Anni nel settore</div></div>
+          <div class="stat"><div class="num">14+</div><div class="lbl">Modelli a catalogo</div></div>
+          <div class="stat"><div class="num">3</div><div class="lbl">Linee prodotto</div></div>
+        </div>
+      </div>
+      <aside class="dist-card reveal" id="contatti">
+        <span class="label">Distributore autorizzato</span>
+        <h3>DD Global Store Srl</h3>
+        <p style="color:var(--muted);font-size:13.5px;line-height:1.6;margin:0">Marchio &amp; distribuzione esclusiva DEDEX</p>
+        <div class="div"></div>
+        <div class="dist-row">
+          <span class="k">Indirizzo</span>
+          <span class="v">Via dell'Industria, 49<br>34075 San Canzian d'Isonzo (GO)<br>Italia</span>
+        </div>
+        <div class="dist-row">
+          <span class="k">Sito web</span>
+          <a class="v" href="https://www.d-ditaly.com" target="_blank" rel="noopener">www.d-ditaly.com</a>
+        </div>
+        <div class="dist-row">
+          <span class="k">Email</span>
+          <a class="v" href="mailto:comunicazione@d-ditaly.com">comunicazione@d-ditaly.com</a>
+        </div>
+        <a href="https://www.d-ditaly.com" target="_blank" rel="noopener" class="btn btn-primary">Vai al sito DD Global <span class="arrow">→</span></a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ==== BLOCK 11 — FAQ ==== -->
+<section class="faq" id="faq">
+  <div class="container">
+    <h2 class="reveal">Domande frequenti, risposte oneste</h2>
+    <p class="sub reveal">Risposte sul brand, i prodotti e la distribuzione.</p>
+    <div class="faq-list reveal" id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Posso ordinare prodotti DEDEX direttamente da questo sito? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. Il sito DEDEX è una vetrina istituzionale del marchio. Per ordini, preventivi e disponibilità contatta il distributore autorizzato DD Global Store Srl su www.d-ditaly.com.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Qual è la differenza tra DEDEX e DD Global Store? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">DD Global Store Srl è il distributore e produttore dei componenti a marchio DEDEX. DEDEX è il brand tecnico specializzato esclusivamente nei componenti per mute stagne (terminali, scarpette, calze).</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">I prodotti DEDEX sono disponibili anche sul sito DD Global? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Sì. Tutti i componenti DEDEX sono presenti nel catalogo DD Global Store con schede prodotto complete, prezzi e possibilità di ordine.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Quali materiali vengono usati nelle scarpette DEDEX? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">A seconda del modello: neoprene 3mm bifoderato, trilaminato, o combinazioni di entrambi. Ogni modello specifica il materiale nella scheda tecnica disponibile su DD Global.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Le scarpette DEDEX sono compatibili con tutte le mute stagne? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">I modelli DEDEX coprono taglie dalla 3XS alla 4XL e sono progettati per la massima compatibilità con i principali sistemi di assemblaggio. Per specifiche tecniche contatta DD Global.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Offrite campioni o tagli saggio? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Per richieste campioni e prezzi B2B contatta direttamente DD Global Store tramite il form sul sito o via email.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">I lattici DEDEX sono disponibili in HD (Alta Densità)? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Sì. Tutta la gamma lattici (collo, polsi, caviglie, calze) è disponibile in versione standard e HD Alta Densità.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==== BLOCK 12 — CTA FINAL ==== -->
+<section class="cta-final">
+  <div class="inner reveal">
+    <span class="label">Contatti commerciali</span>
+    <h2>Hai bisogno di componenti<br>per mute stagne?</h2>
+    <p>Contatta DD Global Store Srl — distributore autorizzato DEDEX — per disponibilità, preventivi e specifiche tecniche complete.</p>
+    <div class="row">
+      <a href="https://www.d-ditaly.com" target="_blank" rel="noopener" class="btn btn-primary">Contatta DD Global Store <span class="arrow">→</span></a>
+      <a href="#prodotti" class="btn btn-darkoutline">Sfoglia il catalogo <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ==== BLOCK 13 — FOOTER ==== -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/dedex-logo.webp" alt="DEDEX">
+        <div class="tag">Wet &amp; drysuits components</div>
+        <p class="small">Distribuito da DD Global Store Srl. Componenti tecnici per la realizzazione e riparazione di mute stagne professionali.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Prodotti</h5>
+        <ul>
+          <li><a href="#terminali">Terminali Stagni</a></li>
+          <li><a href="#scarpette">Scarpette Stagne</a></li>
+          <li><a href="#calze">Calze Stagne</a></li>
+          <li><a href="#prodotti">Tutti i prodotti</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Distributore</h5>
+        <ul>
+          <li>DD Global Store Srl</li>
+          <li><a href="https://www.d-ditaly.com" target="_blank" rel="noopener">www.d-ditaly.com</a></li>
+          <li><a href="mailto:comunicazione@d-ditaly.com">comunicazione@d-ditaly.com</a></li>
+          <li>Via dell'Industria 49, Gorizia</li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Legale</h5>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Note Legali</a></li>
+          <li class="v-mono">© 2026 DEDEX</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 DEDEX — Marchio di DD Global Store Srl · P.IVA IT01234567890 · San Canzian d'Isonzo (GO)</span>
+      <span>Made in Italy · DX-SYS / 26</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Tabs (products)
+  const tabs = document.querySelectorAll('.tab');
+  const panes = document.querySelectorAll('.tab-pane');
+  tabs.forEach(t=>{
+    t.addEventListener('click', ()=>{
+      tabs.forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      const id = t.dataset.tab;
+      panes.forEach(p=>{ p.hidden = p.dataset.pane !== id; });
+    });
+  });
+
+  // PH Tabs (product hero)
+  const phTabs = document.querySelectorAll('.ph-tab');
+  const phPanes = document.querySelectorAll('.ph-pane');
+  phTabs.forEach(t=>{
+    t.addEventListener('click', ()=>{
+      phTabs.forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      const id = t.dataset.phtab;
+      phPanes.forEach(p=>{ p.hidden = p.dataset.phpane !== id; });
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const item = btn.parentElement;
+      const a = item.querySelector('.faq-a');
+      const open = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true':'false');
+      a.style.maxHeight = open ? a.scrollHeight + 'px' : '0px';
+    });
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', (ev)=>{
+      const id = a.getAttribute('href');
+      if(id.length>1){
+        const target = document.querySelector(id);
+        if(target){ ev.preventDefault(); window.scrollTo({top: target.getBoundingClientRect().top + window.pageYOffset - 70, behavior:'smooth'}); }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
