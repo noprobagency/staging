@@ -75,7 +75,7 @@ const overlayEvenSoft   = 'linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0
 const Photo = ({ src, position = 'center', scale = 1, x = 0, y = 0 }) => (
   <div style={{
     position: 'absolute', inset: 0,
-    backgroundImage: `url(../uploads/${src})`,
+    backgroundImage: `url(${src})`,
     backgroundSize: `${100 * scale}% auto`,
     backgroundPosition: position,
     backgroundRepeat: 'no-repeat',
@@ -87,7 +87,7 @@ const Photo = ({ src, position = 'center', scale = 1, x = 0, y = 0 }) => (
 const PhotoCover = ({ src, position = 'center 30%' }) => (
   <div style={{
     position: 'absolute', inset: 0,
-    backgroundImage: `url(../uploads/${src})`,
+    backgroundImage: `url(${src})`,
     backgroundSize: 'cover',
     backgroundPosition: position,
     backgroundRepeat: 'no-repeat',
@@ -292,7 +292,7 @@ const TplDPACutout = ({ photo, variant = 'black', label, bg = '#f0e8dc', pad = 6
   <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', background: bg }}>
     <div style={{
       position: 'absolute', inset: 0,
-      backgroundImage: `url(../uploads/${photo})`,
+      backgroundImage: `url(${photo})`,
       backgroundSize: 'contain',
       backgroundPosition: `center ${pad}%`,
       backgroundRepeat: 'no-repeat',
