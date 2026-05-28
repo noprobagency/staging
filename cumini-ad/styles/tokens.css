@@ -1,0 +1,177 @@
+/* CUMINI Design System — Design Tokens v1.1
+   ────────────────────────────────────────
+   Più sottile, più soft, più editoriale.
+   Pesi più leggeri, scala più piccola, tracking più aperto. */
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("../assets/fonts/ProximaNova-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ─── COLORI BASE ─────────────────────────── */
+  --cum-color-paper: #ffffff;          /* background principale */
+  --cum-color-ink: #1a1a1a;            /* testo principale, soft black */
+  --cum-color-paper-on-ink: #ffffff;   /* testo su superfici scure */
+
+  /* Scala di grigi neutri (per bordi, divisori, stati) */
+  --cum-gray-50:  #fafafa;
+  --cum-gray-100: #f4f4f4;
+  --cum-gray-200: #e8e8e8;
+  --cum-gray-300: #d4d4d4;
+  --cum-gray-400: #a8a8a8;
+  --cum-gray-500: #767676;
+  --cum-gray-600: #525252;
+  --cum-gray-700: #2e2e2e;
+
+  /* ─── ACCENTI STAGIONALI (gradient) ──────── */
+  /* Usati SOLO per badge, ribbon, CTA contestuali. Mai come fondo pagina. */
+  --cum-grad-summer:  linear-gradient(90deg, #e25c29 0%, #7e1e1e 100%);
+  --cum-grad-winter:  linear-gradient(90deg, #0b1c2d 0%, #1f3a5f 100%);
+  --cum-grad-arrivi:  linear-gradient(90deg, #000000 0%, #e9ae88 100%);
+  --cum-grad-archive: linear-gradient(90deg, #2a2a2a 0%, #8a8580 100%);
+
+  /* Colori solidi estratti dai gradient (per testo accenti, link contestuali) */
+  --cum-summer-ink:  #7e1e1e;
+  --cum-winter-ink:  #0b1c2d;
+  --cum-arrivi-ink:  #000000;
+  --cum-archive-ink: #2a2a2a;
+
+  /* Stati funzionali */
+  --cum-success: #1e6b3a;
+  --cum-error:   #a52020;
+  --cum-warning: #b5651d;
+
+  /* ─── TIPOGRAFIA ──────────────────────────── */
+  /* Proxima Nova — unica famiglia. Solo regular caricato, gli altri pesi
+     simulati via font-weight (browser sintetizza). Fallback Helvetica. */
+  --cum-font-sans: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --cum-font-mono: "Proxima Nova", "Helvetica Neue", sans-serif;
+
+  /* Scala tipografica — più piccola, più aerata */
+  --cum-text-2xs: 9px;    /* eyebrow micro, badge */
+  --cum-text-xs:  10px;   /* metadata, prezzo barrato */
+  --cum-text-sm:  11px;   /* body small, tag, label */
+  --cum-text-base:13px;   /* body */
+  --cum-text-md:  15px;   /* lead body */
+  --cum-text-lg:  18px;   /* sub-heading */
+  --cum-text-xl:  24px;   /* heading */
+  --cum-text-2xl: 34px;   /* display */
+  --cum-text-3xl: 48px;   /* hero */
+  --cum-text-4xl: 72px;   /* editorial / sales */
+
+  /* Pesi — solo regular, mai bold. Eleganza viene dal tracking, non dal peso. */
+  --cum-weight-regular: 400;
+  --cum-weight-medium:  400;
+  --cum-weight-semi:    400;
+  --cum-weight-bold:    400;
+
+  /* Line heights — più aperti, respirano */
+  --cum-leading-tight: 1.1;
+  --cum-leading-snug:  1.3;
+  --cum-leading-base:  1.55;
+  --cum-leading-loose: 1.8;
+
+  /* Tracking — più aperto, più editoriale */
+  --cum-track-tight:  -0.01em;
+  --cum-track-base:    0.01em;
+  --cum-track-wide:    0.06em;
+  --cum-track-wider:   0.18em;   /* ALL CAPS labels, eyebrows */
+  --cum-track-widest:  0.32em;   /* hero eyebrows, section dividers */
+
+  /* ─── SPAZIATURA ──────────────────────────── */
+  /* Scala 4-base: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128 */
+  --cum-space-1:  4px;
+  --cum-space-2:  8px;
+  --cum-space-3:  12px;
+  --cum-space-4:  16px;
+  --cum-space-5:  24px;
+  --cum-space-6:  32px;
+  --cum-space-7:  48px;
+  --cum-space-8:  64px;
+  --cum-space-9:  96px;
+  --cum-space-10: 128px;
+
+  /* ─── GRIGLIA & LAYOUT ────────────────────── */
+  --cum-page-max:    1440px;   /* contenitore massimo */
+  --cum-page-pad-d:  48px;     /* padding pagina desktop */
+  --cum-page-pad-m:  20px;     /* padding pagina mobile */
+  --cum-grid-gutter: 16px;     /* gutter tra colonne */
+
+  /* ─── BORDI & RAGGIO ──────────────────────── */
+  --cum-border: 1px solid var(--cum-gray-200);
+  --cum-border-strong: 1px solid var(--cum-ink);
+  /* Rigorosamente squadrato: il lusso minimal non usa raggi morbidi.
+     Solo eccezioni mirate (chip filtro, input pill in newsletter). */
+  --cum-radius-0: 0px;
+  --cum-radius-1: 2px;     /* quasi impercettibile */
+  --cum-radius-pill: 999px;
+
+  /* ─── OMBRE ───────────────────────────────── */
+  /* Quasi nessuna ombra — il design è piatto e cartaceo.
+     Sole eccezioni: hover card e modal. */
+  --cum-shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --cum-shadow-modal:      0 24px 64px rgba(0, 0, 0, 0.18);
+
+  /* ─── TRANSIZIONI ─────────────────────────── */
+  --cum-ease: cubic-bezier(.2, .7, .3, 1);
+  --cum-dur-fast:  120ms;
+  --cum-dur-base:  220ms;
+  --cum-dur-slow:  420ms;
+}
+
+/* ─── RESET MINIMAL ──────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--cum-font-sans);
+  font-size: var(--cum-text-base);
+  line-height: var(--cum-leading-base);
+  color: var(--cum-color-ink);
+  background: var(--cum-color-paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ─── UTILITY CLASS — TIPOGRAFIA ─────────────── */
+.cum-eyebrow {
+  font-size: var(--cum-text-2xs);
+  font-weight: 400;
+  letter-spacing: var(--cum-track-widest);
+  text-transform: uppercase;
+  color: var(--cum-gray-500);
+}
+.cum-label {
+  font-size: var(--cum-text-xs);
+  font-weight: 400;
+  letter-spacing: var(--cum-track-wider);
+  text-transform: uppercase;
+  color: var(--cum-gray-600);
+}
+.cum-body { font-size: var(--cum-text-base); line-height: var(--cum-leading-base); font-weight: 400; }
+.cum-lead { font-size: var(--cum-text-md); line-height: var(--cum-leading-base); font-weight: 400; color: var(--cum-gray-600); }
+
+.cum-h1 {
+  font-size: var(--cum-text-2xl);
+  font-weight: 400;
+  letter-spacing: var(--cum-track-tight);
+  line-height: var(--cum-leading-tight);
+  margin: 0;
+}
+.cum-h2 {
+  font-size: var(--cum-text-xl);
+  font-weight: 400;
+  letter-spacing: var(--cum-track-tight);
+  line-height: var(--cum-leading-snug);
+  margin: 0;
+}
+.cum-display {
+  font-size: var(--cum-text-3xl);
+  font-weight: 400;
+  letter-spacing: var(--cum-track-tight);
+  line-height: var(--cum-leading-tight);
+  margin: 0;
+}
