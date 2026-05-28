@@ -709,7 +709,7 @@
 
   <!-- ============== HERO ============== -->
   <section class="hero" data-screen-label="Hero" aria-label="SS26 New Arrivals">
-    <img class="hero__img" src="https://images.unsplash.com/photo-1611042553365-9b101441c135?w=2200&q=85&auto=format&fit=crop" alt="" loading="eager" />
+    <img class="hero__img" src="assets/hero/lostctrl-jersey-hero.png" alt="Lost Control SS26 — soccer jersey campaign" loading="eager" style="object-position: center 35%;" />
     <div class="hero__grade"></div>
 
     <div class="hero__index">SS26 / 01</div>
@@ -763,7 +763,7 @@
   <!-- ============== STYLE BUCKETS ============== -->
   <section class="buckets" aria-label="Shop by style" data-screen-label="Style Buckets">
     <a href="#" class="bucket">
-      <img class="bucket__img" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy" />
+      <img class="bucket__img" src="assets/ads/yofficial-dark-cargo.jpg" alt="Street — Y Official cargo look" loading="lazy" style="object-position: center 28%;" />
       <div class="bucket__overlay"></div>
       <div class="bucket__label">
         <div class="bucket__index">01 / Style</div>
@@ -773,7 +773,7 @@
       </div>
     </a>
     <a href="#" class="bucket">
-      <img class="bucket__img" src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy" />
+      <img class="bucket__img" src="assets/ads/lostctrl-monogram-jacket.jpg" alt="Form — Lost Control monogram track jacket" loading="lazy" style="object-position: center 22%;" />
       <div class="bucket__overlay"></div>
       <div class="bucket__label">
         <div class="bucket__index">02 / Style</div>
@@ -783,7 +783,7 @@
       </div>
     </a>
     <a href="#" class="bucket">
-      <img class="bucket__img" src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy" />
+      <img class="bucket__img" src="assets/ads/yofficial-squat-backpack.jpg" alt="Function — Y Official tech backpack" loading="lazy" style="object-position: center 40%;" />
       <div class="bucket__overlay"></div>
       <div class="bucket__label">
         <div class="bucket__index">03 / Style</div>
@@ -793,7 +793,7 @@
       </div>
     </a>
     <a href="#" class="bucket">
-      <img class="bucket__img" src="https://images.unsplash.com/photo-1496950866446-3253e1470e8e?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy" />
+      <img class="bucket__img" src="assets/ads/beerbro-almost-camo.jpg" alt="Ground — Beerbro Almost crewneck" loading="lazy" style="object-position: center 35%;" />
       <div class="bucket__overlay"></div>
       <div class="bucket__label">
         <div class="bucket__index">04 / Style</div>
@@ -879,31 +879,30 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    /* ====== Product data — real Unsplash editorial fashion photos ======
-       Each card uses a real image; the SC placeholder character sits behind
-       in case an image fails to load.                                        */
-    const u = (id, w=900) => `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
+    /* ====== Product data — real Ming Street studio photography ======
+       Each card pairs a real product image with a per-card object-position
+       so the 3:4 crop hits the right focal point of the source photo.        */
 
     const newIn = [
-      { brand: "MEDM",         name: "Nylon Stand Collar Coach Jacket",      price: 101, badge: "NEW IN", img: u('1551028719-00167b16eac5') },
-      { brand: "D5OVE",        name: "Raw Hem Boxy Short Sleeve Shirt",      price: 107, badge: "NEW IN", img: u('1620799140408-edc6dcb6d633') },
-      { brand: "UNKNOWNWORLD", name: "Brushed Fleece Zip Hoodie",            price: 131, badge: "NEW IN", img: u('1556821840-3a63f95609a7') },
-      { brand: "MASONPRINCE",  name: "Distressed Canvas Double Knee Pants",  price: 238, badge: "NEW IN", img: u('1542272604-787c3835535d') },
-      { brand: "FPA",          name: "Quick Dry Crewneck T-Shirt",           price: 64,  badge: "NEW IN", img: u('1521572163474-6864f9cf17ab') },
-      { brand: "PERSONSOUL",   name: "Layered Color Block Knit Top",         price: 118, badge: "NEW IN", img: u('1583744946564-b52ac1c389c8') },
-      { brand: "BLINDNOPLAN",  name: "Distressed Washed Zip Up Hoodie",      price: 171, badge: "NEW IN", img: u('1593030668930-8e2cd76de9c9') },
-      { brand: "BLACKHEAD",    name: "Cowhide Leather Automatic Buckle Belt",price: 19,  badge: "NEW IN", img: u('1624222247344-550fb60583dc') },
+      { brand: "LOSTCTRL",      name: "Zipped Wide Track Pants",            price: 172, badge: "NEW IN", img: "assets/ads/lostctrl-zip-pants.jpg",            pos: "center 38%" },
+      { brand: "UNKNOWNWORLD",  name: "Plaid Linen Camp Shirt",             price: 98,  badge: "NEW IN", img: "assets/ads/unknownworld-plaid-shorts.webp",     pos: "center 28%" },
+      { brand: "MASONPRINCE",   name: "Spokesman Cotton Tee",               price: 84,  badge: "NEW IN", img: "assets/ads/masonprince-spokesman-back.webp",    pos: "center 45%" },
+      { brand: "D5OVE",         name: "Washed Wide Denim",                  price: 168, badge: "NEW IN", img: "assets/ads/d5ove-baggy-denim.jpg",              pos: "center 50%" },
+      { brand: "PERSONSOUL",    name: "Drawstring Cocoon Pant",             price: 118, badge: "NEW IN", img: "assets/ads/personsoul-gray-8-pants.jpg",        pos: "center 50%" },
+      { brand: "BEERBRO",       name: "Spirit Mohair Crewneck",             price: 174, badge: "NEW IN", img: "assets/ads/beerbro-spirit-mohair.jpg",          pos: "center 28%" },
+      { brand: "OLDORDER",      name: "Tear-Away Track Pants",              price: 148, badge: "NEW IN", img: "assets/ads/oldorder-olive-stripe-pants.jpg",    pos: "center 55%" },
+      { brand: "MEDM",          name: "Mr. Enjoy Patch Tee",                price: 76,  badge: "NEW IN", img: "assets/ads/medm-m-patch-tee.jpg",               pos: "center 18%" },
     ];
 
     const bestsellers = [
-      { brand: "SHUSHUTONG",  name: "Bow Tie Cotton Mini Dress",         price: 284, badge: "BESTSELLER", img: u('1483985988355-763728e1935b') },
-      { brand: "MEDM",        name: "Logo Print Hooded Sweatshirt",      price: 152, badge: "BESTSELLER", img: u('1594938298603-c46c1f3c1227') },
-      { brand: "MASONPRINCE", name: "Washed Denim Carpenter Pants",      price: 219, badge: "2 LEFT",     img: u('1591047139829-d91aecb6caea') },
-      { brand: "D5OVE",       name: "Boxy Striped Long Sleeve Knit",     price: 138, badge: "BESTSELLER", img: u('1618354691373-d851c5c3a990') },
-      { brand: "OLDORDER",    name: "Padded Liner Work Jacket",          price: 247, badge: "BESTSELLER", img: u('1551488831-00ddcb6c6bd3') },
-      { brand: "FPA",         name: "Tech Cargo Wide Trouser",           price: 184, badge: "SOLD OUT",   img: u('1542060748-10c28b62716f'), soldout: true },
-      { brand: "PERSONSOUL",  name: "Asymmetric Hem Wool Vest",          price: 162, badge: "BESTSELLER", img: u('1515886657613-9f3515b0c78f') },
-      { brand: "BEERBRO",     name: "Distressed Logo Tee",               price: 78,  badge: "2 LEFT",     img: u('1586790170083-2f9ceadc732d') },
+      { brand: "MEDM",          name: "Mermaid LA Graphic Tee",             price: 82,  badge: "BESTSELLER", img: "assets/ads/medm-mermaid-tee.jpg",            pos: "center 22%" },
+      { brand: "MASONPRINCE",   name: "Sun-Dye Pink Zip Hoodie",            price: 194, badge: "BESTSELLER", img: "assets/ads/masonprince-pink-hoodie.webp",    pos: "center 32%" },
+      { brand: "LOSTCTRL",      name: "Monogram Track Jacket",              price: 238, badge: "2 LEFT",     img: "assets/ads/lostctrl-monogram-jacket.jpg",    pos: "center 22%" },
+      { brand: "FPA",           name: "Tech Field Jacket — 6 Colorways",    price: 162, badge: "BESTSELLER", img: "assets/ads/fpa-jacket-range.jpg",            pos: "center 45%" },
+      { brand: "OLDORDER",      name: "Baseball Suede Trainer",             price: 148, badge: "BESTSELLER", img: "assets/ads/oldorder-shoes.jpg",              pos: "center 55%" },
+      { brand: "Y OFFICIAL",    name: "Tech Cargo Wide Trouser",            price: 184, badge: "SOLD OUT",   img: "assets/ads/yofficial-dark-cargo.jpg",        pos: "center 55%", soldout: true },
+      { brand: "BEERBRO",       name: "Almost 2% Pride Crewneck",           price: 158, badge: "BESTSELLER", img: "assets/ads/beerbro-almost-camo.jpg",         pos: "center 30%" },
+      { brand: "MASONPRINCE",   name: "Unisex Distressed Tee",              price: 78,  badge: "2 LEFT",     img: "assets/ads/masonprince-unisex-distressed.webp", pos: "center 45%" },
     ];
 
     function buildCard(p) {
@@ -916,7 +915,7 @@
             <button class="card__wishlist" aria-label="Add to wishlist">
               <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 13.5s-5-3.2-5-7A3 3 0 0 1 8 4.5 3 3 0 0 1 13 6.5c0 3.8-5 7-5 7z"></path></svg>
             </button>
-            <img class="card__img" src="${p.img}" alt="${p.brand} — ${p.name}" loading="lazy" onerror="this.style.display='none'" />
+            <img class="card__img" src="${p.img}" alt="${p.brand} — ${p.name}" loading="lazy" style="object-position: ${p.pos || 'center'};" onerror="this.style.display='none'" />
           </div>
           <div class="card__info">
             <div class="card__brand">${p.brand}</div>
