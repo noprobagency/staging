@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8"/>
+  <title>CUMINI · PDP Mobile · 3 ottimizzazioni CRO — Print</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="styles/tokens.css"/>
+  <style>
+    body, * { font-family: var(--cum-font-sans); }
+    body { margin: 0; padding: 0; background: #fff; color: #1a1a1a; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    img { max-width: 100%; display: block; }
+
+    .page {
+      page-break-after: always;
+      break-after: page;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      padding: 24px 24px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .page:last-child { page-break-after: auto; break-after: auto; }
+
+    .page-head {
+      width: 100%;
+      max-width: 1180px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ececec;
+      margin-bottom: 18px;
+    }
+    .page-head .eyebrow {
+      font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase; color: #a8a8a8;
+    }
+    .page-head .title {
+      font-size: 14px; letter-spacing: -0.005em; color: #1a1a1a;
+    }
+    .page-head .num {
+      font-size: 10px; letter-spacing: 0.18em; color: #a8a8a8;
+    }
+
+    .triptych {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      width: 100%;
+      max-width: 1280px;
+      align-items: flex-start;
+    }
+    .triptych .col-label {
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #525252;
+      margin-bottom: 10px; text-align: center;
+    }
+    .triptych .phone-wrap {
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    @page { size: A3 portrait; margin: 14mm; }
+    @media print {
+      .page { padding: 0 0 12px; }
+    }
+  </style>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" src="components/mobile-pdp.jsx"></script>
+  <script type="text/babel" src="components/mobile-pdp-notes.jsx"></script>
+  <script type="text/babel" src="components/mobile-pdp-d.jsx"></script>
+
+  <script type="text/babel" data-presets="react">
+    function PageHead({ eyebrow, title, num }) {
+      return (
+        <div className="page-head">
+          <div className="eyebrow">{eyebrow}</div>
+          <div className="title">{title}</div>
+          <div className="num">{num}</div>
+        </div>
+      );
+    }
+
+    function PDPCol({ label, children }) {
+      return (
+        <div className="phone-wrap">
+          <div className="col-label">{label}</div>
+          {children}
+        </div>
+      );
+    }
+
+    function PrintDoc() {
+      return (
+        <div>
+          {/* PAGE 01 — Brief */}
+          <section className="page">
+            <PageHead eyebrow="Cumini · PDP Mobile" title="Brief · CRO Restyle" num="01 / 07"/>
+            <BriefCard/>
+          </section>
+
+          {/* PAGE 02 — 3 PDP side-by-side */}
+          <section className="page">
+            <PageHead eyebrow="Mobile PDP" title="Tre opzioni · da conservativa a spinta" num="02 / 07"/>
+            <div className="triptych">
+              <PDPCol label="A · Conservativa"><PDP_A/></PDPCol>
+              <PDPCol label="B · Intermedia"><PDP_B/></PDPCol>
+              <PDPCol label="C · Spinta"><PDP_C/></PDPCol>
+            </div>
+          </section>
+
+          {/* PAGE 03 — Notes A */}
+          <section className="page">
+            <PageHead eyebrow="Razionale CRO" title="Opzione A · Conservativa" num="03 / 07"/>
+            <NotesA/>
+          </section>
+
+          {/* PAGE 04 — Notes B */}
+          <section className="page">
+            <PageHead eyebrow="Razionale CRO" title="Opzione B · Intermedia" num="04 / 07"/>
+            <NotesB/>
+          </section>
+
+          {/* PAGE 05 — Notes C */}
+          <section className="page">
+            <PageHead eyebrow="Razionale CRO" title="Opzione C · Spinta" num="05 / 07"/>
+            <NotesC/>
+          </section>
+
+          {/* PAGE 06 — Opzione D · varianti boutique affiancate */}
+          <section className="page">
+            <PageHead eyebrow="Opzione D" title="Boutique fisiche · 3 livelli del modulo" num="06 / 07"/>
+            <div className="triptych">
+              <PDPCol label="D1 · Compact"><BoutiqueCompact/></PDPCol>
+              <PDPCol label="D2 · Full card"><BoutiqueFull/></PDPCol>
+              <PDPCol label="D3 · Immersive"><BoutiqueImmersive/></PDPCol>
+            </div>
+          </section>
+
+          {/* PAGE 07 — Notes D */}
+          <section className="page">
+            <PageHead eyebrow="Razionale CRO" title="Opzione D · Boutique-led" num="07 / 07"/>
+            <NotesD/>
+          </section>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<PrintDoc/>);
+
+    // Auto-print after everything is ready
+    (async () => {
+      try { if (document.fonts && document.fonts.ready) { await document.fonts.ready; } } catch (e) {}
+      // Wait for all images
+      const imgs = Array.from(document.images || []);
+      await Promise.all(imgs.map(img => img.complete ? null : new Promise(res => { img.onload = img.onerror = res; })));
+      await new Promise(r => setTimeout(r, 800));
+      window.print();
+    })();
+  </script>
+</body>
+</html>
