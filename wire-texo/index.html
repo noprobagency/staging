@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TexoShield Homepage Wireframe</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --grey-1: #f4f4f4;
+    --grey-2: #e8e8e8;
+    --grey-3: #d8d8d8;
+    --grey-4: #bfbfbf;
+    --grey-5: #999;
+    --grey-6: #6e6e6e;
+    --line: #c4c4c4;
+    --line-strong: #9a9a9a;
+    --dark: #2b2b2b;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: "SF Mono", "Roboto Mono", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: #cfcfcf;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- Page chrome ---------- */
+  .doc-head {
+    background: var(--ink);
+    color: #fff;
+    padding: 28px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .doc-head h1 { font-size: 18px; margin: 0; letter-spacing: .04em; font-weight: 700; }
+  .doc-head .meta { font-family: var(--mono); font-size: 11px; color: #b8b8b8; letter-spacing: .03em; }
+  .doc-head nav { display: flex; gap: 8px; }
+  .doc-head nav a {
+    font-family: var(--mono); font-size: 11px; color: #fff; text-decoration: none;
+    border: 1px solid #555; padding: 6px 12px; border-radius: 2px;
+  }
+  .doc-head nav a:hover { background: #fff; color: var(--ink); }
+
+  .platform-band {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 56px 40px 24px;
+  }
+  .platform-band > h2 {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: .18em;
+    color: var(--grey-6);
+    margin: 0 0 4px;
+    text-transform: uppercase;
+  }
+  .platform-band > .sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--grey-5);
+    margin: 0 0 22px;
+  }
+
+  /* ---------- Frame (the rendered "screen") ---------- */
+  .frame {
+    background: #fff;
+    border: 1px solid var(--line-strong);
+    margin: 0 auto;
+    box-shadow: 0 2px 0 rgba(0,0,0,.06);
+  }
+  .frame.desktop { width: 1280px; max-width: 100%; }
+  .frame.mobile { width: 390px; max-width: 100%; }
+
+  /* ---------- Block scaffolding ---------- */
+  .block { position: relative; border-bottom: 1px dashed var(--line); }
+  .block:last-child { border-bottom: none; }
+  .block-label {
+    position: absolute;
+    top: 0; left: 0;
+    transform: translateY(-1px);
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .08em;
+    color: #fff;
+    background: var(--grey-5);
+    padding: 3px 7px;
+    z-index: 5;
+    border-bottom-right-radius: 3px;
+  }
+  .block-inner { padding: 40px; }
+  .block.shade { background: var(--grey-1); }
+  .block.dark { background: var(--dark); color: #efefef; }
+
+  /* ---------- Wireframe primitives ---------- */
+  .imgbox {
+    background:
+      repeating-linear-gradient(135deg, transparent 0 10px, rgba(0,0,0,.045) 10px 11px),
+      var(--grey-2);
+    border: 1px solid var(--grey-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--grey-6);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.4;
+    padding: 10px;
+    position: relative;
+  }
+  .dark .imgbox { background:
+      repeating-linear-gradient(135deg, transparent 0 10px, rgba(255,255,255,.05) 10px 11px),
+      #3a3a3a; border-color: #555; color: #cfcfcf; }
+  .iconbox {
+    background:
+      repeating-linear-gradient(135deg, transparent 0 6px, rgba(0,0,0,.05) 6px 7px),
+      var(--grey-2);
+    border: 1px solid var(--grey-4);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 8px; color: var(--grey-6);
+  }
+  .dark .iconbox { background: #3a3a3a; border-color: #555; color: #ccc; }
+  .placeholder {
+    background: #fff;
+    border: 1px dashed var(--line-strong);
+    color: var(--grey-6);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    padding: 3px 8px;
+    display: inline-block;
+  }
+  .logobox {
+    border: 1px solid var(--grey-4);
+    background: var(--grey-1);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 10px; color: var(--grey-6);
+    text-align: center; padding: 8px;
+  }
+
+  /* Buttons */
+  .btn {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 11px 20px;
+    border: 1.5px solid var(--ink);
+    background: var(--ink);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 3px;
+    cursor: default;
+  }
+  .btn.ghost { background: #fff; color: var(--ink); }
+  .btn.sm { font-size: 11px; padding: 7px 12px; }
+  .dark .btn { border-color: #fff; background: #fff; color: var(--ink); }
+  .dark .btn.ghost { background: transparent; color: #fff; }
+
+  /* Typography helpers */
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--grey-6); margin: 0 0 12px; }
+  .h1 { font-size: 46px; line-height: 1.05; font-weight: 800; margin: 0 0 18px; letter-spacing: -.01em; }
+  .h2 { font-size: 30px; line-height: 1.1; font-weight: 800; margin: 0 0 14px; }
+  .h3 { font-size: 20px; font-weight: 700; margin: 0; }
+  .support { font-size: 16px; color: #444; margin: 0 0 20px; max-width: 46ch; }
+  .caption { font-family: var(--mono); font-size: 10px; color: var(--grey-6); }
+
+  .checklist { list-style: none; padding: 0; margin: 0 0 22px; display: flex; flex-direction: column; gap: 10px; }
+  .checklist li { display: flex; align-items: center; gap: 10px; font-size: 15px; }
+  .check {
+    width: 18px; height: 18px; flex: none; border: 1.5px solid var(--ink); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;
+  }
+  .check::before { content: "✓"; }
+
+  .stars { letter-spacing: 2px; color: var(--grey-6); font-size: 15px; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* Floating cards on hero image */
+  .float-card {
+    position: absolute;
+    background: #fff;
+    border: 1px solid var(--grey-4);
+    box-shadow: 0 4px 14px rgba(0,0,0,.12);
+    padding: 12px 14px;
+    font-size: 12px;
+    border-radius: 6px;
+    max-width: 230px;
+  }
+  .avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--grey-3); border: 1px solid var(--grey-4); flex: none; }
+  .mono-tag {
+    font-family: var(--mono); font-size: 11px; background: var(--ink); color: #fff;
+    padding: 6px 10px; border-radius: 3px; letter-spacing: .03em;
+  }
+
+  /* Slider arrows */
+  .arrow { width: 34px; height: 34px; border: 1px solid var(--grey-4); border-radius: 50%; background: #fff;
+    display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--grey-6); flex: none; }
+
+  /* Product card */
+  .pcard { border: 1px solid var(--grey-3); background: #fff; padding: 12px; display: flex; flex-direction: column; gap: 8px; border-radius: 4px; }
+  .pcard .imgbox { aspect-ratio: 1/1; }
+  .pcard .pname { font-size: 13px; font-weight: 600; }
+
+  .annot { font-family: var(--mono); font-size: 10px; color: var(--grey-5); margin: 4px 0 0; }
+
+  /* Generic rows */
+  .row { display: flex; }
+  .between { justify-content: space-between; align-items: center; }
+</style>
+</head>
+<body>
+
+<div class="doc-head">
+  <div>
+    <h1>TEXOSHIELD — HOMEPAGE WIREFRAME</h1>
+    <div class="meta">Low-fidelity · Greyscale · Final copy · Desktop + Mobile</div>
+  </div>
+  <nav>
+    <a href="#desktop">Desktop</a>
+    <a href="#mobile">Mobile</a>
+  </nav>
+</div>
+
+<!-- ============================ DESKTOP ============================ -->
+<section class="platform-band" id="desktop">
+  <h2>Desktop Wireframe</h2>
+  <p class="sub">1280px content width · Blocks 00–11</p>
+  <div class="frame desktop" id="desktop-frame">
+    <!-- BLOCK 00 — UTILITY BAR -->
+    <div class="block">
+      <div class="block-label">BLOCK 00 — UTILITY BAR</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:8px 40px;font-size:12px;color:#555;border-bottom:1px solid var(--grey-2);">
+        <div>Technical materials by the meter · Ships across Europe · No order minimums</div>
+        <div style="display:flex;gap:14px;align-items:center;font-family:var(--mono);font-size:11px;">
+          <span>EN / IT</span><span style="color:var(--grey-4);">·</span>
+          <span>€ EUR</span><span style="color:var(--grey-4);">·</span>
+          <span>Are you a business? → DD Global Store</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 01 — HEADER -->
+    <div class="block">
+      <div class="block-label">BLOCK 01 — HEADER</div>
+      <div style="display:grid;grid-template-columns:200px 1fr 280px;align-items:center;gap:24px;padding:18px 40px;">
+        <div class="logobox" style="height:44px;">[LOGO: texoSHIELD horizontal]</div>
+        <div style="border:1px solid var(--grey-4);border-radius:4px;padding:12px 16px;color:var(--grey-5);display:flex;align-items:center;gap:10px;">
+          <span class="iconbox" style="width:18px;height:18px;border-radius:50%;">Q</span>
+          Find the material for your project…
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:18px;text-align:center;">
+          <div><div class="iconbox" style="width:24px;height:24px;margin:0 auto 4px;">IC</div><div style="font-size:11px;">Help</div></div>
+          <div><div class="iconbox" style="width:24px;height:24px;margin:0 auto 4px;">IC</div><div style="font-size:11px;">Account</div></div>
+          <div><div class="iconbox" style="width:24px;height:24px;margin:0 auto 4px;">IC</div><div style="font-size:11px;">Wishlist</div></div>
+          <div><div class="iconbox" style="width:24px;height:24px;margin:0 auto 4px;">IC</div><div style="font-size:11px;">Cart (0)</div></div>
+        </div>
+      </div>
+      <nav style="display:flex;gap:34px;padding:12px 40px;border-top:1px solid var(--grey-2);font-size:14px;font-weight:600;">
+        <span>Materials</span><span>Projects</span><span>Learn</span><span>Samples</span><span>Community</span>
+      </nav>
+    </div>
+
+    <!-- BLOCK 02 — HERO -->
+    <div class="block">
+      <div class="block-label">BLOCK 02 — HERO (above the fold)</div>
+      <div class="block-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-top:56px;padding-bottom:56px;">
+        <!-- Left -->
+        <div>
+          <h1 class="h1">Pro-grade technical fabrics. Cut to your meter.</h1>
+          <p class="support">Neoprene, Yulex®, laminates and technical textiles — the same materials the industry uses, now in the hands of people who build and repair.</p>
+          <ul class="checklist">
+            <li><span class="check"></span> No order minimums — from 0.5 m</li>
+            <li><span class="check"></span> €5 samples before you commit</li>
+            <li><span class="check"></span> Custom cut to size</li>
+          </ul>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;flex-wrap:wrap;">
+            <span class="stars">★★★★★</span>
+            <span style="font-size:14px;color:#444;">Rated Excellent by makers &amp; repairers across Europe</span>
+            <span class="logobox" style="height:26px;width:84px;font-size:9px;">[Trustpilot]</span>
+          </div>
+          <div class="cta-row">
+            <span class="btn">Shop materials</span>
+            <span class="btn ghost">Order a sample · €5</span>
+          </div>
+        </div>
+        <!-- Right -->
+        <div style="position:relative;">
+          <div class="imgbox" style="height:420px;">[HERO IMAGE: detailed photo of a finished / in-progress DIY backpack — visible material &amp; stitching, aspirational but real]</div>
+          <div class="float-card" style="top:24px;left:-28px;display:flex;gap:10px;align-items:flex-start;">
+            <span class="avatar"></span>
+            <div><div class="stars" style="font-size:11px;">★★★★★</div>“Made my own pack — the neoprene was perfect.”</div>
+          </div>
+          <div class="mono-tag" style="position:absolute;bottom:96px;right:-18px;">3 mm · YLX-N3 · €34/m</div>
+          <div class="imgbox" style="position:absolute;bottom:-26px;right:30px;width:150px;height:110px;box-shadow:0 4px 14px rgba(0,0,0,.14);">[SMALL IMAGE: gear repair close-up]</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 03 — CATEGORY SHORTCUTS -->
+    <div class="block shade">
+      <div class="block-label">BLOCK 03 — CATEGORY SHORTCUTS</div>
+      <div class="block-inner">
+        <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:14px;">
+          <!-- TILES -->
+          <div style="text-align:center;"><div class="iconbox" style="height:56px;margin-bottom:8px;border-radius:4px;">[ICON]</div><div style="font-size:12px;font-weight:600;">Neoprene</div></div>
+          <div style="text-align:center;"><div class="iconbox" style="height:56px;margin-bottom:8px;border-radius:4px;">[ICON]</div><div style="font-size:12px;font-weight:600;">Yulex®</div></div>
+          <div style="text-align:center;"><div class="iconbox" style="height:56px;margin-bottom:8px;border-radius:4px;">[ICON]</div><div style="font-size:12px;font-weight:600;">Laminates</div></div>
+          <div style="text-align:center;"><div class="iconbox" style="height:56px;margin-bottom:8px;border-radius:4px;">[ICON]</div><div style="font-size:12px;font-weight:600;">Technical Textiles</div></div>
+          <div style="text-align:center;"><div class="iconbox" style="height:56px;margin-bottom:8px;border-radius:4px;">[ICON]</div><div style="font-size:12px;font-weight:600;">Glues &amp; Accessories</div></div>
+          <div style="text-align:center;"><div class="iconbox" style="height:56px;margin-bottom:8px;border-radius:4px;">[ICON]</div><div style="font-size:12px;font-weight:600;">Samples</div></div>
+          <div style="text-align:center;"><div class="iconbox" style="height:56px;margin-bottom:8px;border-radius:4px;">[ICON]</div><div style="font-size:12px;font-weight:600;">Custom Cut</div></div>
+          <div style="text-align:center;"><div class="iconbox" style="height:56px;margin-bottom:8px;border-radius:4px;">[ICON]</div><div style="font-size:12px;font-weight:600;">DIY Kits</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 04 — CATEGORY PRODUCT BANDS -->
+    <div class="block">
+      <div class="block-label">BLOCK 04 — CATEGORY PRODUCT BANDS</div>
+      <!-- Band 1 -->
+      <div class="block-inner" style="border-bottom:1px dashed var(--line);">
+        <p class="eyebrow">Shop by category</p>
+        <div class="row between" style="margin-bottom:20px;">
+          <h3 class="h3" style="font-size:24px;">Neoprene</h3>
+          <span style="font-size:13px;font-weight:600;">See all →</span>
+        </div>
+        <div style="display:flex;align-items:stretch;gap:12px;">
+          <div class="arrow">‹</div>
+          <div style="flex:1;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;overflow:hidden;">
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+      </div>
+      <!-- Band 2 -->
+      <div class="block-inner shade" style="border-bottom:1px dashed var(--line);background:var(--grey-1);">
+        <div class="row between" style="margin-bottom:20px;">
+          <h3 class="h3" style="font-size:24px;">Yulex®</h3>
+          <span style="font-size:13px;font-weight:600;">See all →</span>
+        </div>
+        <div style="display:flex;align-items:stretch;gap:12px;">
+          <div class="arrow">‹</div>
+          <div style="flex:1;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;overflow:hidden;">
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+      </div>
+      <!-- Band 3 -->
+      <div class="block-inner">
+        <div class="row between" style="margin-bottom:20px;">
+          <h3 class="h3" style="font-size:24px;">Laminates</h3>
+          <span style="font-size:13px;font-weight:600;">See all →</span>
+        </div>
+        <div style="display:flex;align-items:stretch;gap:12px;">
+          <div class="arrow">‹</div>
+          <div style="flex:1;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;overflow:hidden;">
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+            <div class="pcard">
+              <div class="imgbox">[PRODUCT IMAGE]</div>
+              <div class="pname"><span class="placeholder">product name</span></div>
+              <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+              <div><span class="placeholder">€00/m</span></div>
+              <span class="btn sm" style="justify-content:center;">View product</span>
+            </div>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 05 — DIY FLAGSHIP SPOTLIGHT -->
+    <div class="block shade">
+      <div class="block-label">BLOCK 05 — DIY FLAGSHIP SPOTLIGHT</div>
+      <div class="block-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-top:56px;padding-bottom:56px;">
+        <div>
+          <p class="eyebrow">Build your own</p>
+          <h2 class="h2">What is TexoShield?</h2>
+          <p class="support">The materials, the cut, and the know-how to build technical gear yourself. Start with our flagship: a backpack you build from scratch.</p>
+          <ul class="checklist">
+            <li><span class="check"></span> Every material you need, cut to size</li>
+            <li><span class="check"></span> Step-by-step build guides included</li>
+            <li><span class="check"></span> A community building the same thing</li>
+          </ul>
+          <span class="btn">Start the backpack build →</span>
+        </div>
+        <div style="position:relative;">
+          <div class="imgbox" style="height:380px;">[IMAGE: DIY backpack with hand-drawn annotation arrows pointing to parts — e.g. “YLX-N3 panel”, “taped seam”, “custom-cut base”]</div>
+          <div class="float-card" style="bottom:-22px;left:-24px;border-radius:14px;">“They literally hand you the instructions to build your own pack — insane.”</div>
+        </div>
+      </div>
+    </div>
+    <!-- BLOCK 06 — COMMUNITY (UGC) -->
+    <div class="block">
+      <div class="block-label">BLOCK 06 — COMMUNITY (UGC)</div>
+      <div class="block-inner" style="text-align:center;">
+        <p class="eyebrow" style="text-align:center;">#builtwithtexo</p>
+        <h2 class="h2" style="text-align:center;">Show us what you build.</h2>
+        <p class="support" style="margin:0 auto 28px;text-align:center;max-width:54ch;">Real projects from the TexoShield community — every one tagged with the materials used.</p>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:28px;">
+          <div class="imgbox" style="aspect-ratio:3/4;flex-direction:column;gap:6px;">[UGC: maker project photo]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
+          <div class="imgbox" style="aspect-ratio:3/4;flex-direction:column;gap:6px;">[UGC: maker project photo]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
+          <div class="imgbox" style="aspect-ratio:3/4;flex-direction:column;gap:6px;">[UGC: maker project photo]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
+          <div class="imgbox" style="aspect-ratio:3/4;flex-direction:column;gap:6px;">[UGC: maker project photo]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
+          <div class="imgbox" style="aspect-ratio:3/4;flex-direction:column;gap:6px;">[UGC: maker project photo]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
+          <div class="imgbox" style="aspect-ratio:3/4;flex-direction:column;gap:6px;">[UGC: maker project photo]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
+        </div>
+        <div class="cta-row" style="justify-content:center;">
+          <span class="btn">Explore projects</span>
+          <span class="btn ghost">Share yours</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 07 — BRANDS & CERTIFICATIONS -->
+    <div class="block shade">
+      <div class="block-label">BLOCK 07 — BRANDS &amp; CERTIFICATIONS</div>
+      <div class="block-inner" style="text-align:center;">
+        <p class="eyebrow" style="text-align:center;">Only the best materials</p>
+        <h2 class="h2" style="text-align:center;">Trusted brands &amp; certifications</h2>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:24px 0 20px;">
+          <div class="logobox" style="height:64px;">[LOGO]<br>Yulex®</div>
+          <div class="logobox" style="height:64px;">[LOGO]<br>FSC Certified</div>
+          <div class="logobox" style="height:64px;">[LOGO]<br><span class="caption">material brand</span></div>
+          <div class="logobox" style="height:64px;">[LOGO]<br><span class="caption">material brand</span></div>
+          <div class="logobox" style="height:64px;">[LOGO]<br><span class="caption">material brand</span></div>
+          <div class="logobox" style="height:64px;">[LOGO]<br><span class="caption">material brand</span></div>
+        </div>
+        <p style="font-size:14px;color:#444;margin:0;">Distributed by DD Global Store — 35 years in technical materials.</p>
+      </div>
+    </div>
+
+    <!-- BLOCK 08 — B2B BRIDGE -->
+    <div class="block dark">
+      <div class="block-label">BLOCK 08 — B2B BRIDGE</div>
+      <div class="block-inner" style="text-align:center;padding-top:52px;padding-bottom:52px;">
+        <h2 class="h2" style="color:#fff;text-align:center;">Ordering in volume, or buying for a business?</h2>
+        <p style="font-size:16px;color:#cfcfcf;max-width:56ch;margin:0 auto 24px;">Get dedicated pricing and support through DD Global Store — no minimums, no walls.</p>
+        <div class="cta-row" style="justify-content:center;margin-bottom:44px;">
+          <span class="btn">Discover DD Global Store</span>
+          <span class="btn ghost">Request B2B pricing</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center;max-width:880px;margin:0 auto;">
+          <div><div class="iconbox" style="width:40px;height:40px;margin:0 auto 12px;border-radius:6px;">[ICON]</div><div class="h3" style="font-size:16px;color:#fff;margin-bottom:6px;">Volume pricing</div><div style="font-size:13px;color:#bdbdbd;">Discounts that scale with your order.</div></div>
+          <div><div class="iconbox" style="width:40px;height:40px;margin:0 auto 12px;border-radius:6px;">[ICON]</div><div class="h3" style="font-size:16px;color:#fff;margin-bottom:6px;">Dedicated support</div><div style="font-size:13px;color:#bdbdbd;">Talk to people who know the materials.</div></div>
+          <div><div class="iconbox" style="width:40px;height:40px;margin:0 auto 12px;border-radius:6px;">[ICON]</div><div class="h3" style="font-size:16px;color:#fff;margin-bottom:6px;">Mix &amp; match</div><div style="font-size:13px;color:#bdbdbd;">Combine products to hit volume tiers.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 09 — REASSURANCE STRIP -->
+    <div class="block">
+      <div class="block-label">BLOCK 09 — REASSURANCE STRIP</div>
+      <div class="block-inner" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-top:28px;padding-bottom:28px;">
+        <div style="display:flex;align-items:center;gap:12px;justify-content:center;"><div class="iconbox" style="width:34px;height:34px;border-radius:6px;">[ICON]</div><span style="font-weight:600;font-size:14px;">No minimums</span></div>
+        <div style="display:flex;align-items:center;gap:12px;justify-content:center;"><div class="iconbox" style="width:34px;height:34px;border-radius:6px;">[ICON]</div><span style="font-weight:600;font-size:14px;">Ships across Europe</span></div>
+        <div style="display:flex;align-items:center;gap:12px;justify-content:center;"><div class="iconbox" style="width:34px;height:34px;border-radius:6px;">[ICON]</div><span style="font-weight:600;font-size:14px;">€5 samples</span></div>
+        <div style="display:flex;align-items:center;gap:12px;justify-content:center;"><div class="iconbox" style="width:34px;height:34px;border-radius:6px;">[ICON]</div><span style="font-weight:600;font-size:14px;">Custom cut</span></div>
+      </div>
+    </div>
+
+    <!-- BLOCK 10 — NEWSLETTER -->
+    <div class="block shade">
+      <div class="block-label">BLOCK 10 — NEWSLETTER / COMMUNITY EMAIL</div>
+      <div class="block-inner" style="text-align:center;padding-top:48px;padding-bottom:48px;">
+        <h2 class="h2" style="text-align:center;">Join the community.</h2>
+        <p class="support" style="margin:0 auto 24px;text-align:center;">Guides, new materials, and projects. No spam.</p>
+        <div style="display:flex;gap:10px;max-width:480px;margin:0 auto;">
+          <div style="flex:1;border:1px solid var(--grey-4);border-radius:4px;padding:12px 14px;color:var(--grey-5);text-align:left;background:#fff;">your@email.com</div>
+          <span class="btn">Subscribe</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 11 — FOOTER -->
+    <div class="block dark">
+      <div class="block-label">BLOCK 11 — FOOTER</div>
+      <div class="block-inner" style="padding-top:48px;">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:40px;">
+          <div>
+            <div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#fff;margin-bottom:14px;">ACCOUNT</div>
+            <div style="display:flex;flex-direction:column;gap:9px;font-size:13px;color:#cfcfcf;"><span>Login</span><span>Cart</span><span>Wishlist</span><span>Orders</span></div>
+          </div>
+          <div>
+            <div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#fff;margin-bottom:14px;">SUPPORT</div>
+            <div style="display:flex;flex-direction:column;gap:9px;font-size:13px;color:#cfcfcf;"><span>Help Center</span><span>Contact Us</span><span>Shipping &amp; Returns</span><span>Samples</span></div>
+          </div>
+          <div>
+            <div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#fff;margin-bottom:14px;">INFORMATION</div>
+            <div style="display:flex;flex-direction:column;gap:9px;font-size:13px;color:#cfcfcf;"><span>About Us</span><span>Yulex® &amp; Sustainability</span><span>DD Global Store (B2B)</span><span>Terms of Service</span></div>
+          </div>
+          <div>
+            <div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#fff;margin-bottom:14px;">COMMUNITY</div>
+            <div style="display:flex;flex-direction:column;gap:9px;font-size:13px;color:#cfcfcf;"><span>Projects</span><span>Guides</span><span>Get Inspired</span>
+              <span style="display:flex;gap:8px;margin-top:4px;"><span class="iconbox" style="width:30px;height:30px;border-radius:4px;">[IG]</span><span class="iconbox" style="width:30px;height:30px;border-radius:4px;">[YT]</span><span class="iconbox" style="width:38px;height:30px;border-radius:4px;">[TikTok]</span></span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid #444;padding-top:22px;">
+          <div class="logobox" style="height:38px;width:150px;background:#3a3a3a;border-color:#555;color:#ccc;">[LOGO]</div>
+          <div style="font-family:var(--mono);font-size:11px;color:#cfcfcf;">EN / IT · € EUR</div>
+          <div style="font-size:12px;color:#bdbdbd;">© 2026 DD Global Store Srl. All rights reserved.</div>
+        </div>
+      </div>
+    </div>
+    <!-- DESKTOP_BLOCKS -->
+  </div>
+</section>
+
+<!-- ============================ MOBILE ============================ -->
+<section class="platform-band" id="mobile">
+  <h2>Mobile Wireframe</h2>
+  <p class="sub">390px viewport · Blocks 00–11 with mobile adaptations</p>
+  <div class="frame mobile" id="mobile-frame">
+    <!-- BLOCK 00 — UTILITY BAR (mobile) -->
+    <div class="block">
+      <div class="block-label">BLOCK 00 — UTILITY BAR</div>
+      <div style="padding:7px 16px;font-size:11px;color:#555;text-align:center;border-bottom:1px solid var(--grey-2);display:flex;align-items:center;justify-content:center;gap:8px;">
+        <span style="color:var(--grey-4);">‹</span>
+        <span>Ships across Europe · No order minimums</span>
+        <span style="color:var(--grey-4);">›</span>
+      </div>
+      <div class="annot" style="padding:2px 16px 6px;text-align:center;">single rotating line · lang/currency moved into hamburger</div>
+    </div>
+
+    <!-- BLOCK 01 — HEADER (mobile) -->
+    <div class="block">
+      <div class="block-label">BLOCK 01 — HEADER</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;">
+        <div class="iconbox" style="width:30px;height:30px;border-radius:4px;">≡</div>
+        <div class="logobox" style="height:34px;width:140px;">[LOGO]</div>
+        <div style="display:flex;gap:10px;">
+          <div class="iconbox" style="width:30px;height:30px;border-radius:4px;">Q</div>
+          <div class="iconbox" style="width:30px;height:30px;border-radius:4px;">🛒</div>
+        </div>
+      </div>
+      <div class="annot" style="padding:0 16px 12px;">Search icon expands to full-width on tap · primary nav (Materials · Projects · Learn · Samples · Community) + EN/IT · € EUR live inside hamburger</div>
+    </div>
+
+    <!-- BLOCK 02 — HERO (mobile: image first) -->
+    <div class="block">
+      <div class="block-label">BLOCK 02 — HERO</div>
+      <div style="padding:16px;">
+        <div style="position:relative;margin-bottom:22px;">
+          <div class="imgbox" style="height:240px;">[HERO IMAGE: DIY backpack — material &amp; stitching visible]</div>
+          <div class="float-card" style="bottom:14px;left:10px;display:flex;gap:8px;align-items:flex-start;max-width:200px;">
+            <span class="avatar"></span>
+            <div style="font-size:11px;"><div class="stars" style="font-size:10px;">★★★★★</div>“Made my own pack — the neoprene was perfect.”</div>
+          </div>
+          <div class="mono-tag" style="position:absolute;top:12px;right:10px;font-size:10px;">3 mm · YLX-N3 · €34/m</div>
+          <div class="annot" style="margin-top:6px;">Secondary repair thumbnail dropped on mobile</div>
+        </div>
+        <h1 class="h1" style="font-size:30px;">Pro-grade technical fabrics. Cut to your meter.</h1>
+        <p class="support" style="font-size:15px;">Neoprene, Yulex®, laminates and technical textiles — the same materials the industry uses, now in the hands of people who build and repair.</p>
+        <ul class="checklist">
+          <li><span class="check"></span> No order minimums — from 0.5 m</li>
+          <li><span class="check"></span> €5 samples before you commit</li>
+          <li><span class="check"></span> Custom cut to size</li>
+        </ul>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
+          <span class="stars">★★★★★</span>
+          <span class="logobox" style="height:24px;width:78px;font-size:9px;">[Trustpilot]</span>
+        </div>
+        <p style="font-size:13px;color:#444;margin:-8px 0 18px;">Rated Excellent by makers &amp; repairers across Europe</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <span class="btn" style="justify-content:center;">Shop materials</span>
+          <span class="btn ghost" style="justify-content:center;">Order a sample · €5</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 03 — CATEGORY SHORTCUTS (mobile scroll strip) -->
+    <div class="block shade">
+      <div class="block-label">BLOCK 03 — CATEGORY SHORTCUTS</div>
+      <div style="padding:18px 0 8px;">
+        <div style="display:flex;gap:12px;overflow-x:auto;padding:0 16px 8px;">
+          <div style="text-align:center;flex:none;width:78px;"><div class="iconbox" style="height:60px;margin-bottom:6px;border-radius:4px;">[ICON]</div><div style="font-size:11px;font-weight:600;">Neoprene</div></div>
+          <div style="text-align:center;flex:none;width:78px;"><div class="iconbox" style="height:60px;margin-bottom:6px;border-radius:4px;">[ICON]</div><div style="font-size:11px;font-weight:600;">Yulex®</div></div>
+          <div style="text-align:center;flex:none;width:78px;"><div class="iconbox" style="height:60px;margin-bottom:6px;border-radius:4px;">[ICON]</div><div style="font-size:11px;font-weight:600;">Laminates</div></div>
+          <div style="text-align:center;flex:none;width:78px;"><div class="iconbox" style="height:60px;margin-bottom:6px;border-radius:4px;">[ICON]</div><div style="font-size:11px;font-weight:600;">Technical Textiles</div></div>
+          <div style="text-align:center;flex:none;width:78px;"><div class="iconbox" style="height:60px;margin-bottom:6px;border-radius:4px;">[ICON]</div><div style="font-size:11px;font-weight:600;">Glues &amp; Accessories</div></div>
+          <div style="text-align:center;flex:none;width:78px;opacity:.5;"><div class="iconbox" style="height:60px;margin-bottom:6px;border-radius:4px;">[ICON]</div><div style="font-size:11px;font-weight:600;">Samples</div></div>
+        </div>
+        <div class="annot" style="text-align:center;padding:4px 16px 0;">← swipe · 8 tiles total (or 2×4 grid)</div>
+      </div>
+    </div>
+
+    <!-- BLOCK 04 — PRODUCT BANDS (mobile swipe) -->
+    <div class="block">
+      <div class="block-label">BLOCK 04 — PRODUCT BANDS</div>
+      <!-- Band 1 -->
+      <div style="padding:20px 0;border-bottom:1px dashed var(--line);">
+        <div class="row between" style="padding:0 16px;margin-bottom:6px;"><p class="eyebrow" style="margin:0;">Shop by category</p></div>
+        <div class="row between" style="padding:0 16px;margin-bottom:14px;"><h3 class="h3" style="font-size:20px;">Neoprene</h3><span style="font-size:13px;font-weight:600;">See all →</span></div>
+        <div class="m-band" style="display:flex;gap:12px;overflow-x:auto;padding:0 16px;">
+          <div class="pcard" style="flex:none;width:210px;">
+            <div class="imgbox">[PRODUCT IMAGE]</div>
+            <div class="pname"><span class="placeholder">product name</span></div>
+            <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+            <div><span class="placeholder">€00/m</span></div>
+            <span class="btn sm" style="justify-content:center;">View product</span>
+          </div>
+          <div class="pcard" style="flex:none;width:210px;">
+            <div class="imgbox">[PRODUCT IMAGE]</div>
+            <div class="pname"><span class="placeholder">product name</span></div>
+            <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+            <div><span class="placeholder">€00/m</span></div>
+            <span class="btn sm" style="justify-content:center;">View product</span>
+          </div>
+          <div class="pcard" style="flex:none;width:210px;">
+            <div class="imgbox">[PRODUCT IMAGE]</div>
+            <div class="pname"><span class="placeholder">product name</span></div>
+            <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+            <div><span class="placeholder">€00/m</span></div>
+            <span class="btn sm" style="justify-content:center;">View product</span>
+          </div>
+          <div class="pcard" style="flex:none;width:210px;">
+            <div class="imgbox">[PRODUCT IMAGE]</div>
+            <div class="pname"><span class="placeholder">product name</span></div>
+            <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+            <div><span class="placeholder">€00/m</span></div>
+            <span class="btn sm" style="justify-content:center;">View product</span>
+          </div>
+          <div class="pcard" style="flex:none;width:210px;">
+            <div class="imgbox">[PRODUCT IMAGE]</div>
+            <div class="pname"><span class="placeholder">product name</span></div>
+            <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+            <div><span class="placeholder">€00/m</span></div>
+            <span class="btn sm" style="justify-content:center;">View product</span>
+          </div>
+        </div>
+      </div>
+      <!-- Band 2 -->
+      <div class="shade" style="padding:20px 0;border-bottom:1px dashed var(--line);background:var(--grey-1);">
+        <div class="row between" style="padding:0 16px;margin-bottom:14px;"><h3 class="h3" style="font-size:20px;">Yulex®</h3><span style="font-size:13px;font-weight:600;">See all →</span></div>
+        <div class="m-band" style="display:flex;gap:12px;overflow-x:auto;padding:0 16px;">
+          <div class="pcard" style="flex:none;width:210px;">
+            <div class="imgbox">[PRODUCT IMAGE]</div>
+            <div class="pname"><span class="placeholder">product name</span></div>
+            <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+            <div><span class="placeholder">€00/m</span></div>
+            <span class="btn sm" style="justify-content:center;">View product</span>
+          </div>
+          <div class="pcard" style="flex:none;width:210px;">
+            <div class="imgbox">[PRODUCT IMAGE]</div>
+            <div class="pname"><span class="placeholder">product name</span></div>
+            <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+            <div><span class="placeholder">€00/m</span></div>
+            <span class="btn sm" style="justify-content:center;">View product</span>
+          </div>
+          <div class="pcard" style="flex:none;width:210px;">
+            <div class="imgbox">[PRODUCT IMAGE]</div>
+            <div class="pname"><span class="placeholder">product name</span></div>
+            <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+            <div><span class="placeholder">€00/m</span></div>
+            <span class="btn sm" style="justify-content:center;">View product</span>
+          </div>
+          <div class="pcard" style="flex:none;width:210px;">
+            <div class="imgbox">[PRODUCT IMAGE]</div>
+            <div class="pname"><span class="placeholder">product name</span></div>
+            <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+            <div><span class="placeholder">€00/m</span></div>
+            <span class="btn sm" style="justify-content:center;">View product</span>
+          </div>
+          <div class="pcard" style="flex:none;width:210px;">
+            <div class="imgbox">[PRODUCT IMAGE]</div>
+            <div class="pname"><span class="placeholder">product name</span></div>
+            <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+            <div><span class="placeholder">€00/m</span></div>
+            <span class="btn sm" style="justify-content:center;">View product</span>
+          </div>
+        </div>
+      </div>
+      <!-- Band 3 -->
+      <div style="padding:20px 0;">
+        <div class="row between" style="padding:0 16px;margin-bottom:14px;"><h3 class="h3" style="font-size:20px;">Laminates</h3><span style="font-size:13px;font-weight:600;">See all →</span></div>
+        <div class="m-band" style="display:flex;gap:12px;overflow-x:auto;padding:0 16px;">
+          <div class="pcard" style="flex:none;width:210px;">
+            <div class="imgbox">[PRODUCT IMAGE]</div>
+            <div class="pname"><span class="placeholder">product name</span></div>
+            <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+            <div><span class="placeholder">€00/m</span></div>
+            <span class="btn sm" style="justify-content:center;">View product</span>
+          </div>
+          <div class="pcard" style="flex:none;width:210px;">
+            <div class="imgbox">[PRODUCT IMAGE]</div>
+            <div class="pname"><span class="placeholder">product name</span></div>
+            <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+            <div><span class="placeholder">€00/m</span></div>
+            <span class="btn sm" style="justify-content:center;">View product</span>
+          </div>
+          <div class="pcard" style="flex:none;width:210px;">
+            <div class="imgbox">[PRODUCT IMAGE]</div>
+            <div class="pname"><span class="placeholder">product name</span></div>
+            <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+            <div><span class="placeholder">€00/m</span></div>
+            <span class="btn sm" style="justify-content:center;">View product</span>
+          </div>
+          <div class="pcard" style="flex:none;width:210px;">
+            <div class="imgbox">[PRODUCT IMAGE]</div>
+            <div class="pname"><span class="placeholder">product name</span></div>
+            <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+            <div><span class="placeholder">€00/m</span></div>
+            <span class="btn sm" style="justify-content:center;">View product</span>
+          </div>
+          <div class="pcard" style="flex:none;width:210px;">
+            <div class="imgbox">[PRODUCT IMAGE]</div>
+            <div class="pname"><span class="placeholder">product name</span></div>
+            <div class="annot"><span class="placeholder">3 mm · CR · 140 cm</span></div>
+            <div><span class="placeholder">€00/m</span></div>
+            <span class="btn sm" style="justify-content:center;">View product</span>
+          </div>
+        </div>
+        <div class="annot" style="text-align:center;padding-top:8px;">← swipe · ~1.5 cards in view signals scroll</div>
+      </div>
+    </div>
+
+    <!-- BLOCK 05 — DIY FLAGSHIP (mobile: image first) -->
+    <div class="block shade">
+      <div class="block-label">BLOCK 05 — DIY FLAGSHIP SPOTLIGHT</div>
+      <div style="padding:16px;">
+        <div style="position:relative;margin-bottom:24px;">
+          <div class="imgbox" style="height:240px;">[IMAGE: DIY backpack with annotation arrows — “YLX-N3 panel”, “taped seam”, “custom-cut base”]</div>
+          <div class="float-card" style="bottom:-16px;left:10px;border-radius:14px;font-size:11px;">“They literally hand you the instructions to build your own pack — insane.”</div>
+        </div>
+        <p class="eyebrow" style="margin-top:14px;">Build your own</p>
+        <h2 class="h2" style="font-size:26px;">What is TexoShield?</h2>
+        <p class="support" style="font-size:15px;">The materials, the cut, and the know-how to build technical gear yourself. Start with our flagship: a backpack you build from scratch.</p>
+        <ul class="checklist">
+          <li><span class="check"></span> Every material you need, cut to size</li>
+          <li><span class="check"></span> Step-by-step build guides included</li>
+          <li><span class="check"></span> A community building the same thing</li>
+        </ul>
+        <span class="btn" style="justify-content:center;width:100%;">Start the backpack build →</span>
+      </div>
+    </div>
+
+    <!-- BLOCK 06 — COMMUNITY (mobile 2×2) -->
+    <div class="block">
+      <div class="block-label">BLOCK 06 — COMMUNITY (UGC)</div>
+      <div style="padding:16px;text-align:center;">
+        <p class="eyebrow" style="text-align:center;">#builtwithtexo</p>
+        <h2 class="h2" style="font-size:26px;text-align:center;">Show us what you build.</h2>
+        <p class="support" style="font-size:15px;margin:0 auto 20px;text-align:center;">Real projects from the TexoShield community — every one tagged with the materials used.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
+          <div class="imgbox" style="aspect-ratio:1/1;flex-direction:column;gap:6px;">[UGC photo]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
+          <div class="imgbox" style="aspect-ratio:1/1;flex-direction:column;gap:6px;">[UGC photo]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
+          <div class="imgbox" style="aspect-ratio:1/1;flex-direction:column;gap:6px;">[UGC photo]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
+          <div class="imgbox" style="aspect-ratio:1/1;flex-direction:column;gap:6px;">[UGC photo]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
+        </div>
+        <span class="btn" style="justify-content:center;width:100%;">Explore projects</span>
+      </div>
+    </div>
+
+    <!-- BLOCK 07 — BRANDS (mobile 2-row scroll) -->
+    <div class="block shade">
+      <div class="block-label">BLOCK 07 — BRANDS &amp; CERTIFICATIONS</div>
+      <div style="padding:16px;text-align:center;">
+        <p class="eyebrow" style="text-align:center;">Only the best materials</p>
+        <h2 class="h2" style="font-size:24px;text-align:center;">Trusted brands &amp; certifications</h2>
+        <div style="display:grid;grid-rows:2;grid-auto-flow:column;grid-auto-columns:128px;gap:10px;overflow-x:auto;padding:16px 0;justify-content:start;">
+          <div class="logobox" style="height:56px;">[LOGO]<br>Yulex®</div>
+          <div class="logobox" style="height:56px;">[LOGO]<br>FSC Certified</div>
+          <div class="logobox" style="height:56px;">[LOGO]<br><span class="caption">brand</span></div>
+          <div class="logobox" style="height:56px;">[LOGO]<br><span class="caption">brand</span></div>
+          <div class="logobox" style="height:56px;">[LOGO]<br><span class="caption">brand</span></div>
+          <div class="logobox" style="height:56px;">[LOGO]<br><span class="caption">brand</span></div>
+        </div>
+        <div class="annot">← swipe (2-row strip)</div>
+        <p style="font-size:13px;color:#444;margin:12px 0 0;">Distributed by DD Global Store — 35 years in technical materials.</p>
+      </div>
+    </div>
+
+    <!-- BLOCK 08 — B2B BRIDGE (mobile stacked) -->
+    <div class="block dark">
+      <div class="block-label">BLOCK 08 — B2B BRIDGE</div>
+      <div style="padding:32px 16px;text-align:center;">
+        <h2 class="h2" style="font-size:24px;color:#fff;text-align:center;">Ordering in volume, or buying for a business?</h2>
+        <p style="font-size:15px;color:#cfcfcf;margin:0 auto 22px;">Get dedicated pricing and support through DD Global Store — no minimums, no walls.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:32px;">
+          <span class="btn" style="justify-content:center;width:100%;">Discover DD Global Store</span>
+          <span class="btn ghost" style="justify-content:center;width:100%;">Request B2B pricing</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:22px;text-align:left;">
+          <div style="display:flex;gap:12px;"><div class="iconbox" style="width:38px;height:38px;flex:none;border-radius:6px;">[ICON]</div><div><div class="h3" style="font-size:15px;color:#fff;margin-bottom:3px;">Volume pricing</div><div style="font-size:13px;color:#bdbdbd;">Discounts that scale with your order.</div></div></div>
+          <div style="display:flex;gap:12px;"><div class="iconbox" style="width:38px;height:38px;flex:none;border-radius:6px;">[ICON]</div><div><div class="h3" style="font-size:15px;color:#fff;margin-bottom:3px;">Dedicated support</div><div style="font-size:13px;color:#bdbdbd;">Talk to people who know the materials.</div></div></div>
+          <div style="display:flex;gap:12px;"><div class="iconbox" style="width:38px;height:38px;flex:none;border-radius:6px;">[ICON]</div><div><div class="h3" style="font-size:15px;color:#fff;margin-bottom:3px;">Mix &amp; match</div><div style="font-size:13px;color:#bdbdbd;">Combine products to hit volume tiers.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 09 — REASSURANCE (mobile 2×2) -->
+    <div class="block">
+      <div class="block-label">BLOCK 09 — REASSURANCE STRIP</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:24px 16px;">
+        <div style="display:flex;align-items:center;gap:10px;"><div class="iconbox" style="width:32px;height:32px;border-radius:6px;flex:none;">[ICON]</div><span style="font-weight:600;font-size:13px;">No minimums</span></div>
+        <div style="display:flex;align-items:center;gap:10px;"><div class="iconbox" style="width:32px;height:32px;border-radius:6px;flex:none;">[ICON]</div><span style="font-weight:600;font-size:13px;">Ships across Europe</span></div>
+        <div style="display:flex;align-items:center;gap:10px;"><div class="iconbox" style="width:32px;height:32px;border-radius:6px;flex:none;">[ICON]</div><span style="font-weight:600;font-size:13px;">€5 samples</span></div>
+        <div style="display:flex;align-items:center;gap:10px;"><div class="iconbox" style="width:32px;height:32px;border-radius:6px;flex:none;">[ICON]</div><span style="font-weight:600;font-size:13px;">Custom cut</span></div>
+      </div>
+    </div>
+
+    <!-- BLOCK 10 — NEWSLETTER (mobile stacked) -->
+    <div class="block shade">
+      <div class="block-label">BLOCK 10 — NEWSLETTER</div>
+      <div style="padding:32px 16px;text-align:center;">
+        <h2 class="h2" style="font-size:24px;text-align:center;">Join the community.</h2>
+        <p class="support" style="font-size:15px;margin:0 auto 20px;text-align:center;">Guides, new materials, and projects. No spam.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="border:1px solid var(--grey-4);border-radius:4px;padding:12px 14px;color:var(--grey-5);text-align:left;background:#fff;">your@email.com</div>
+          <span class="btn" style="justify-content:center;width:100%;">Subscribe</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 11 — FOOTER (mobile accordion) -->
+    <div class="block dark">
+      <div class="block-label">BLOCK 11 — FOOTER</div>
+      <div style="padding:24px 16px;">
+        <div style="display:flex;flex-direction:column;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #444;font-size:13px;color:#fff;">Account <span style="color:#bdbdbd;">＋</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #444;font-size:13px;color:#fff;">Support <span style="color:#bdbdbd;">＋</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #444;font-size:13px;color:#fff;">Information <span style="color:#bdbdbd;">＋</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #444;font-size:13px;color:#fff;">Community <span style="color:#bdbdbd;">＋</span></div>
+        </div>
+        <div class="annot" style="margin:10px 0 20px;">Accordion-collapsed columns (tap to expand) · social [IG] [YT] [TikTok] inside Community</div>
+        <div style="display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;border-top:1px solid #444;padding-top:20px;">
+          <div class="logobox" style="height:36px;width:140px;background:#3a3a3a;border-color:#555;color:#ccc;">[LOGO]</div>
+          <div style="font-family:var(--mono);font-size:11px;color:#cfcfcf;">EN / IT · € EUR</div>
+          <div style="font-size:11px;color:#bdbdbd;">© 2026 DD Global Store Srl. All rights reserved.</div>
+        </div>
+      </div>
+    </div>
+    <!-- MOBILE_BLOCKS -->
+  </div>
+</section>
+
+</body>
+</html>
