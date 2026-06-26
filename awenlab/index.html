@@ -1,464 +1,153 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="robots" content="noindex, nofollow" />
-<title>AwenLab — Il benessere che si adatta a te</title>
-<meta name="description" content="Integratori in formati pronti all'uso: spray, pouch e stick. Doppio rilascio, formule pure e concentrate. Spedizione gratuita sopra i €55." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" />
-<link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AwenLab — Prototipo (Desktop + Mobile)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- design tokens + extracted bitmap classes from the Claude Design handoff -->
+<link rel="stylesheet" href="components/fig-tokens.css">
+<link rel="stylesheet" href="components/fig-assets.css">
+
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; }
+  body { background: #e9edf0; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; font-family: Poppins, sans-serif; }
+
+  #stage { position: fixed; inset: 0; overflow: auto; display: flex; justify-content: center; align-items: flex-start; padding: 88px 24px 64px; background: #e9edf0; -webkit-overflow-scrolling: touch; }
+  #stage::-webkit-scrollbar { width: 12px; height: 12px; }
+  #stage::-webkit-scrollbar-thumb { background: rgba(0,47,66,0.22); border-radius: 8px; border: 3px solid #e9edf0; }
+  #stage::-webkit-scrollbar-track { background: transparent; }
+
+  #sizer { position: relative; flex: 0 0 auto; }
+  #frame { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+  /* Figma export fix: un-clip embedded SVGs so CTA arrowheads / icon tips show. */
+  #frame svg { overflow: visible; }
+
+  /* Desktop / Mobile toggle — faithful to AwenLab.dc.html toolbar */
+  #toolbar { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 2147483000;
+    display: flex; gap: 4px; align-items: center; background: #fff; padding: 5px; border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,47,66,0.18), 0 1px 0 rgba(0,47,66,0.04); border: 1px solid rgba(0,47,66,0.08); }
+  #toolbar button { display: flex; align-items: center; gap: 8px; border: none; cursor: pointer; padding: 8px 16px;
+    border-radius: 10px; font-family: Poppins, sans-serif; font-weight: 600; font-size: 14px; line-height: 1;
+    letter-spacing: 0.2px; background: transparent; color: rgb(0,47,66); transition: background .16s ease, color .16s ease; -webkit-tap-highlight-color: transparent; }
+  #toolbar button.is-active { background: rgb(0,47,66); color: #fff; }
+  #toolbar svg { width: 16px; height: 16px; }
+</style>
 </head>
 <body>
 
-<!-- ============================================================
-     BLOCK 00 — UTILITY BAR (lime marquee)
-     ============================================================ -->
-<div class="utilbar" aria-label="Vantaggi">
-  <div class="utilbar__track" data-marquee>
-    <!-- group repeated x2 for seamless loop; JS clones if needed -->
-    <span class="utilbar__group">
-      <span class="util-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4L7.5 19.8l.9-5L4.8 8.3l5-.7L12 3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> Formule Avanzate e Certificate</span>
-      <span class="util-item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="11" height="9" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M13.5 10h4l3 3v3h-7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.6" fill="currentColor"/><circle cx="17" cy="18" r="1.6" fill="currentColor"/></svg> Spedizione Gratuita sopra i €55 di spesa</span>
-      <span class="util-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6l7-3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 12l2.3 2.3L15.5 9.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Acquisto Sicuro e Garantito</span>
-    </span>
+<div id="toolbar" role="tablist" aria-label="Anteprima">
+  <button type="button" id="btn-desktop" role="tab" aria-selected="true">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1.5" y="2.5" width="13" height="8.5" rx="1.5"></rect><path d="M5.5 14h5M8 11v3"></path></svg>
+    <span>Desktop</span>
+  </button>
+  <button type="button" id="btn-mobile" role="tab" aria-selected="false">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="1.5" width="8" height="13" rx="2"></rect><path d="M7 12.5h2"></path></svg>
+    <span>Mobile</span>
+  </button>
+</div>
+
+<div id="stage">
+  <div id="sizer">
+    <div id="frame"></div>
   </div>
 </div>
 
-<!-- ============================================================
-     BLOCK 01 — HEADER
-     ============================================================ -->
-<header class="site-header">
-  <div class="container site-header__inner">
-    <button class="hamburger" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
-      <span></span><span></span><span></span>
-    </button>
+<!-- React runtime + the materialized design bundle (defines window.Desktop / window.Mobile) -->
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="components/Components.bundle.js"></script>
 
-    <a href="#" class="logo" aria-label="AwenLab home">
-      <svg class="logo__mark" viewBox="0 0 34 30" aria-hidden="true">
-        <path d="M3 28 L14 3 C15 1 18 1 19 3 L20.5 6.2 L13.5 21 Z" fill="#00BABE"/>
-        <path d="M17 7 L31 28 L20 28 L13.5 14.5 Z" fill="#002F42"/>
-      </svg>
-      <span class="logo__word"><b>awen</b><i>Lab</i></span>
-    </a>
+<script>
+(function () {
+  "use strict";
+  var SIZES = { desktop: { w: 1728, h: 9636 }, mobile: { w: 430, h: 11018 } };
+  var BREAKPOINT = 820; // below this, the Mobile layer is the better fit
 
-    <nav class="mainnav" aria-label="Categorie">
-      <a href="#">Supergelèe</a>
-      <a href="#">Antiossidanti</a>
-      <a href="#">Capelli, Pelle, Unghie</a>
-      <a href="#">Difese immunitarie</a>
-      <a href="#">Energizzanti</a>
-      <a href="#">Controllo del peso</a>
-      <a href="#">Blog</a>
-    </nav>
+  var stage = document.getElementById("stage");
+  var sizer = document.getElementById("sizer");
+  var frame = document.getElementById("frame");
+  var btnD = document.getElementById("btn-desktop");
+  var btnM = document.getElementById("btn-mobile");
 
-    <div class="site-header__actions">
-      <label class="search">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <input type="search" placeholder="Cerca" aria-label="Cerca" />
-      </label>
-      <button class="icon-btn search-icon" aria-label="Apri ricerca" aria-expanded="false" data-search-toggle>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <button class="icon-btn" aria-label="Account">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <button class="icon-btn cart" aria-label="Carrello, 1 articolo">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1.2 11a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 7a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-        <span class="cart__badge" aria-hidden="true">1</span>
-      </button>
-    </div>
-  </div>
-</header>
+  var manual = null;                 // user override: 'desktop' | 'mobile' | null
+  var mode = autoMode();             // effective mode
+  var rendered = null;               // last component rendered
+  var root = ReactDOM.createRoot(frame);
 
-<!-- mobile slide-in nav -->
-<div class="mobile-nav" id="mobile-nav" data-mobile-nav role="dialog" aria-modal="true" aria-label="Menu" hidden>
-  <div class="mobile-nav__panel">
-    <button class="mobile-nav__close" aria-label="Chiudi menu" data-nav-close>&times;</button>
-    <a href="#">Supergelèe</a>
-    <a href="#">Antiossidanti</a>
-    <a href="#">Capelli, Pelle, Unghie</a>
-    <a href="#">Difese immunitarie</a>
-    <a href="#">Energizzanti</a>
-    <a href="#">Controllo del peso</a>
-    <a href="#">Blog</a>
-  </div>
-</div>
+  function autoMode() { return window.innerWidth < BREAKPOINT ? "mobile" : "desktop"; }
+  function current() { return manual || mode; }
 
-<main>
-<div class="container">
+  function renderComponent() {
+    var m = current();
+    var Comp = m === "mobile" ? window.Mobile : window.Desktop;
+    if (!Comp) return;
+    if (rendered !== m) { root.render(React.createElement(Comp)); rendered = m; }
+  }
 
-  <!-- ============================================================
-       BLOCK 02 — HERO
-       ============================================================ -->
-  <section class="hero" aria-label="In evidenza">
-    <!-- main hero card -->
-    <article class="hero__main">
-      <div class="hero__copy">
-        <span class="rating-chip">
-          <span class="stars" aria-hidden="true">★★★★★</span>
-          <span><b>4,9</b> su 47.220 clienti soddisfatti</span>
-        </span>
-        <h1 class="hero__title">NUTRI IL CORPO.<br>CALMA LA MENTE.<br>RAGGIUNGI<br>I TUOI OBIETTIVI.</h1>
-        <p class="hero__lead">Il benessere che si adatta a te.</p>
-        <p class="hero__desc">Formati pronti all'uso per trasformare la tua salute in un gesto quotidiano rapido ed essenziale.</p>
-        <a href="#bestsellers" class="btn btn--lime">Scopri i prodotti più venduti</a>
-        <ul class="hero__trust">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4 10-10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Formule Avanzate e Certificate</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="11" height="9" rx="1.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13.5 10h4l3 3v3h-7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.8" fill="currentColor"/><circle cx="17" cy="18" r="1.8" fill="currentColor"/></svg> Spedizione Gratuita</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6l7-3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12l2.3 2.3L15.5 9.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Acquisto Sicuro e Garantito</li>
-        </ul>
-      </div>
-      <div class="hero__visual">
-        <img src="assets/products/product-collagen.png" alt="AwenLab Collagen Peptides" />
-      </div>
-    </article>
+  function applyScale() {
+    var m = current();
+    var fw = SIZES[m].w, fh = SIZES[m].h;
+    var sidePad = 48;
+    var avail = stage.clientWidth - sidePad;
+    var s = Math.min(1, avail / fw);
+    if (!isFinite(s) || s <= 0) s = 1;
 
-    <!-- right promo column -->
-    <div class="hero__side">
-      <article class="promo promo--light">
-        <div class="promo__body">
-          <span class="badge badge--teal">Esclusiva AwenLab</span>
-          <h2 class="promo__title">Doppio rilascio.<br>Massima efficacia.</h2>
-          <p class="promo__text">Oltre le classiche gommose. Una rivoluzione scientifica racchiusa in una deliziosa caramella gelèe.</p>
-          <a href="#" class="link-arrow">Provale ora <span aria-hidden="true">→</span></a>
-        </div>
-        <img class="promo__img" src="assets/products/product-multiflora.png" alt="Supergelèe a doppio rilascio" />
-      </article>
+    frame.style.width = fw + "px";
+    frame.style.height = fh + "px";
+    frame.style.transform = "scale(" + s + ")";
 
-      <article class="promo promo--dark">
-        <div class="promo__body">
-          <span class="promo__tags">
-            <span class="badge badge--ghost">Esclusiva in Italia</span>
-            <span class="badge badge--lime">Offerta -28% <small>(singolo flacone)</small></span>
-          </span>
-          <h2 class="promo__title">Lo Spray Anti Colpo di Sonno</h2>
-          <p class="promo__text">FLASHVIG, lo spray sublinguale per una rapida prontezza e sicurezza alla Guida. Ora in promo al -28%.</p>
-          <a href="#" class="link-arrow link-arrow--light">Acquista ora <span aria-hidden="true">→</span></a>
-        </div>
-        <img class="promo__img" src="assets/products/product-flashvig.png" alt="FLASHVIG spray orale energizzante" />
-      </article>
-    </div>
-  </section>
+    if (m === "desktop") {
+      frame.style.borderRadius = "0px";
+      frame.style.overflow = "visible";
+      frame.style.boxShadow = "0 14px 50px rgba(0,47,66,0.14)";
+      sizer.style.borderRadius = "0px";
+    } else {
+      frame.style.borderRadius = "30px";
+      frame.style.overflow = "hidden";
+      frame.style.boxShadow = "0 20px 64px rgba(0,47,66,0.22)";
+      sizer.style.borderRadius = (30 * s) + "px";
+    }
+    sizer.style.width = (fw * s) + "px";
+    sizer.style.height = (fh * s) + "px";
+  }
 
-  <!-- ============================================================
-       BLOCK 03 — CATEGORY SHORTCUTS (marquee of pills)
-       ============================================================ -->
-  <section class="shortcuts" aria-label="Categorie rapide">
-    <div class="shortcuts__track" data-marquee data-marquee-speed="40">
-      <div class="shortcuts__group" data-pills></div>
-    </div>
-  </section>
+  function syncToolbar() {
+    var m = current();
+    btnD.classList.toggle("is-active", m === "desktop");
+    btnM.classList.toggle("is-active", m === "mobile");
+    btnD.setAttribute("aria-selected", m === "desktop");
+    btnM.setAttribute("aria-selected", m === "mobile");
+  }
 
-  <!-- ============================================================
-       BLOCK 04a — OFFERTE DELLA SETTIMANA (slider)
-       ============================================================ -->
-  <section class="rail" aria-label="Offerte della settimana" data-rail="offerte">
-    <div class="rail__head">
-      <h2 class="rail__title">Offerte della settimana</h2>
-      <a href="#" class="link-arrow">Vedi tutti <span aria-hidden="true">→</span></a>
-    </div>
-    <div class="rail__viewport"><div class="rail__track" data-rail-track></div>
-      <button class="rail__nav rail__nav--next" aria-label="Avanti" data-rail-next>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
-  </section>
+  function update() { renderComponent(); applyScale(); syncToolbar(); }
 
-  <!-- ============================================================
-       BLOCK 04b — I PIÙ VENDUTI (slider)
-       ============================================================ -->
-  <section id="bestsellers" class="rail" aria-label="I più venduti" data-rail="bestseller">
-    <div class="rail__head">
-      <h2 class="rail__title">I più venduti</h2>
-      <a href="#" class="link-arrow">Vedi tutti <span aria-hidden="true">→</span></a>
-    </div>
-    <div class="rail__viewport"><div class="rail__track" data-rail-track></div>
-      <button class="rail__nav rail__nav--next" aria-label="Avanti" data-rail-next>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
-  </section>
+  function setMode(m) {
+    manual = m;
+    stage.scrollTop = 0;
+    update();
+  }
 
-  <!-- ============================================================
-       BLOCK 05 — ACQUISTA PER RISULTATO (goal tiles)
-       ============================================================ -->
-  <section class="goals" aria-label="Acquista per risultato">
-    <div class="rail__head">
-      <h2 class="rail__title">Acquista per Risultato</h2>
-      <a href="#" class="link-arrow">Vedi tutti <span aria-hidden="true">→</span></a>
-    </div>
-    <div class="goals__grid" data-goals></div>
-    <button class="btn btn--ghost goals__more" data-goals-more hidden>Carica altro</button>
-  </section>
+  btnD.addEventListener("click", function () { setMode("desktop"); });
+  btnM.addEventListener("click", function () { setMode("mobile"); });
 
-  <!-- ============================================================
-       BLOCK 06a — ENERGIZZANTI (slider)
-       ============================================================ -->
-  <section class="rail" aria-label="Energizzanti" data-rail="energizzanti">
-    <div class="rail__head">
-      <h2 class="rail__title">Energizzanti</h2>
-      <a href="#" class="link-arrow">Vedi tutti <span aria-hidden="true">→</span></a>
-    </div>
-    <div class="rail__viewport"><div class="rail__track" data-rail-track></div>
-      <button class="rail__nav rail__nav--next" aria-label="Avanti" data-rail-next>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
-  </section>
+  window.addEventListener("resize", function () {
+    if (!manual) { mode = autoMode(); }
+    update();
+  });
 
-  <!-- ============================================================
-       BLOCK 06b — CONTROLLO PESO (slider)
-       ============================================================ -->
-  <section class="rail" aria-label="Controllo Peso" data-rail="peso">
-    <div class="rail__head">
-      <h2 class="rail__title">Controllo Peso</h2>
-      <a href="#" class="link-arrow">Vedi tutti <span aria-hidden="true">→</span></a>
-    </div>
-    <div class="rail__viewport"><div class="rail__track" data-rail-track></div>
-      <button class="rail__nav rail__nav--next" aria-label="Avanti" data-rail-next>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       BLOCK 07 — DISCOUNT STRIP
-       ============================================================ -->
-  <section class="discount-strip">
-    <div class="discount-strip__text">
-      <strong>10% di sconto sul tuo primo ordine</strong>
-      <span>Iscriviti e sblocca il tuo sconto di benvenuto!</span>
-    </div>
-    <a href="#newsletter" class="btn btn--navy">Ottieni il codice</a>
-  </section>
-
-  <!-- ============================================================
-       BLOCK 08 — SUPERGELÈE FEATURE
-       ============================================================ -->
-  <section class="feature" aria-label="Scegli la tua Supergelèe">
-    <div class="feature__copy">
-      <span class="badge badge--teal">Esclusiva AwenLab</span>
-      <p class="feature__eyebrow">La rivoluzione nutraceutica a Doppio Rilascio.</p>
-      <h2 class="feature__title">Scegli la tua Supergelèe</h2>
-      <p class="feature__text">Addio alle pillole. Supergelèe: formato masticabile, doppio rilascio brevettato, assorbimento ottimale. Per tutta la famiglia.</p>
-      <div class="feature__ctas">
-        <a href="#" class="btn btn--lime">Scopri le Supergelèe</a>
-        <a href="#" class="btn btn--navy feature__cta-buy">Acquista Supergelèe</a>
-      </div>
-    </div>
-    <div class="feature__gallery" data-gelee></div>
-  </section>
-
-  <!-- ============================================================
-       BLOCK 06c — SUPERGELÈE (slider)
-       ============================================================ -->
-  <section class="rail" aria-label="Supergelèe" data-rail="supergelee">
-    <div class="rail__head">
-      <h2 class="rail__title">Supergelèe</h2>
-      <a href="#" class="link-arrow">Vedi tutti <span aria-hidden="true">→</span></a>
-    </div>
-    <div class="rail__viewport"><div class="rail__track" data-rail-track></div>
-      <button class="rail__nav rail__nav--next" aria-label="Avanti" data-rail-next>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       BLOCK 09 — PROMISE (3 value props)
-       ============================================================ -->
-  <section class="promise" aria-label="La promessa di awenLab">
-    <div class="promise__intro">
-      <h2 class="promise__title">La promessa di awenLab</h2>
-      <p>Crediamo che il benessere non debba essere complicato, ma debba essere rigorosamente selezionato.</p>
-    </div>
-    <div class="promise__grid">
-      <div class="promise__item">
-        <span class="promise__ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-        </span>
-        <h3>Praticità senza compromessi</h3>
-        <p>Sappiamo che il tuo tempo è prezioso. Per questo ti offriamo solo formati intelligenti e "ready-to-use" come spray, pouch e stick. Il massimo del benessere, pronto da portare sempre con te.</p>
-      </div>
-      <div class="promise__item">
-        <span class="promise__ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 3c2.5 3 5 5.5 5 9a5 5 0 0 1-10 0c0-3.5 2.5-6 5-9Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-        </span>
-        <h3>Formule pure e concentrate</h3>
-        <p>Estratti selezionati in formulazioni intelligenti, senza elementi superflui. Ogni formato contiene l'alta concentrazione di attivi necessaria per farti stare bene, senza compromessi.</p>
-      </div>
-      <div class="promise__item">
-        <span class="promise__ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><line x1="10" y1="18" x2="14" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        </span>
-        <h3>Benessere sempre in tasca</h3>
-        <p>La nostra promessa è semplificarti la vita: integratori compatti, discreti e tascabili, creati appositamente per seguirti in ufficio, in viaggio o in palestra, dandoti risultati reali ovunque ti trovi.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       BLOCK 10 — COMPARISON (Perché noi?)
-       ============================================================ -->
-  <section class="compare" aria-label="Perché noi?">
-    <div class="compare__card">
-      <div class="compare__grid">
-        <div class="compare__corner"><h2>Perché noi?</h2></div>
-        <div class="compare__col compare__col--us">
-          <span class="logo logo--light"><svg class="logo__mark" viewBox="0 0 34 30" aria-hidden="true"><path d="M3 28 L14 3 C15 1 18 1 19 3 L20.5 6.2 L13.5 21 Z" fill="#D0FF00"/><path d="M17 7 L31 28 L20 28 L13.5 14.5 Z" fill="#FFFFFF"/></svg><span class="logo__word"><b>awen</b><i>Lab</i></span></span>
-        </div>
-        <div class="compare__col compare__col--them">Altri integratori</div>
-
-        <div class="compare__row">Prodotti in esclusiva</div>
-        <div class="compare__cell compare__cell--us" data-yes></div>
-        <div class="compare__cell compare__cell--them" data-no></div>
-
-        <div class="compare__row">Assorbimento rapido e superiore</div>
-        <div class="compare__cell compare__cell--us" data-yes></div>
-        <div class="compare__cell compare__cell--them" data-no></div>
-
-        <div class="compare__row">Formati Smart "On-the-Go"</div>
-        <div class="compare__cell compare__cell--us" data-yes></div>
-        <div class="compare__cell compare__cell--them" data-no></div>
-
-        <div class="compare__row">Dosaggi Clinici e Formulazioni Pure</div>
-        <div class="compare__cell compare__cell--us" data-yes></div>
-        <div class="compare__cell compare__cell--them" data-no></div>
-
-        <div class="compare__row">Innovazione Fito-Tecnologica</div>
-        <div class="compare__cell compare__cell--us" data-yes></div>
-        <div class="compare__cell compare__cell--them" data-no></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       BLOCK 11 — REVIEWS (slider)
-       ============================================================ -->
-  <section class="reviews" aria-label="Recensioni dai nostri clienti">
-    <div class="rail__head reviews__head">
-      <div>
-        <h2 class="rail__title">Recensioni dai nostri clienti</h2>
-        <p class="reviews__count"><span class="stars" aria-hidden="true">★★★★★</span> 3.072 Recensioni</p>
-      </div>
-      <button class="rail__nav rail__nav--next reviews__next" aria-label="Avanti" data-rail-next>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
-    <div class="rail__viewport reviews__viewport" data-rail="reviews">
-      <div class="rail__track reviews__track" data-rail-track></div>
-    </div>
-    <button class="btn btn--ghost reviews__more" data-reviews-more hidden>Carica altro</button>
-  </section>
-
-  <!-- ============================================================
-       BLOCK 12 — FAQ (accordion)
-       ============================================================ -->
-  <section class="faq" aria-label="Domande frequenti">
-    <h2 class="faq__title">Domande frequenti</h2>
-    <div class="faq__list" data-faq></div>
-  </section>
-
-  <!-- ============================================================
-       BLOCK 13 — BLOG
-       ============================================================ -->
-  <section class="blog" aria-label="Blog">
-    <div class="blog__head">
-      <div>
-        <h2 class="blog__title">Consigli e articoli dal nostro Blog</h2>
-        <p class="blog__sub">Informati sulle nuove scoperte e impara come star bene.</p>
-      </div>
-      <a href="#" class="btn btn--ghost">Tutti gli articoli</a>
-    </div>
-    <div class="blog__grid" data-blog></div>
-  </section>
-
-</div><!-- /.container -->
-
-  <!-- ============================================================
-       BLOCK 14 — NEWSLETTER CTA (full-bleed)
-       ============================================================ -->
-  <section id="newsletter" class="newsletter">
-    <div class="container newsletter__inner">
-      <div class="newsletter__copy">
-        <h2>10% di Sconto sul tuo primo ordine!</h2>
-        <p>Iscriviti per ricevere il codice e accedere ai nostri consigli sugli integratori migliori per te.</p>
-        <form class="newsletter__form" onsubmit="return false">
-          <input type="email" placeholder="Email dove ricevere il codice" aria-label="Email" required />
-          <button type="submit" class="btn btn--navy">Inviami lo sconto</button>
-        </form>
-      </div>
-      <div class="newsletter__art" aria-hidden="true">
-        <span class="newsletter__disc">-10%</span>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- ============================================================
-     BLOCK 15 — FOOTER
-     ============================================================ -->
-<footer class="site-footer">
-  <div class="container site-footer__inner">
-    <div class="site-footer__brand">
-      <span class="logo logo--light">
-        <svg class="logo__mark" viewBox="0 0 34 30" aria-hidden="true"><path d="M3 28 L14 3 C15 1 18 1 19 3 L20.5 6.2 L13.5 21 Z" fill="#00BABE"/><path d="M17 7 L31 28 L20 28 L13.5 14.5 Z" fill="#FFFFFF"/></svg>
-        <span class="logo__word"><b>awen</b><i>Lab</i></span>
-      </span>
-      <div class="site-footer__contacts">
-        <a href="mailto:info@awenlab.com">info@awenlab.com</a>
-        <a href="mailto:supporto@awenlab.com">supporto@awenlab.com</a>
-      </div>
-    </div>
-
-    <nav class="site-footer__col" aria-label="Area Clienti">
-      <h4>Area Clienti</h4>
-      <a href="#">Contatti</a>
-      <a href="#">Account</a>
-      <a href="#">Domande Frequenti</a>
-      <a href="#">Traccia il tuo ordine</a>
-      <a href="#">Spedizioni e Consegna</a>
-      <a href="#">Rimborsi</a>
-    </nav>
-
-    <nav class="site-footer__col" aria-label="Azienda">
-      <h4>Azienda</h4>
-      <a href="#">Chi Siamo</a>
-      <a href="#">Lavora con noi</a>
-      <a href="#">Diventa fornitore</a>
-      <a href="#">Certificati</a>
-    </nav>
-
-    <nav class="site-footer__col" aria-label="Legale">
-      <h4>Legale</h4>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Termini e Condizioni</a>
-      <a href="#">GDPR</a>
-    </nav>
-
-    <div class="site-footer__col">
-      <h4>Accettiamo</h4>
-      <div class="paybadges" data-pay></div>
-    </div>
-  </div>
-  <div class="container">
-    <p class="site-footer__legal">Copyright © AwenLab, 2026. Tutti i diritti riservati. AwenLab.com è gestito da [Ragione Sociale Azienda]. Sede legale: [Indirizzo completo, CAP e Città]. Codice Fiscale: [CF]. Partita IVA: [P.IVA]. Iscritto al Registro delle Imprese di [Provincia] con numero [N. REA]</p>
-  </div>
-</footer>
-
-<!-- mobile sticky bottom bar -->
-<nav class="mobilebar" aria-label="Navigazione rapida">
-  <a href="#" class="mobilebar__item is-active"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Home</span></a>
-  <a href="#" class="mobilebar__item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>Categorie</span></a>
-  <a href="#" class="mobilebar__item"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Cerca</span></a>
-  <a href="#" class="mobilebar__item" aria-label="Carrello, 1 articolo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1.2 11a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 7a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>Carrello</span><i class="mobilebar__badge" aria-hidden="true">1</i></a>
-  <a href="#" class="mobilebar__item"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Account</span></a>
-</nav>
-
-<script src="script.js"></script>
+  // initial paint + a couple of re-measures after fonts/bundle settle
+  update();
+  setTimeout(update, 80);
+  setTimeout(update, 600);
+  window.addEventListener("load", update);
+})();
+</script>
 </body>
 </html>
