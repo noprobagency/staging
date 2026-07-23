@@ -72,7 +72,7 @@
 
   /* ============ FLOATING GLASS HEADER ============ */
   .site-header{position:sticky;top:14px;z-index:100;margin-top:14px;padding:0 clamp(12px,3vw,26px);pointer-events:none}
-  .site-header__inner{position:relative;max-width:var(--wrap);margin:0 auto;border-radius:16px;box-shadow:0 16px 44px rgba(15,20,25,.16);pointer-events:auto}
+  .site-header__inner{position:relative;max-width:none;margin:0 auto;border-radius:16px;box-shadow:0 16px 44px rgba(15,20,25,.16);pointer-events:auto}
 
   /* announcement — translucent black */
   .site-header__announce{display:flex;align-items:center;height:40px;overflow:hidden;border-radius:16px 16px 0 0;
@@ -87,7 +87,7 @@
 
   /* nav bar — light frosted glass */
   .site-header__bar{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1.6rem;
-    height:66px;padding:0 20px;border-radius:0 0 16px 16px;
+    height:66px;padding:0 max(20px,(100% - 1240px)/2);border-radius:0 0 16px 16px;
     border:1px solid color-mix(in srgb,#fff 60%,transparent);border-top:0;
     background:linear-gradient(to bottom right,color-mix(in srgb,#fff 72%,transparent),color-mix(in srgb,#fff 34%,transparent) 55%,color-mix(in srgb,#fff 24%,transparent));
     -webkit-backdrop-filter:blur(21px) saturate(135%);backdrop-filter:blur(21px) saturate(135%);
