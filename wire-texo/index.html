@@ -3,1155 +3,509 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TexoShield Homepage Wireframe</title>
+<meta name="robots" content="noindex, nofollow">
+<title>TexoShield — Pro-grade technical fabrics, cut to your meter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #1a1a1a;
-    --grey-1: #f4f4f4;
-    --grey-2: #e8e8e8;
-    --grey-3: #d8d8d8;
-    --grey-4: #bfbfbf;
-    --grey-5: #999;
-    --grey-6: #6e6e6e;
-    --line: #c4c4c4;
-    --line-strong: #9a9a9a;
-    --dark: #2b2b2b;
-    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    --mono: "SF Mono", "Roboto Mono", Menlo, Consolas, monospace;
+  :root{
+    --ink:#15171a; --ink-2:#33383d; --bg:#ffffff; --soft:#f5f7f8; --soft-2:#eef1f2;
+    --muted:#697079; --muted-2:#9aa2ab; --line:#e6e9eb; --dark:#141619; --dark-2:#1c1f23;
+    --glass:rgba(22,24,28,.55); --white:#fff;
+    --r:10px; --r-lg:18px; --r-xl:26px; --pill:999px;
+    --sh-sm:0 4px 16px rgba(20,24,28,.06); --sh:0 14px 40px rgba(20,24,28,.10);
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --display:'Space Grotesk','Inter',sans-serif;
+    --mono:ui-monospace,"SF Mono","Roboto Mono",Menlo,monospace;
+    --wrap:1280px; --pad:clamp(20px,5vw,48px);
   }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    font-family: var(--sans);
-    color: var(--ink);
-    background: #cfcfcf;
-    line-height: 1.45;
-    -webkit-font-smoothing: antialiased;
-  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+  h1,h2,h3,h4{font-family:var(--display);line-height:1.08;letter-spacing:-.02em;font-weight:700}
+  .container{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .stars{display:inline-flex;gap:2px;color:var(--ink)}
+  .stars svg{width:15px;height:15px}
 
-  /* ---------- Page chrome ---------- */
-  .doc-head {
-    background: var(--ink);
-    color: #fff;
-    padding: 28px 40px;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .doc-head h1 { font-size: 18px; margin: 0; letter-spacing: .04em; font-weight: 700; }
-  .doc-head .meta { font-family: var(--mono); font-size: 11px; color: #b8b8b8; letter-spacing: .03em; }
-  .doc-head nav { display: flex; gap: 8px; }
-  .doc-head nav a {
-    font-family: var(--mono); font-size: 11px; color: #fff; text-decoration: none;
-    border: 1px solid #555; padding: 6px 12px; border-radius: 2px;
-  }
-  .doc-head nav a:hover { background: #fff; color: var(--ink); }
+  /* ---------- buttons ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:600;
+    padding:12px 22px;border-radius:var(--r);background:var(--ink);color:#fff;border:1.5px solid var(--ink);
+    transition:transform .15s ease,background .15s ease,color .15s;white-space:nowrap}
+  .btn svg{width:18px;height:18px}
+  .btn:hover{background:#000;transform:translateY(-1px)}
+  .btn--lg{padding:15px 28px;font-size:15px}
+  .btn--sm{padding:9px 14px;font-size:12.5px;border-radius:8px}
+  .btn--ghost{background:transparent;color:var(--ink)}
+  .btn--ghost:hover{background:var(--soft);color:var(--ink)}
+  .btn--light{background:#fff;color:var(--ink);border-color:#fff}
+  .btn--light:hover{background:#f0f0f0}
+  .btn--ghost-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+  .btn--ghost-light:hover{background:rgba(255,255,255,.1)}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap}
+  .btn-row--center{justify-content:center}
+  .link-arrow{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--ink)}
+  .link-arrow svg{width:16px;height:16px;transition:transform .15s}
+  .link-arrow:hover svg{transform:translateX(3px)}
+  .pill-tag{font-family:var(--mono);font-size:10px;letter-spacing:.06em;border:1px solid var(--line);border-radius:var(--pill);padding:4px 10px;color:var(--muted)}
 
-  .platform-band {
-    max-width: 1480px;
-    margin: 0 auto;
-    padding: 56px 40px 24px;
-  }
-  .platform-band > h2 {
-    font-family: var(--mono);
-    font-size: 13px;
-    letter-spacing: .18em;
-    color: var(--grey-6);
-    margin: 0 0 4px;
-    text-transform: uppercase;
-  }
-  .platform-band > .sub {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--grey-5);
-    margin: 0 0 22px;
-  }
+  /* ---------- placeholders (image blocks) ---------- */
+  .ph{position:relative;background:var(--soft);border:1px solid var(--line);border-radius:var(--r);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--muted-2)}
+  .ph__ico{width:34px;height:34px;opacity:.5}
+  .ph__ico svg{width:100%;height:100%}
+  .ph__label{position:absolute;bottom:12px;left:12px;right:12px;font-family:var(--mono);font-size:10px;color:var(--muted-2);text-align:center}
+  .ph__tag{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:10px;background:var(--ink);color:#fff;padding:4px 9px;border-radius:6px}
 
-  /* ---------- Frame (the rendered "screen") ---------- */
-  .frame {
-    background: #fff;
-    border: 1px solid var(--line-strong);
-    margin: 0 auto;
-    box-shadow: 0 2px 0 rgba(0,0,0,.06);
-  }
-  .frame.desktop { width: 1280px; max-width: 100%; }
-  .frame.mobile { width: 390px; max-width: 100%; }
+  /* ---------- sections ---------- */
+  .section{padding:clamp(52px,7vw,92px) 0}
+  .section__title{font-size:clamp(24px,3vw,32px)}
+  .section__title--lg{font-size:clamp(28px,4vw,44px)}
+  .section__sub{color:var(--muted);font-size:16px;margin-top:8px;max-width:52ch}
+  .section__sub--center{margin-left:auto;margin-right:auto}
+  .section__head-center{text-align:center;max-width:640px;margin:0 auto clamp(32px,5vw,52px)}
+  .section__head-center .eyebrow,.section__head-center .section__sub{margin-left:auto;margin-right:auto}
 
-  /* ---------- Block scaffolding ---------- */
-  .block { position: relative; border-bottom: 1px dashed var(--line); }
-  .block:last-child { border-bottom: none; }
-  .block-label {
-    position: absolute;
-    top: 0; left: 0;
-    transform: translateY(-1px);
-    font-family: var(--mono);
-    font-size: 9.5px;
-    letter-spacing: .08em;
-    color: #fff;
-    background: var(--grey-5);
-    padding: 3px 7px;
-    z-index: 5;
-    border-bottom-right-radius: 3px;
-  }
-  .block-inner { padding: 40px; }
-  .block.shade { background: var(--grey-1); }
-  .block.dark { background: var(--dark); color: #efefef; }
-
-  /* ---------- Wireframe primitives ---------- */
-  .imgbox {
-    background:
-      repeating-linear-gradient(135deg, transparent 0 10px, rgba(0,0,0,.045) 10px 11px),
-      var(--grey-2);
-    border: 1px solid var(--grey-4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--grey-6);
-    font-family: var(--mono);
-    font-size: 10.5px;
-    line-height: 1.4;
-    padding: 10px;
-    position: relative;
-  }
-  .dark .imgbox { background:
-      repeating-linear-gradient(135deg, transparent 0 10px, rgba(255,255,255,.05) 10px 11px),
-      #3a3a3a; border-color: #555; color: #cfcfcf; }
-  .iconbox {
-    background:
-      repeating-linear-gradient(135deg, transparent 0 6px, rgba(0,0,0,.05) 6px 7px),
-      var(--grey-2);
-    border: 1px solid var(--grey-4);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--mono); font-size: 8px; color: var(--grey-6);
-  }
-  .dark .iconbox { background: #3a3a3a; border-color: #555; color: #ccc; }
-  .placeholder {
-    background: #fff;
-    border: 1px dashed var(--line-strong);
-    color: var(--grey-6);
-    font-family: var(--mono);
-    font-size: 10.5px;
-    padding: 3px 8px;
-    display: inline-block;
-  }
-  .logobox {
-    border: 1px solid var(--grey-4);
-    background: var(--grey-1);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--mono); font-size: 10px; color: var(--grey-6);
-    text-align: center; padding: 8px;
-  }
-
-  /* Buttons */
-  .btn {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 600;
-    padding: 11px 20px;
-    border: 1.5px solid var(--ink);
-    background: var(--ink);
-    color: #fff;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    border-radius: 3px;
-    cursor: default;
-  }
-  .btn.ghost { background: #fff; color: var(--ink); }
-  .btn.sm { font-size: 11px; padding: 7px 12px; }
-  .dark .btn { border-color: #fff; background: #fff; color: var(--ink); }
-  .dark .btn.ghost { background: transparent; color: #fff; }
-
-  /* Typography helpers */
-  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--grey-6); margin: 0 0 12px; }
-  .h1 { font-size: 46px; line-height: 1.05; font-weight: 800; margin: 0 0 18px; letter-spacing: -.01em; }
-  .h2 { font-size: 30px; line-height: 1.1; font-weight: 800; margin: 0 0 14px; }
-  .h3 { font-size: 20px; font-weight: 700; margin: 0; }
-  .support { font-size: 16px; color: #444; margin: 0 0 20px; max-width: 46ch; }
-  .caption { font-family: var(--mono); font-size: 10px; color: var(--grey-6); }
-
-  .checklist { list-style: none; padding: 0; margin: 0 0 22px; display: flex; flex-direction: column; gap: 10px; }
-  .checklist li { display: flex; align-items: center; gap: 10px; font-size: 15px; }
-  .check {
-    width: 18px; height: 18px; flex: none; border: 1.5px solid var(--ink); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;
-  }
-  .check::before { content: "✓"; }
-
-  .stars { letter-spacing: 2px; color: var(--grey-6); font-size: 15px; }
-  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
-
-  /* Floating cards on hero image */
-  .float-card {
-    position: absolute;
-    background: #fff;
-    border: 1px solid var(--grey-4);
-    box-shadow: 0 4px 14px rgba(0,0,0,.12);
-    padding: 12px 14px;
-    font-size: 12px;
-    border-radius: 6px;
-    max-width: 230px;
-  }
-  .avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--grey-3); border: 1px solid var(--grey-4); flex: none; }
-  .mono-tag {
-    font-family: var(--mono); font-size: 11px; background: var(--ink); color: #fff;
-    padding: 6px 10px; border-radius: 3px; letter-spacing: .03em;
-  }
-
-  /* Slider arrows */
-  .arrow { width: 34px; height: 34px; border: 1px solid var(--grey-4); border-radius: 50%; background: #fff;
-    display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--grey-6); flex: none; }
-
-  /* Product card */
-  .pcard { border: 1px solid var(--grey-3); background: #fff; padding: 12px; display: flex; flex-direction: column; gap: 8px; border-radius: 4px; }
-  .pcard .imgbox { aspect-ratio: 1/1; }
-  .pcard .pname { font-size: 13px; font-weight: 600; }
-
-  .annot { font-family: var(--mono); font-size: 10px; color: var(--grey-5); margin: 4px 0 0; }
-
-  /* Generic rows */
-  .row { display: flex; }
-  .between { justify-content: space-between; align-items: center; }
-
-  /* ============ GLASS HEADER (nazzi-header) — soft-black + frosted glass ============ */
-  .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
-
-  /* utility marquee */
-  .nz-ticker{background:#141619;color:rgba(255,255,255,.9);overflow:hidden;}
-  .nz-ticker__track{display:flex;width:max-content;animation:nz-marquee 30s linear infinite;}
-  .nz-ticker__track:hover{animation-play-state:paused;}
-  .nz-ticker__group{display:flex;flex:0 0 auto;}
-  .nz-ticker__item{display:inline-flex;align-items:center;gap:9px;padding:9px 28px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;}
-  .nz-ticker__item svg{width:15px;height:15px;opacity:.85;flex:none;}
+  /* ============ TICKER (announcement marquee) ============ */
+  .ticker{background:var(--dark);color:rgba(255,255,255,.9);overflow:hidden}
+  .ticker__track{display:flex;width:max-content;animation:nz-marquee 34s linear infinite}
+  .ticker__track:hover{animation-play-state:paused}
+  .ticker__group{display:flex;flex:0 0 auto}
+  .ticker__item{display:inline-flex;align-items:center;gap:9px;padding:9px 26px;font-family:var(--mono);
+    font-size:11px;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap}
+  .ticker__item svg{width:15px;height:15px;opacity:.85;flex:none}
   @keyframes nz-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-  /* header shell + glass bar */
-  .nazzi-header{position:relative;z-index:20;background:#141619;color:#fff;font-family:var(--sans);}
-  .nazzi-header__bar{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;padding:16px 40px;
-    background:rgba(22,24,28,.55);-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);
-    border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.10);}
-
-  .nazzi-header__nav--left{display:flex;align-items:center;gap:28px;min-width:0;}
-  .nazzi-header__nav--desktop{display:flex;align-items:center;gap:28px;}
-  .nazzi-header__link{display:inline-flex;flex-direction:column;font-size:14px;font-weight:500;color:rgba(255,255,255,.84);text-decoration:none;letter-spacing:.01em;
+  /* ============ HEADER (glass, sticky) ============ */
+  .site-header{position:sticky;top:0;z-index:100;background:var(--dark);color:#fff}
+  .site-header__bar{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;
+    max-width:var(--wrap);margin:0 auto;padding:15px var(--pad);
+    background:var(--glass);-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);
+    border-bottom:1px solid rgba(255,255,255,.10)}
+  .site-header::after{content:"";position:absolute;inset:0;pointer-events:none}
+  .site-header__left{display:flex;align-items:center;gap:26px;min-width:0}
+  .site-header__right{justify-self:end;display:flex;align-items:center;gap:6px}
+  .nav{display:flex;align-items:center;gap:26px}
+  .nav__link{display:inline-flex;flex-direction:column;font-size:14px;font-weight:500;color:rgba(255,255,255,.84);
     background-image:linear-gradient(#fff,#fff);background-size:0% 1.6px;background-position:0 100%;background-repeat:no-repeat;
-    transition:color .18s ease,background-size .24s ease;}
-  .nazzi-header__link::after{content:attr(data-text);font-weight:700;height:0;overflow:hidden;visibility:hidden;pointer-events:none;}
-  .nazzi-header__link:hover,.nazzi-header__link:focus-visible{color:#fff;font-weight:700;background-size:100% 1.6px;outline:none;}
+    transition:color .18s,background-size .24s}
+  .nav__link::after{content:attr(data-text);font-weight:700;height:0;overflow:hidden;visibility:hidden}
+  .nav__link:hover{color:#fff;font-weight:700;background-size:100% 1.6px}
+  .logo{justify-self:center;font-family:var(--display);font-size:21px;font-weight:700;letter-spacing:.04em;color:#fff}
+  .logo span{font-weight:400;opacity:.85}
+  .logo--light{color:#fff}
+  .icon-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:42px;height:42px;border-radius:11px;color:#fff;transition:background .18s}
+  .icon-btn:hover{background:rgba(255,255,255,.10)}
+  .icon-btn svg{width:22px;height:22px}
+  .cart{position:relative;width:auto;padding:0 14px}
+  .cart__label{font-size:14px;font-weight:500}
+  .cart__bubble{position:absolute;top:3px;right:6px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#fff;color:var(--ink);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
+  .header-toggle{display:none;flex-direction:column;gap:5px}
+  .header-toggle span{width:20px;height:1.8px;background:#fff;border-radius:2px;transition:transform .22s,opacity .18s}
+  .header-toggle[aria-expanded="true"] span:first-child{transform:translateY(3.4px) rotate(45deg)}
+  .header-toggle[aria-expanded="true"] span:last-child{transform:translateY(-3.4px) rotate(-45deg)}
+  .panel,.search-panel{position:absolute;left:0;right:0;top:100%;display:none;z-index:30;
+    background:rgba(18,20,23,.96);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(255,255,255,.10);box-shadow:0 18px 40px rgba(0,0,0,.28)}
+  .panel.is-open,.search-panel.is-open{display:block}
+  .panel{padding:10px var(--pad) 20px}
+  .panel__list{list-style:none}
+  .panel__link{display:block;padding:14px 0;color:#fff;font-size:17px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.08)}
+  .panel__secondary{list-style:none;display:flex;gap:20px;margin-top:16px}
+  .panel__secondary a{color:rgba(255,255,255,.7);font-size:13px}
+  .search-panel{padding:16px 0}
+  .search-panel input{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:11px;padding:13px 16px;color:#fff;font-size:15px;font-family:var(--sans);outline:none}
+  .search-panel input::placeholder{color:rgba(255,255,255,.5)}
 
-  .nazzi-header__logo{justify-self:center;display:inline-flex;align-items:center;color:#fff;text-decoration:none;}
-  .nazzi-logo--word{font-size:21px;font-weight:800;letter-spacing:.04em;}
-  .nazzi-logo--word span{font-weight:400;opacity:.85;}
+  /* ============ HERO ============ */
+  .hero{padding:clamp(36px,5vw,64px) 0 clamp(48px,6vw,80px)}
+  .hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,64px);align-items:center}
+  .hero__title{font-size:clamp(34px,5vw,60px);letter-spacing:-.03em;margin-bottom:20px}
+  .hero__lead{font-size:clamp(16px,1.4vw,18px);color:var(--muted);max-width:46ch;margin-bottom:26px}
+  .checklist{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:26px}
+  .checklist li{display:flex;align-items:center;gap:11px;font-size:15.5px}
+  .check{width:22px;height:22px;flex:none;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center}
+  .check svg{width:13px;height:13px}
+  .hero__rating{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:26px;font-size:14px;color:var(--muted)}
+  .hero__media{position:relative}
+  .hero__img{border-radius:var(--r-xl)}
+  .float-card{position:absolute;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);padding:14px 16px;font-size:13px;max-width:250px}
+  .float-card--review{top:22px;left:-22px;display:flex;gap:11px;align-items:flex-start}
+  .float-card--review p{margin-top:3px;line-height:1.4}
+  .float-card--wide{bottom:-22px;left:-24px;max-width:300px;border-radius:16px}
+  .avatar{width:30px;height:30px;border-radius:50%;background:var(--soft-2);border:1px solid var(--line);flex:none}
+  .float-tag{position:absolute;right:-14px;bottom:64px;font-family:var(--mono);font-size:12px;background:var(--ink);color:#fff;padding:8px 13px;border-radius:8px;box-shadow:var(--sh-sm)}
 
-  .nazzi-header__nav--right{justify-self:end;display:flex;align-items:center;gap:6px;}
-  .nazzi-header__icon-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:42px;height:42px;border-radius:11px;color:#fff;background:transparent;border:none;cursor:pointer;text-decoration:none;transition:background .18s ease;}
-  .nazzi-header__icon-btn:hover{background:rgba(255,255,255,.10);}
-  .nazzi-header__icon-btn svg{width:22px;height:22px;}
-  .nazzi-header__cart{width:auto;padding:0 14px;}
-  .nazzi-header__cart-label{font-size:14px;font-weight:500;}
-  .nazzi-header__cart{position:relative;}
-  .nz-cart-bubble{position:absolute;top:3px;right:5px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#fff;color:#141619;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1;}
+  /* ============ SHORTCUTS ============ */
+  .shortcuts{padding:clamp(28px,4vw,44px) 0}
+  .shortcuts__row{display:grid;grid-template-columns:repeat(8,1fr);gap:14px}
+  .shortcut{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:18px 8px;border:1px solid var(--line);border-radius:var(--r);background:#fff;font-size:12.5px;font-weight:600;transition:border-color .16s,transform .16s,box-shadow .16s}
+  .shortcut:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:var(--sh-sm)}
+  .shortcut__ico{width:34px;height:34px;color:var(--ink)}
+  .shortcut--all{border-style:dashed;color:var(--muted)}
+  .shortcut--all .shortcut__ico svg{width:22px;height:22px;margin:6px auto}
 
-  .nazzi-header__toggle{display:none;flex-direction:column;gap:5px;}
-  .nazzi-header__toggle-line{width:20px;height:1.8px;background:#fff;border-radius:2px;transition:transform .22s ease,opacity .18s ease;}
-  .nazzi-header__toggle[aria-expanded="true"] .nazzi-header__toggle-line:first-child{transform:translateY(3.4px) rotate(45deg);}
-  .nazzi-header__toggle[aria-expanded="true"] .nazzi-header__toggle-line:last-child{transform:translateY(-3.4px) rotate(-45deg);}
+  /* ============ RAILS (product sliders) ============ */
+  .rail__head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:24px}
+  .rail__wrap{position:relative}
+  .rail__track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 2px 8px;scrollbar-width:none;cursor:grab}
+  .rail__track::-webkit-scrollbar{display:none}
+  .rail__track.is-drag{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+  .rail__nav{position:absolute;top:38%;width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--sh);display:flex;align-items:center;justify-content:center;z-index:4;transition:transform .15s,opacity .2s}
+  .rail__nav svg{width:20px;height:20px}
+  .rail__nav:hover{transform:scale(1.06)}
+  .rail__nav--prev{left:-14px;transform:scaleX(-1)}
+  .rail__nav--prev:hover{transform:scaleX(-1) scale(1.06)}
+  .rail__nav--next{right:-14px}
+  .pcard{flex:0 0 auto;width:262px;scroll-snap-align:start;display:flex;flex-direction:column;gap:9px}
+  .pcard__img{aspect-ratio:1/1;border-radius:var(--r-lg)}
+  .pcard__brand{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2);margin-top:4px}
+  .pcard__name{font-family:var(--sans);font-size:15px;font-weight:600;letter-spacing:0}
+  .pcard__spec{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+  .pcard__foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px}
+  .pcard__price{font-size:16px;font-weight:700}
 
-  /* dropdown panel + search (frosted) */
-  .nazzi-header__panel,.nazzi-header__search{position:absolute;left:0;right:0;top:100%;display:none;z-index:30;
-    background:rgba(18,20,23,.94);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
-    border-bottom:1px solid rgba(255,255,255,.10);box-shadow:0 18px 40px rgba(0,0,0,.28);}
-  .nazzi-header__panel.is-open,.nazzi-header__search.is-open{display:block;}
-  .nazzi-header__panel{padding:12px 24px 20px;}
-  .nazzi-header__panel-list{list-style:none;margin:0;padding:0;}
-  .nazzi-header__panel-link{display:block;padding:14px 0;color:#fff;text-decoration:none;font-size:17px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.08);}
-  .nazzi-header__panel-secondary{list-style:none;margin:16px 0 0;padding:0;display:flex;gap:20px;}
-  .nazzi-header__panel-secondary a{color:rgba(255,255,255,.7);text-decoration:none;font-size:13px;}
-  .nazzi-header__search{padding:16px 24px;}
-  .nazzi-header__search input{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:11px;padding:13px 16px;color:#fff;font-size:15px;font-family:var(--sans);outline:none;}
-  .nazzi-header__search input::placeholder{color:rgba(255,255,255,.5);}
+  /* ============ FLAGSHIP ============ */
+  .flagship{background:var(--soft)}
+  .flagship__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:center}
+  .flagship__text{font-size:17px;color:var(--ink-2);margin-bottom:24px;max-width:48ch}
+  .flagship__media{position:relative}
+  .flagship__img{border-radius:var(--r-xl)}
 
-  /* per-frame: mobile frame header collapses nav to hamburger */
-  .nazzi-header--mobile .nazzi-header__bar{padding:14px 16px;gap:12px;}
-  .nazzi-header--mobile .nazzi-header__nav--desktop{display:none;}
-  .nazzi-header--mobile .nazzi-header__toggle{display:flex;}
-  .nazzi-header--mobile .nazzi-header__cart-label{display:none;}
-  .nazzi-header--mobile .nazzi-header__account{display:none;}
-  .nazzi-header--mobile .nazzi-header__icon-btn{width:38px;height:38px;}
-  .nazzi-header--mobile .nazzi-header__cart{padding:0;width:38px;}
-  .nazzi-header--mobile .nazzi-logo--word{font-size:19px;}
-  @media (prefers-reduced-motion:reduce){.nz-ticker__track{animation:none;}}
+  /* ============ COMMUNITY ============ */
+  .ugc__grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:32px}
+  .ugc{position:relative}
+  .ugc__img{border-radius:var(--r)}
+  .ugc figcaption{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:8px;text-align:center}
+
+  /* ============ BRANDS ============ */
+  .brands{background:var(--soft)}
+  .brands__grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:22px}
+  .brand-logo{height:72px;border:1px solid var(--line);border-radius:var(--r);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--muted);font-size:11px}
+  .brand-logo .ph__ico{width:22px;height:22px;opacity:.4}
+  .brands__note{text-align:center;color:var(--muted);font-size:14px}
+
+  /* ============ B2B (dark) ============ */
+  .b2b{background:var(--dark);color:#fff}
+  .b2b__title{color:#fff}
+  .b2b__sub{color:rgba(255,255,255,.72)}
+  .b2b__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;max-width:920px;margin:0 auto}
+  .b2b__feat{text-align:center}
+  .b2b__ico{display:inline-flex;width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.08);align-items:center;justify-content:center;color:#fff;margin-bottom:14px}
+  .b2b__ico svg{width:24px;height:24px}
+  .b2b__feat h3{font-size:18px;color:#fff;margin-bottom:6px}
+  .b2b__feat p{font-size:14px;color:rgba(255,255,255,.66)}
+
+  /* ============ REASSURANCE ============ */
+  .reassure{padding:clamp(28px,3vw,40px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .reassure__row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .reassure__item{display:flex;align-items:center;justify-content:center;gap:11px;font-weight:600;font-size:14.5px}
+  .reassure__ico{display:inline-flex;width:34px;height:34px;border-radius:9px;background:var(--soft);align-items:center;justify-content:center;color:var(--ink)}
+  .reassure__ico svg{width:20px;height:20px}
+
+  /* ============ NEWSLETTER ============ */
+  .newsletter__inner{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+  .newsletter__form{display:flex;gap:10px;flex:1;min-width:280px;max-width:520px}
+  .newsletter__form input{flex:1;border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;font-size:15px;font-family:var(--sans);outline:none}
+  .newsletter__form input:focus{border-color:var(--ink)}
+
+  /* ============ FOOTER (dark) ============ */
+  .footer{background:var(--dark);color:rgba(255,255,255,.72);padding:clamp(48px,6vw,72px) 0 32px}
+  .footer__top{display:grid;grid-template-columns:1.3fr 2.7fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .footer__brand p{font-size:14px;margin-top:14px;max-width:26ch}
+  .footer__cols{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+  .footer__col h4{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin-bottom:16px}
+  .footer__col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .footer__col a{font-size:14px;color:rgba(255,255,255,.72);transition:color .15s}
+  .footer__col a:hover{color:#fff}
+  .footer__bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-top:24px;font-size:12.5px;color:rgba(255,255,255,.5)}
+  .footer__meta{font-family:var(--mono)}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:1080px){
+    .shortcuts__row{grid-template-columns:repeat(4,1fr)}
+    .ugc__grid{grid-template-columns:repeat(3,1fr)}
+    .brands__grid{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (max-width:860px){
+    .nav,.header-account{display:none}
+    .header-toggle{display:flex}
+    .site-header__bar{grid-template-columns:auto 1fr auto;padding:13px var(--pad)}
+    .logo{justify-self:center}
+    .cart{padding:0;width:42px}
+    .cart__label{display:none}
+
+    .hero__grid{grid-template-columns:1fr;gap:28px}
+    .hero__media{order:-1}
+    .float-card--review{left:8px;top:auto;bottom:12px}
+    .float-tag{right:8px;bottom:auto;top:12px}
+
+    .flagship__grid{grid-template-columns:1fr;gap:28px}
+    .flagship__media{order:-1}
+    .float-card--wide{left:8px}
+
+    .shortcuts__row{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+    .shortcuts__row::-webkit-scrollbar{display:none}
+    .shortcut{flex:0 0 auto;width:118px}
+
+    .rail__nav{display:none}
+    .pcard{width:60vw;max-width:240px}
+
+    .b2b__grid{grid-template-columns:1fr;gap:20px;max-width:420px}
+    .b2b__feat{text-align:left;display:grid;grid-template-columns:auto 1fr;column-gap:14px}
+    .b2b__ico{grid-row:span 2;margin-bottom:0}
+
+    .reassure__row{grid-template-columns:repeat(2,1fr);gap:16px}
+    .reassure__item{justify-content:flex-start}
+
+    .newsletter__inner{flex-direction:column;align-items:flex-start}
+    .newsletter__form{width:100%;max-width:none}
+
+    .footer__top{grid-template-columns:1fr;gap:32px}
+    .footer__cols{grid-template-columns:repeat(2,1fr);gap:26px}
+  }
+  @media (max-width:520px){
+    .ugc__grid{grid-template-columns:repeat(2,1fr)}
+    .brands__grid{grid-template-columns:repeat(2,1fr)}
+    .footer__cols{grid-template-columns:1fr 1fr}
+    .btn-row .btn{flex:1}
+    .hero__title{font-size:clamp(30px,9vw,40px)}
+  }
+  @media (prefers-reduced-motion:reduce){.ticker__track{animation:none}*{scroll-behavior:auto}}
+
 </style>
 </head>
 <body>
-
-<div class="doc-head">
-  <div>
-    <h1>TEXOSHIELD — HOMEPAGE WIREFRAME</h1>
-    <div class="meta">Low-fidelity · Greyscale · Final copy · Desktop + Mobile</div>
-  </div>
-  <nav>
-    <a href="#desktop">Desktop</a>
-    <a href="#mobile">Mobile</a>
-  </nav>
+<div class="ticker" aria-label="Highlights">
+  <div class="ticker__track"><span class="ticker__group"><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="1.5" y="6" width="12" height="10" rx="1"/><path d="M13.5 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg> Ships across Europe</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="7.5" width="20" height="9" rx="1.5"/><path d="M7 7.5v3M12 7.5v4M17 7.5v3"/></svg> Technical materials by the meter</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 12V4h8l9 9-8 8-9-9z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg> No order minimums</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/></svg> €5 samples before you commit</span></span><span class="ticker__group" aria-hidden="true"><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="1.5" y="6" width="12" height="10" rx="1"/><path d="M13.5 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg> Ships across Europe</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="7.5" width="20" height="9" rx="1.5"/><path d="M7 7.5v3M12 7.5v4M17 7.5v3"/></svg> Technical materials by the meter</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 12V4h8l9 9-8 8-9-9z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg> No order minimums</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/></svg> €5 samples before you commit</span></span></div>
 </div>
-
-<!-- ============================ DESKTOP ============================ -->
-<section class="platform-band" id="desktop">
-  <h2>Desktop Wireframe</h2>
-  <p class="sub">1280px content width · Blocks 00–11</p>
-  <div class="frame desktop" id="desktop-frame">
-    <!-- BLOCK 00 — UTILITY BAR -->
-    <div class="block" style="border-bottom:none;">
-      <div class="block-label">BLOCK 00 — UTILITY BAR</div>
-      <div class="nz-ticker">
-        <div class="nz-ticker__track">
-          <span class="nz-ticker__group">
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="1.5" y="6" width="12" height="10" rx="1"/><path d="M13.5 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg> SHIPS ACROSS EUROPE</span>
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="2" y="7.5" width="20" height="9" rx="1.5"/><path d="M7 7.5v3M12 7.5v4M17 7.5v3"/></svg> TECHNICAL MATERIALS BY THE METER</span>
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l9 9-8 8-9-9z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg> NO ORDER MINIMUMS</span>
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/></svg> €5 SAMPLES BEFORE YOU COMMIT</span>
-          </span>
-          <span class="nz-ticker__group" aria-hidden="true">
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="1.5" y="6" width="12" height="10" rx="1"/><path d="M13.5 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg> SHIPS ACROSS EUROPE</span>
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="2" y="7.5" width="20" height="9" rx="1.5"/><path d="M7 7.5v3M12 7.5v4M17 7.5v3"/></svg> TECHNICAL MATERIALS BY THE METER</span>
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l9 9-8 8-9-9z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg> NO ORDER MINIMUMS</span>
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/></svg> €5 SAMPLES BEFORE YOU COMMIT</span>
-          </span>
-        </div>
-      </div>
+<header class="site-header" id="siteHeader">
+  <div class="site-header__bar">
+    <div class="site-header__left">
+      <button class="icon-btn header-toggle" type="button" aria-expanded="false" aria-controls="NavPanel" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+      <nav class="nav" aria-label="Primary"><a class="nav__link" data-text="Materials" href="#">Materials</a><a class="nav__link" data-text="Learn" href="#">Learn</a><a class="nav__link" data-text="Samples" href="#">Samples</a><a class="nav__link" data-text="Community" href="#">Community</a><a class="nav__link" data-text="About" href="#">About</a></nav>
     </div>
-
-    <!-- BLOCK 01 — HEADER -->
-    <div class="block" style="border-bottom:none;">
-      <div class="block-label">BLOCK 01 — HEADER</div>
-      <div class="nazzi-header">
-        <div class="nazzi-header__bar">
-          <div class="nazzi-header__nav nazzi-header__nav--left">
-            <nav class="nazzi-header__nav nazzi-header__nav--desktop" aria-label="Primary">
-              <a class="nazzi-header__link" data-text="Materials" href="#">Materials</a>
-              <a class="nazzi-header__link" data-text="Learn" href="#">Learn</a>
-              <a class="nazzi-header__link" data-text="Samples" href="#">Samples</a>
-              <a class="nazzi-header__link" data-text="Community" href="#">Community</a>
-              <a class="nazzi-header__link" data-text="About" href="#">About</a>
-            </nav>
-            <button class="nazzi-header__icon-btn nazzi-header__toggle" type="button" aria-expanded="false" aria-controls="NazziHeaderPanel-d" aria-label="Open menu">
-              <span class="nazzi-header__toggle-line"></span>
-              <span class="nazzi-header__toggle-line"></span>
-            </button>
-          </div>
-
-          <a class="nazzi-header__logo" href="#" aria-label="TexoShield, home">
-            <span class="nazzi-logo nazzi-logo--word"><span>texo</span>SHIELD</span>
-          </a>
-
-          <div class="nazzi-header__nav nazzi-header__nav--right">
-            <button class="nazzi-header__icon-btn" type="button" data-nazzi-search-open aria-label="Search" aria-controls="NazziSearchPanel-d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="7"></circle><path d="m15.8 15.8 5.2 5.2"></path></svg></button>
-            <a class="nazzi-header__icon-btn nazzi-header__account" href="#" aria-label="Account" rel="nofollow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="3.6"></circle><path d="M4.5 20c.8-3.4 3.9-5.2 7.5-5.2s6.7 1.8 7.5 5.2"></path></svg></a>
-            <a href="#" class="nazzi-header__icon-btn nazzi-header__cart">
-              <span class="nazzi-header__cart-label" aria-hidden="true">Cart</span>
-              <span class="svg-wrapper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 8h12l-1 11a2 2 0 0 1-2 1.8H9a2 2 0 0 1-2-1.8L6 8z"></path><path d="M9 8V6.5a3 3 0 0 1 6 0V8"></path></svg></span>
-              <span class="visually-hidden">Cart</span>
-              <span class="nz-cart-bubble"><span aria-hidden="true">0</span><span class="visually-hidden">0 items</span></span>
-            </a>
-          </div>
-
-          <div class="nazzi-header__panel" id="NazziHeaderPanel-d">
-            <ul class="nazzi-header__panel-list" role="list">
-              <li><a class="nazzi-header__panel-link" href="#">Materials</a></li>
-              <li><a class="nazzi-header__panel-link" href="#">Learn</a></li>
-              <li><a class="nazzi-header__panel-link" href="#">Samples</a></li>
-              <li><a class="nazzi-header__panel-link" href="#">Community</a></li>
-              <li><a class="nazzi-header__panel-link" href="#">About</a></li>
-            </ul>
-            <ul class="nazzi-header__panel-secondary" role="list">
-              <li><a href="#" rel="nofollow">My account</a></li>
-              <li><a href="#" data-nazzi-search-open>Search</a></li>
-            </ul>
-          </div>
-
-          <div class="nazzi-header__search" id="NazziSearchPanel-d">
-            <input type="search" placeholder="Find the material for your project…" aria-label="Search">
-          </div>
-        </div>
-      </div>
+    <a class="logo" href="#" aria-label="TexoShield, home"><span>texo</span>SHIELD</a>
+    <div class="site-header__right">
+      <button class="icon-btn" type="button" data-search-open aria-label="Search" aria-controls="SearchPanel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"></circle><path d="m15.8 15.8 5.2 5.2"></path></svg></button>
+      <a class="icon-btn header-account" href="#" aria-label="Account" rel="nofollow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="3.6"></circle><path d="M4.5 20c.8-3.4 3.9-5.2 7.5-5.2s6.7 1.8 7.5 5.2"></path></svg></a>
+      <a class="icon-btn cart" href="#" aria-label="Cart, 0 items"><span class="cart__label">Cart</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 11a2 2 0 0 1-2 1.8H9a2 2 0 0 1-2-1.8L6 8z"></path><path d="M9 8V6.5a3 3 0 0 1 6 0V8"></path></svg><span class="cart__bubble" aria-hidden="true">0</span></a>
     </div>
-
-    <!-- BLOCK 02 — HERO -->
-    <div class="block">
-      <div class="block-label">BLOCK 02 — HERO (above the fold)</div>
-      <div class="block-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-top:56px;padding-bottom:56px;">
-        <!-- Left -->
-        <div>
-          <h1 class="h1">Pro-grade technical fabrics. Cut to your meter.</h1>
-          <p class="support">Rubbers, fabrics, drysuit and wetsuit components, dry zips, boots, glues and tapes — the same materials the industry uses, now in the hands of people who build and repair.</p>
-          <ul class="checklist">
-            <li><span class="check"></span> No order minimums — from 0.5 m</li>
-            <li><span class="check"></span> €5 samples before you commit</li>
-            <li><span class="check"></span> Custom cut to size</li>
-          </ul>
-          <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;flex-wrap:wrap;">
-            <span class="stars">★★★★★</span>
-            <span style="font-size:14px;color:#444;">Rated Excellent by makers &amp; repairers across Europe</span>
-            <span class="logobox" style="height:26px;width:84px;font-size:9px;">[Trustpilot]</span>
-          </div>
-          <div class="cta-row">
-            <span class="btn">Shop materials</span>
-            <span class="btn ghost">Order a sample · €5</span>
-          </div>
-        </div>
-        <!-- Right -->
-        <div style="position:relative;">
-          <div class="imgbox" style="height:420px;">[HERO IMAGE: Technical materials in use — rolls/sheets of neoprene and technical fabric alongside work in progress (a repair, a cut panel, a build). Reads: “this is where people get real materials to make and fix things.”]</div>
-          <div class="float-card" style="top:24px;left:-28px;display:flex;gap:10px;align-items:flex-start;">
-            <span class="avatar"></span>
-            <div><div class="stars" style="font-size:11px;">★★★★★</div>“Exactly the material I needed, cut to length. No minimums.”</div>
-          </div>
-          <div class="mono-tag" style="position:absolute;bottom:96px;right:-18px;">3 mm · CR · 140 cm · €XX/m</div>
-          <div class="imgbox" style="position:absolute;bottom:-26px;right:30px;width:150px;height:110px;box-shadow:0 4px 14px rgba(0,0,0,.14);">[SMALL IMAGE: cut panel / repair detail]</div>
-        </div>
-      </div>
+  </div>
+  <div class="panel" id="NavPanel">
+    <ul class="panel__list" role="list"><li><a class="panel__link" href="#">Materials</a></li><li><a class="panel__link" href="#">Learn</a></li><li><a class="panel__link" href="#">Samples</a></li><li><a class="panel__link" href="#">Community</a></li><li><a class="panel__link" href="#">About</a></li></ul>
+    <ul class="panel__secondary" role="list"><li><a href="#" rel="nofollow">My account</a></li><li><a href="#" data-search-open>Search</a></li></ul>
+  </div>
+  <div class="search-panel" id="SearchPanel"><div class="container"><input type="search" placeholder="Find the material for your project…" aria-label="Search"></div></div>
+</header>
+<main>
+<section class="hero">
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <h1 class="hero__title">Pro-grade technical fabrics.<br>Cut to your meter.</h1>
+      <p class="hero__lead">Rubbers, fabrics, drysuit and wetsuit components, dry zips, boots, glues and tapes — the same materials the industry uses, now in the hands of people who build and repair.</p>
+      <ul class="checklist">
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-10"/></svg></span> No order minimums — from 0.5 m</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-10"/></svg></span> €5 samples before you commit</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-10"/></svg></span> Custom cut to size</li>
+      </ul>
+      <div class="hero__rating"><span class="stars"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.9 6.1 20.8l1.2-6.6L2.5 9l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.9 6.1 20.8l1.2-6.6L2.5 9l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.9 6.1 20.8l1.2-6.6L2.5 9l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.9 6.1 20.8l1.2-6.6L2.5 9l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.9 6.1 20.8l1.2-6.6L2.5 9l6.6-.9z"/></svg></span><span>Rated Excellent by makers &amp; repairers across Europe</span><span class="pill-tag">Trustpilot</span></div>
+      <div class="btn-row"><a class="btn btn--lg" href="#">Shop materials</a><a class="btn btn--ghost btn--lg" href="#">Order a sample · €5</a></div>
     </div>
-
-    <!-- BLOCK 03 — CATEGORY SHORTCUTS -->
-    <div class="block shade">
-      <div class="block-label">BLOCK 03 — CATEGORY SHORTCUTS</div>
-      <div class="block-inner" style="padding-top:56px;padding-bottom:56px;">
-        <!-- 7 primary categories + outlined "All categories" tile.
-             Full index behind it: Drysuit Boots, Fluids, Marine Components, Other. -->
-        <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:16px;">
-          <div style="text-align:center;"><div class="iconbox" style="height:56px;margin-bottom:10px;border-radius:4px;">[ICON]</div><div style="font-size:12px;font-weight:600;">Foams &amp; Rubber</div></div>
-          <div style="text-align:center;"><div class="iconbox" style="height:56px;margin-bottom:10px;border-radius:4px;">[ICON]</div><div style="font-size:12px;font-weight:600;">Fabrics</div></div>
-          <div style="text-align:center;"><div class="iconbox" style="height:56px;margin-bottom:10px;border-radius:4px;">[ICON]</div><div style="font-size:12px;font-weight:600;">Drysuit Components</div></div>
-          <div style="text-align:center;"><div class="iconbox" style="height:56px;margin-bottom:10px;border-radius:4px;">[ICON]</div><div style="font-size:12px;font-weight:600;">Wetsuit Components</div></div>
-          <div style="text-align:center;"><div class="iconbox" style="height:56px;margin-bottom:10px;border-radius:4px;">[ICON]</div><div style="font-size:12px;font-weight:600;">Zippers</div></div>
-          <div style="text-align:center;"><div class="iconbox" style="height:56px;margin-bottom:10px;border-radius:4px;">[ICON]</div><div style="font-size:12px;font-weight:600;">Glues &amp; Adhesives</div></div>
-          <div style="text-align:center;"><div class="iconbox" style="height:56px;margin-bottom:10px;border-radius:4px;">[ICON]</div><div style="font-size:12px;font-weight:600;">Tapes</div></div>
-          <div style="text-align:center;"><div style="height:56px;margin-bottom:10px;border-radius:4px;border:1.5px dashed var(--line-strong);background:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:16px;color:var(--grey-6);">→</div><div style="font-size:12px;font-weight:700;">All categories</div></div>
-        </div>
-      </div>
+    <div class="hero__media">
+      <div class="ph hero__img" style="aspect-ratio:5 / 6"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div>
+      <div class="float-card float-card--review"><span class="avatar"></span><div><span class="stars"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.9 6.1 20.8l1.2-6.6L2.5 9l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.9 6.1 20.8l1.2-6.6L2.5 9l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.9 6.1 20.8l1.2-6.6L2.5 9l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.9 6.1 20.8l1.2-6.6L2.5 9l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.9 6.1 20.8l1.2-6.6L2.5 9l6.6-.9z"/></svg></span><p>&ldquo;Exactly the material I needed, cut to length. No minimums.&rdquo;</p></div></div>
+      <div class="float-tag">3 mm · CR · 140 cm · €XX/m</div>
     </div>
-
-    <!-- BLOCK 04 — CATEGORY PRODUCT BANDS -->
-    <div class="block">
-      <div class="block-label">BLOCK 04 — CATEGORY PRODUCT BANDS</div>
-      <div class="block-inner" style="border-bottom:1px dashed var(--line);">
-        <p class="eyebrow">Shop by category</p>
-        <div class="row between" style="margin-bottom:6px;align-items:flex-end;">
-          <h3 class="h3" style="font-size:24px;">Fabrics</h3>
-          <span style="font-size:13px;font-weight:600;">See all →</span>
-        </div>
-        <div style="font-size:13px;color:#555;margin-bottom:20px;">Technical textiles, laminates and Yulex®</div>
-        <div style="display:flex;align-items:stretch;gap:12px;">
-          <div class="arrow">‹</div>
-          <div style="flex:1;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;overflow:hidden;">
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">VTEK TP7</div>
-              <div class="annot">3 mm · TRT · 150 cm</div>
-              <div><span class="placeholder">€00/m</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">ARMOR TP7</div>
-              <div class="annot">1.5 mm · TRT · 150 cm</div>
-              <div><span class="placeholder">€00/m</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">SETAN TP7</div>
-              <div class="annot">3 mm · TRT · 150 cm</div>
-              <div><span class="placeholder">€00/m</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">NYTRON TP7</div>
-              <div class="annot">2 mm · TRT · 150 cm</div>
-              <div><span class="placeholder">€00/m</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">RIPSTOP HD</div>
-              <div class="annot">1.5 mm · RS · 150 cm</div>
-              <div><span class="placeholder">€00/m</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">AQUAPRO DC</div>
-              <div class="annot">3 mm · laminate · 150 cm</div>
-              <div><span class="placeholder">€00/m</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-          </div>
-          <div class="arrow">›</div>
-        </div>
-      </div>
-      <div class="block-inner shade" style="border-bottom:1px dashed var(--line);background:var(--grey-1);">
-        <div class="row between" style="margin-bottom:6px;align-items:flex-end;">
-          <h3 class="h3" style="font-size:24px;">Foams &amp; Rubber</h3>
-          <span style="font-size:13px;font-weight:600;">See all →</span>
-        </div>
-        <div style="font-size:13px;color:#555;margin-bottom:20px;">Neoprene sheets and foams, cut to your meter</div>
-        <div style="display:flex;align-items:stretch;gap:12px;">
-          <div class="arrow">‹</div>
-          <div style="flex:1;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;overflow:hidden;">
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">NEOPRENE CR</div>
-              <div class="annot">3 mm · CR · 140 cm</div>
-              <div><span class="placeholder">€00/m</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">NEOPRENE 2F</div>
-              <div class="annot">5 mm · CR · 140 cm</div>
-              <div><span class="placeholder">€00/m</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">SBR</div>
-              <div class="annot">3 mm · SBR · 140 cm</div>
-              <div><span class="placeholder">€00/m</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">SHEIREX</div>
-              <div class="annot">2 mm · CR · 140 cm</div>
-              <div><span class="placeholder">€00/m</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">NATURAL RUBBER</div>
-              <div class="annot">3 mm · NR · 140 cm</div>
-              <div><span class="placeholder">€00/m</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">NEOPRENE 1F</div>
-              <div class="annot">4 mm · CR · 140 cm</div>
-              <div><span class="placeholder">€00/m</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-          </div>
-          <div class="arrow">›</div>
-        </div>
-      </div>
-      <div class="block-inner">
-        <div class="row between" style="margin-bottom:6px;align-items:flex-end;">
-          <h3 class="h3" style="font-size:24px;">Drysuit Components</h3>
-          <span style="font-size:13px;font-weight:600;">See all →</span>
-        </div>
-        <div style="font-size:13px;color:#555;margin-bottom:20px;">Seals, zippers and repair components</div>
-        <div style="display:flex;align-items:stretch;gap:12px;">
-          <div class="arrow">‹</div>
-          <div style="flex:1;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;overflow:hidden;">
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">DYNO WRIST SEAL</div>
-              <div class="annot">latex · pair · Ø 00</div>
-              <div><span class="placeholder">€00</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">CYNO NECK SEAL</div>
-              <div class="annot">latex · neck · Ø 00</div>
-              <div><span class="placeholder">€00</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">SILFLEX WRIST SEAL</div>
-              <div class="annot">silicone · pair · Ø 00</div>
-              <div><span class="placeholder">€00</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">SILICONE NECK SEAL</div>
-              <div class="annot">silicone · neck · Ø 00</div>
-              <div><span class="placeholder">€00</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">LATEX SOCKS</div>
-              <div class="annot">latex · pair · size 00</div>
-              <div><span class="placeholder">€00</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-            <div class="pcard">
-              <div class="imgbox">[PRODUCT IMAGE]</div>
-              <div class="pname">REPAIR KIT</div>
-              <div class="annot">kit · patch + glue</div>
-              <div><span class="placeholder">€00</span></div>
-              <span class="btn sm" style="justify-content:center;">View product</span>
-            </div>
-          </div>
-          <div class="arrow">›</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- BLOCK 05 — DIY FLAGSHIP SPOTLIGHT -->
-    <!-- Reframed from product-sell to brand-explainer: the DIY kit ships ~12 months out, so this
-         block must NOT promise a purchasable build. Repairers are the reliable core segment and are
-         addressed here equally with makers; do not deprioritise repair in favour of kits. -->
-    <div class="block shade">
-      <div class="block-label">BLOCK 05 — DIY FLAGSHIP SPOTLIGHT</div>
-      <div class="block-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-top:56px;padding-bottom:56px;">
-        <div>
-          <p class="eyebrow">WHY TEXOSHIELD</p>
-          <h2 class="h2">What is TexoShield?</h2>
-          <p class="support">Professional-grade technical materials, cut to your meter, sold to the people who actually use them. Whether you're repairing a wetsuit, building your own pack, or making something nobody's made yet — you get the same materials the industry uses, with no minimums and no gatekeeping.</p>
-          <ul class="checklist">
-            <li><span class="check"></span> Industry-grade materials, cut to size</li>
-            <li><span class="check"></span> Technical specs and guidance on every product</li>
-            <li><span class="check"></span> A community of makers and repairers</li>
-          </ul>
-          <span class="btn">Explore the catalogue →</span>
-        </div>
-        <div style="position:relative;">
-          <div class="imgbox" style="height:380px;">[IMAGE: Split / composite shot showing BOTH audiences — a wetsuit/drysuit repair in progress on one side, a piece of self-built technical gear on the other. Hand-drawn annotation arrows to materials in use, labelled with generic spec callouts e.g. &quot;3mm neoprene panel&quot;, &quot;seam tape&quot;, &quot;custom-cut panel&quot;.]</div>
-          <div class="float-card" style="bottom:-22px;left:-24px;border-radius:14px;">“Finally somewhere that sells me exactly what I need, in the amount I need.”</div>
-        </div>
-      </div>
-    </div>
-    <!-- BLOCK 06 — COMMUNITY (UGC) -->
-    <div class="block">
-      <div class="block-label">BLOCK 06 — COMMUNITY (UGC)</div>
-      <div class="block-inner" style="text-align:center;">
-        <p class="eyebrow" style="text-align:center;">#BUILTWITHTEXO</p>
-        <h2 class="h2" style="text-align:center;">Show us what you make.</h2>
-        <p class="support" style="margin:0 auto 28px;text-align:center;max-width:54ch;">Real projects and repairs from the TexoShield community — every one tagged with the materials used.</p>
-        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:28px;">
-          <div class="imgbox" style="aspect-ratio:3/4;flex-direction:column;gap:6px;">[UGC: repair in progress]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
-          <div class="imgbox" style="aspect-ratio:3/4;flex-direction:column;gap:6px;">[UGC: self-built gear]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
-          <div class="imgbox" style="aspect-ratio:3/4;flex-direction:column;gap:6px;">[UGC: wetsuit repair]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
-          <div class="imgbox" style="aspect-ratio:3/4;flex-direction:column;gap:6px;">[UGC: custom build]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
-          <div class="imgbox" style="aspect-ratio:3/4;flex-direction:column;gap:6px;">[UGC: seam repair]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
-          <div class="imgbox" style="aspect-ratio:3/4;flex-direction:column;gap:6px;">[UGC: DIY project]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
-        </div>
-        <div class="cta-row" style="justify-content:center;">
-          <span class="btn">Explore projects</span>
-          <span class="btn ghost">Share yours</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- BLOCK 07 — BRANDS & CERTIFICATIONS -->
-    <div class="block shade">
-      <div class="block-label">BLOCK 07 — BRANDS &amp; CERTIFICATIONS</div>
-      <div class="block-inner" style="text-align:center;">
-        <p class="eyebrow" style="text-align:center;">Only the best materials</p>
-        <h2 class="h2" style="text-align:center;">Trusted brands &amp; certifications</h2>
-        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:24px 0 20px;">
-          <div class="logobox" style="height:64px;">[LOGO]<br>Yulex®</div>
-          <div class="logobox" style="height:64px;">[LOGO]<br>FSC Certified</div>
-          <div class="logobox" style="height:64px;">[LOGO]<br><span class="caption">material brand</span></div>
-          <div class="logobox" style="height:64px;">[LOGO]<br><span class="caption">material brand</span></div>
-          <div class="logobox" style="height:64px;">[LOGO]<br><span class="caption">material brand</span></div>
-          <div class="logobox" style="height:64px;">[LOGO]<br><span class="caption">material brand</span></div>
-        </div>
-        <p style="font-size:14px;color:#444;margin:0;">Distributed by DD Global Store — 35 years in technical materials.</p>
-      </div>
-    </div>
-
-    <!-- BLOCK 08 — B2B BRIDGE -->
-    <div class="block dark">
-      <div class="block-label">BLOCK 08 — B2B BRIDGE</div>
-      <div class="block-inner" style="text-align:center;padding-top:52px;padding-bottom:52px;">
-        <h2 class="h2" style="color:#fff;text-align:center;">Ordering in volume, or buying for a business?</h2>
-        <p style="font-size:16px;color:#cfcfcf;max-width:56ch;margin:0 auto 24px;">Get dedicated pricing and support through DD Global Store — no minimums, no walls.</p>
-        <div class="cta-row" style="justify-content:center;margin-bottom:44px;">
-          <span class="btn">Discover DD Global Store</span>
-          <span class="btn ghost">Request B2B pricing</span>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center;max-width:880px;margin:0 auto;">
-          <div><div class="iconbox" style="width:40px;height:40px;margin:0 auto 12px;border-radius:6px;">[ICON]</div><div class="h3" style="font-size:16px;color:#fff;margin-bottom:6px;">Volume pricing</div><div style="font-size:13px;color:#bdbdbd;">Discounts that scale with your order.</div></div>
-          <div><div class="iconbox" style="width:40px;height:40px;margin:0 auto 12px;border-radius:6px;">[ICON]</div><div class="h3" style="font-size:16px;color:#fff;margin-bottom:6px;">Dedicated support</div><div style="font-size:13px;color:#bdbdbd;">Talk to people who know the materials.</div></div>
-          <div><div class="iconbox" style="width:40px;height:40px;margin:0 auto 12px;border-radius:6px;">[ICON]</div><div class="h3" style="font-size:16px;color:#fff;margin-bottom:6px;">Mix &amp; match</div><div style="font-size:13px;color:#bdbdbd;">Combine products to hit volume tiers.</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- BLOCK 09 — REASSURANCE STRIP -->
-    <div class="block">
-      <div class="block-label">BLOCK 09 — REASSURANCE STRIP</div>
-      <div class="block-inner" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-top:28px;padding-bottom:28px;">
-        <div style="display:flex;align-items:center;gap:12px;justify-content:center;"><div class="iconbox" style="width:34px;height:34px;border-radius:6px;">[ICON]</div><span style="font-weight:600;font-size:14px;">No minimums</span></div>
-        <div style="display:flex;align-items:center;gap:12px;justify-content:center;"><div class="iconbox" style="width:34px;height:34px;border-radius:6px;">[ICON]</div><span style="font-weight:600;font-size:14px;">Ships across Europe</span></div>
-        <div style="display:flex;align-items:center;gap:12px;justify-content:center;"><div class="iconbox" style="width:34px;height:34px;border-radius:6px;">[ICON]</div><span style="font-weight:600;font-size:14px;">€5 samples</span></div>
-        <div style="display:flex;align-items:center;gap:12px;justify-content:center;"><div class="iconbox" style="width:34px;height:34px;border-radius:6px;">[ICON]</div><span style="font-weight:600;font-size:14px;">Custom cut</span></div>
-      </div>
-    </div>
-
-    <!-- BLOCK 10 — NEWSLETTER -->
-    <div class="block shade">
-      <div class="block-label">BLOCK 10 — NEWSLETTER / COMMUNITY EMAIL</div>
-      <div class="block-inner" style="text-align:center;padding-top:48px;padding-bottom:48px;">
-        <h2 class="h2" style="text-align:center;">Join the community.</h2>
-        <p class="support" style="margin:0 auto 24px;text-align:center;">Guides, new materials, and projects. No spam.</p>
-        <div style="display:flex;gap:10px;max-width:480px;margin:0 auto;">
-          <div style="flex:1;border:1px solid var(--grey-4);border-radius:4px;padding:12px 14px;color:var(--grey-5);text-align:left;background:#fff;">your@email.com</div>
-          <span class="btn">Subscribe</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- BLOCK 11 — FOOTER -->
-    <div class="block dark">
-      <div class="block-label">BLOCK 11 — FOOTER</div>
-      <div class="block-inner" style="padding-top:48px;">
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:40px;">
-          <div>
-            <div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#fff;margin-bottom:14px;">ACCOUNT</div>
-            <div style="display:flex;flex-direction:column;gap:9px;font-size:13px;color:#cfcfcf;"><span>Login</span><span>Cart</span><span>Wishlist</span><span>Orders</span></div>
-          </div>
-          <div>
-            <div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#fff;margin-bottom:14px;">SUPPORT</div>
-            <div style="display:flex;flex-direction:column;gap:9px;font-size:13px;color:#cfcfcf;"><span>Help Center</span><span>Contact Us</span><span>Shipping &amp; Returns</span><span>Samples</span></div>
-          </div>
-          <div>
-            <div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#fff;margin-bottom:14px;">INFORMATION</div>
-            <div style="display:flex;flex-direction:column;gap:9px;font-size:13px;color:#cfcfcf;"><span>About Us</span><span>Yulex® &amp; Sustainability</span><span>DD Global Store (B2B)</span><span>Terms of Service</span></div>
-          </div>
-          <div>
-            <div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#fff;margin-bottom:14px;">COMMUNITY</div>
-            <div style="display:flex;flex-direction:column;gap:9px;font-size:13px;color:#cfcfcf;"><span>Projects</span><span>Guides</span><span>Get Inspired</span><span>Instagram</span></div>
-          </div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid #444;padding-top:22px;">
-          <div class="logobox" style="height:38px;width:150px;background:#3a3a3a;border-color:#555;color:#ccc;">[LOGO]</div>
-          <div style="font-family:var(--mono);font-size:11px;color:#cfcfcf;">EN / IT · € EUR</div>
-          <div style="font-size:12px;color:#bdbdbd;">© 2026 DD Global Store Srl. All rights reserved.</div>
-        </div>
-      </div>
-    </div>
-    <!-- DESKTOP_BLOCKS -->
   </div>
 </section>
-
-<!-- ============================ MOBILE ============================ -->
-<section class="platform-band" id="mobile">
-  <h2>Mobile Wireframe</h2>
-  <p class="sub">390px viewport · Blocks 00–11 with mobile adaptations</p>
-  <div class="frame mobile" id="mobile-frame">
-    <!-- BLOCK 00 — UTILITY BAR (mobile) -->
-    <div class="block" style="border-bottom:none;">
-      <div class="block-label">BLOCK 00 — UTILITY BAR</div>
-      <div class="nz-ticker">
-        <div class="nz-ticker__track">
-          <span class="nz-ticker__group">
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="1.5" y="6" width="12" height="10" rx="1"/><path d="M13.5 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg> SHIPS ACROSS EUROPE</span>
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="2" y="7.5" width="20" height="9" rx="1.5"/><path d="M7 7.5v3M12 7.5v4M17 7.5v3"/></svg> TECHNICAL MATERIALS BY THE METER</span>
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l9 9-8 8-9-9z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg> NO ORDER MINIMUMS</span>
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/></svg> €5 SAMPLES BEFORE YOU COMMIT</span>
-          </span>
-          <span class="nz-ticker__group" aria-hidden="true">
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="1.5" y="6" width="12" height="10" rx="1"/><path d="M13.5 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg> SHIPS ACROSS EUROPE</span>
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="2" y="7.5" width="20" height="9" rx="1.5"/><path d="M7 7.5v3M12 7.5v4M17 7.5v3"/></svg> TECHNICAL MATERIALS BY THE METER</span>
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l9 9-8 8-9-9z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg> NO ORDER MINIMUMS</span>
-            <span class="nz-ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/></svg> €5 SAMPLES BEFORE YOU COMMIT</span>
-          </span>
-        </div>
-      </div>
+<section class="section shortcuts">
+  <div class="container"><div class="shortcuts__row"><a class="shortcut" href="#"><span class="shortcut__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l8 4v10l-8 4-8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg></span><span>Foams & Rubber</span></a><a class="shortcut" href="#"><span class="shortcut__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l8 4v10l-8 4-8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg></span><span>Fabrics</span></a><a class="shortcut" href="#"><span class="shortcut__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l8 4v10l-8 4-8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg></span><span>Drysuit Components</span></a><a class="shortcut" href="#"><span class="shortcut__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l8 4v10l-8 4-8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg></span><span>Wetsuit Components</span></a><a class="shortcut" href="#"><span class="shortcut__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l8 4v10l-8 4-8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg></span><span>Zippers</span></a><a class="shortcut" href="#"><span class="shortcut__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l8 4v10l-8 4-8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg></span><span>Glues & Adhesives</span></a><a class="shortcut" href="#"><span class="shortcut__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l8 4v10l-8 4-8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg></span><span>Tapes</span></a><a class="shortcut shortcut--all" href="#"><span class="shortcut__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span><span>All categories</span></a></div></div>
+</section>
+<section class="section rail">
+  <div class="container">
+    <div class="rail__head">
+      <div><h2 class="section__title">Fabrics</h2><p class="section__sub">Technical textiles, laminates and Yulex®</p></div>
+      <a class="link-arrow" href="#">See all <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></a>
     </div>
-
-    <!-- BLOCK 01 — HEADER (mobile) -->
-    <div class="block" style="border-bottom:none;">
-      <div class="block-label">BLOCK 01 — HEADER</div>
-      <div class="nazzi-header nazzi-header--mobile">
-        <div class="nazzi-header__bar">
-          <div class="nazzi-header__nav nazzi-header__nav--left">
-            <nav class="nazzi-header__nav nazzi-header__nav--desktop" aria-label="Primary">
-              <a class="nazzi-header__link" data-text="Materials" href="#">Materials</a>
-              <a class="nazzi-header__link" data-text="Learn" href="#">Learn</a>
-              <a class="nazzi-header__link" data-text="Samples" href="#">Samples</a>
-              <a class="nazzi-header__link" data-text="Community" href="#">Community</a>
-              <a class="nazzi-header__link" data-text="About" href="#">About</a>
-            </nav>
-            <button class="nazzi-header__icon-btn nazzi-header__toggle" type="button" aria-expanded="false" aria-controls="NazziHeaderPanel-m" aria-label="Open menu">
-              <span class="nazzi-header__toggle-line"></span>
-              <span class="nazzi-header__toggle-line"></span>
-            </button>
-          </div>
-
-          <a class="nazzi-header__logo" href="#" aria-label="TexoShield, home">
-            <span class="nazzi-logo nazzi-logo--word"><span>texo</span>SHIELD</span>
-          </a>
-
-          <div class="nazzi-header__nav nazzi-header__nav--right">
-            <button class="nazzi-header__icon-btn" type="button" data-nazzi-search-open aria-label="Search" aria-controls="NazziSearchPanel-m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="7"></circle><path d="m15.8 15.8 5.2 5.2"></path></svg></button>
-            <a class="nazzi-header__icon-btn nazzi-header__account" href="#" aria-label="Account" rel="nofollow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="3.6"></circle><path d="M4.5 20c.8-3.4 3.9-5.2 7.5-5.2s6.7 1.8 7.5 5.2"></path></svg></a>
-            <a href="#" class="nazzi-header__icon-btn nazzi-header__cart">
-              <span class="nazzi-header__cart-label" aria-hidden="true">Cart</span>
-              <span class="svg-wrapper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 8h12l-1 11a2 2 0 0 1-2 1.8H9a2 2 0 0 1-2-1.8L6 8z"></path><path d="M9 8V6.5a3 3 0 0 1 6 0V8"></path></svg></span>
-              <span class="visually-hidden">Cart</span>
-              <span class="nz-cart-bubble"><span aria-hidden="true">0</span><span class="visually-hidden">0 items</span></span>
-            </a>
-          </div>
-
-          <div class="nazzi-header__panel" id="NazziHeaderPanel-m">
-            <ul class="nazzi-header__panel-list" role="list">
-              <li><a class="nazzi-header__panel-link" href="#">Materials</a></li>
-              <li><a class="nazzi-header__panel-link" href="#">Learn</a></li>
-              <li><a class="nazzi-header__panel-link" href="#">Samples</a></li>
-              <li><a class="nazzi-header__panel-link" href="#">Community</a></li>
-              <li><a class="nazzi-header__panel-link" href="#">About</a></li>
-            </ul>
-            <ul class="nazzi-header__panel-secondary" role="list">
-              <li><a href="#" rel="nofollow">My account</a></li>
-              <li><a href="#" data-nazzi-search-open>Search</a></li>
-            </ul>
-          </div>
-
-          <div class="nazzi-header__search" id="NazziSearchPanel-m">
-            <input type="search" placeholder="Find the material for your project…" aria-label="Search">
-          </div>
-        </div>
-      </div>
+    <div class="rail__wrap">
+      <button class="rail__nav rail__nav--prev" aria-label="Previous" data-rail-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="rail__track" data-rail-track><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">VTEK TP7</h3><div class="pcard__spec">3 mm · TRT · 150 cm</div><div class="pcard__foot"><span class="pcard__price">€00/m</span><span class="btn btn--sm">View product</span></div></article><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">ARMOR TP7</h3><div class="pcard__spec">1.5 mm · TRT · 150 cm</div><div class="pcard__foot"><span class="pcard__price">€00/m</span><span class="btn btn--sm">View product</span></div></article><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">SETAN TP7</h3><div class="pcard__spec">3 mm · TRT · 150 cm</div><div class="pcard__foot"><span class="pcard__price">€00/m</span><span class="btn btn--sm">View product</span></div></article><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">NYTRON TP7</h3><div class="pcard__spec">2 mm · TRT · 150 cm</div><div class="pcard__foot"><span class="pcard__price">€00/m</span><span class="btn btn--sm">View product</span></div></article><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">RIPSTOP HD</h3><div class="pcard__spec">1.5 mm · RS · 150 cm</div><div class="pcard__foot"><span class="pcard__price">€00/m</span><span class="btn btn--sm">View product</span></div></article><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">AQUAPRO DC</h3><div class="pcard__spec">3 mm · laminate · 150 cm</div><div class="pcard__foot"><span class="pcard__price">€00/m</span><span class="btn btn--sm">View product</span></div></article></div>
+      <button class="rail__nav rail__nav--next" aria-label="Next" data-rail-next><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
     </div>
-
-    <!-- BLOCK 02 — HERO (mobile: image first) -->
-    <div class="block">
-      <div class="block-label">BLOCK 02 — HERO</div>
-      <div style="padding:16px;">
-        <div style="position:relative;margin-bottom:22px;">
-          <div class="imgbox" style="height:240px;">[HERO IMAGE: technical materials in use — neoprene/fabric rolls + work in progress (repair, cut panel, build)]</div>
-          <div class="float-card" style="bottom:14px;left:10px;display:flex;gap:8px;align-items:flex-start;max-width:200px;">
-            <span class="avatar"></span>
-            <div style="font-size:11px;"><div class="stars" style="font-size:10px;">★★★★★</div>“Exactly the material I needed, cut to length. No minimums.”</div>
-          </div>
-          <div class="mono-tag" style="position:absolute;top:12px;right:10px;font-size:10px;">3 mm · CR · 140 cm · €XX/m</div>
-          <div class="annot" style="margin-top:6px;">Secondary repair thumbnail dropped on mobile</div>
-        </div>
-        <h1 class="h1" style="font-size:30px;">Pro-grade technical fabrics. Cut to your meter.</h1>
-        <p class="support" style="font-size:15px;">Rubbers, fabrics, drysuit and wetsuit components, dry zips, boots, glues and tapes — the same materials the industry uses, now in the hands of people who build and repair.</p>
-        <ul class="checklist">
-          <li><span class="check"></span> No order minimums — from 0.5 m</li>
-          <li><span class="check"></span> €5 samples before you commit</li>
-          <li><span class="check"></span> Custom cut to size</li>
-        </ul>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
-          <span class="stars">★★★★★</span>
-          <span class="logobox" style="height:24px;width:78px;font-size:9px;">[Trustpilot]</span>
-        </div>
-        <p style="font-size:13px;color:#444;margin:-8px 0 18px;">Rated Excellent by makers &amp; repairers across Europe</p>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <span class="btn" style="justify-content:center;">Shop materials</span>
-          <span class="btn ghost" style="justify-content:center;">Order a sample · €5</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- BLOCK 03 — CATEGORY SHORTCUTS (mobile scroll strip) -->
-    <div class="block shade">
-      <div class="block-label">BLOCK 03 — CATEGORY SHORTCUTS</div>
-      <div style="padding:20px 0 10px;">
-        <div style="display:flex;gap:12px;overflow-x:auto;padding:0 16px 8px;">
-          <div style="text-align:center;flex:none;width:96px;"><div class="iconbox" style="height:64px;margin-bottom:6px;border-radius:4px;">[ICON]</div><div style="font-size:11px;font-weight:600;">Foams &amp; Rubber</div></div>
-          <div style="text-align:center;flex:none;width:96px;"><div class="iconbox" style="height:64px;margin-bottom:6px;border-radius:4px;">[ICON]</div><div style="font-size:11px;font-weight:600;">Fabrics</div></div>
-          <div style="text-align:center;flex:none;width:96px;"><div class="iconbox" style="height:64px;margin-bottom:6px;border-radius:4px;">[ICON]</div><div style="font-size:11px;font-weight:600;">Drysuit Components</div></div>
-          <div style="text-align:center;flex:none;width:96px;"><div class="iconbox" style="height:64px;margin-bottom:6px;border-radius:4px;">[ICON]</div><div style="font-size:11px;font-weight:600;">Wetsuit Components</div></div>
-          <div style="text-align:center;flex:none;width:96px;"><div class="iconbox" style="height:64px;margin-bottom:6px;border-radius:4px;">[ICON]</div><div style="font-size:11px;font-weight:600;">Zippers</div></div>
-          <div style="text-align:center;flex:none;width:96px;"><div class="iconbox" style="height:64px;margin-bottom:6px;border-radius:4px;">[ICON]</div><div style="font-size:11px;font-weight:600;">Glues &amp; Adhesives</div></div>
-          <div style="text-align:center;flex:none;width:96px;"><div class="iconbox" style="height:64px;margin-bottom:6px;border-radius:4px;">[ICON]</div><div style="font-size:11px;font-weight:600;">Tapes</div></div>
-          <div style="text-align:center;flex:none;width:96px;"><div style="height:64px;margin-bottom:6px;border-radius:4px;border:1.5px dashed var(--line-strong);background:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:16px;color:var(--grey-6);">→</div><div style="font-size:11px;font-weight:700;">All categories</div></div>
-        </div>
-        <div class="annot" style="text-align:center;padding:4px 16px 0;">← swipe · 8 categories (~3.5 in view)</div>
-      </div>
-    </div>
-
-    <!-- BLOCK 04 — PRODUCT BANDS (mobile swipe) -->
-    <div class="block">
-      <div class="block-label">BLOCK 04 — PRODUCT BANDS</div>
-      <div style="padding:20px 0;border-bottom:1px dashed var(--line);">
-        <div class="row between" style="padding:0 16px;margin-bottom:6px;"><p class="eyebrow" style="margin:0;">Shop by category</p></div>
-        <div class="row between" style="padding:0 16px;margin-bottom:4px;"><h3 class="h3" style="font-size:20px;">Fabrics</h3><span style="font-size:13px;font-weight:600;">See all →</span></div>
-        <div style="padding:0 16px;margin-bottom:14px;font-size:12px;color:#555;">Technical textiles, laminates and Yulex®</div>
-        <div class="m-band" style="display:flex;gap:12px;overflow-x:auto;padding:0 16px;">
-          <div class="pcard" style="flex:none;width:158px;">
-            <div class="imgbox">[PRODUCT IMAGE]</div>
-            <div class="pname">VTEK TP7</div>
-            <div class="annot">3 mm · TRT · 150 cm</div>
-            <div><span class="placeholder">€00/m</span></div>
-            <span class="btn sm" style="justify-content:center;">View product</span>
-          </div>
-          <div class="pcard" style="flex:none;width:158px;">
-            <div class="imgbox">[PRODUCT IMAGE]</div>
-            <div class="pname">ARMOR TP7</div>
-            <div class="annot">1.5 mm · TRT · 150 cm</div>
-            <div><span class="placeholder">€00/m</span></div>
-            <span class="btn sm" style="justify-content:center;">View product</span>
-          </div>
-          <div class="pcard" style="flex:none;width:158px;">
-            <div class="imgbox">[PRODUCT IMAGE]</div>
-            <div class="pname">SETAN TP7</div>
-            <div class="annot">3 mm · TRT · 150 cm</div>
-            <div><span class="placeholder">€00/m</span></div>
-            <span class="btn sm" style="justify-content:center;">View product</span>
-          </div>
-          <div class="pcard" style="flex:none;width:158px;">
-            <div class="imgbox">[PRODUCT IMAGE]</div>
-            <div class="pname">NYTRON TP7</div>
-            <div class="annot">2 mm · TRT · 150 cm</div>
-            <div><span class="placeholder">€00/m</span></div>
-            <span class="btn sm" style="justify-content:center;">View product</span>
-          </div>
-          <div class="pcard" style="flex:none;width:158px;">
-            <div class="imgbox">[PRODUCT IMAGE]</div>
-            <div class="pname">RIPSTOP HD</div>
-            <div class="annot">1.5 mm · RS · 150 cm</div>
-            <div><span class="placeholder">€00/m</span></div>
-            <span class="btn sm" style="justify-content:center;">View product</span>
-          </div>
-        </div>
-      </div>
-      <div class="shade" style="padding:20px 0;border-bottom:1px dashed var(--line);background:var(--grey-1);">
-        <div class="row between" style="padding:0 16px;margin-bottom:4px;"><h3 class="h3" style="font-size:20px;">Foams &amp; Rubber</h3><span style="font-size:13px;font-weight:600;">See all →</span></div>
-        <div style="padding:0 16px;margin-bottom:14px;font-size:12px;color:#555;">Neoprene sheets and foams, cut to your meter</div>
-        <div class="m-band" style="display:flex;gap:12px;overflow-x:auto;padding:0 16px;">
-          <div class="pcard" style="flex:none;width:158px;">
-            <div class="imgbox">[PRODUCT IMAGE]</div>
-            <div class="pname">NEOPRENE CR</div>
-            <div class="annot">3 mm · CR · 140 cm</div>
-            <div><span class="placeholder">€00/m</span></div>
-            <span class="btn sm" style="justify-content:center;">View product</span>
-          </div>
-          <div class="pcard" style="flex:none;width:158px;">
-            <div class="imgbox">[PRODUCT IMAGE]</div>
-            <div class="pname">NEOPRENE 2F</div>
-            <div class="annot">5 mm · CR · 140 cm</div>
-            <div><span class="placeholder">€00/m</span></div>
-            <span class="btn sm" style="justify-content:center;">View product</span>
-          </div>
-          <div class="pcard" style="flex:none;width:158px;">
-            <div class="imgbox">[PRODUCT IMAGE]</div>
-            <div class="pname">SBR</div>
-            <div class="annot">3 mm · SBR · 140 cm</div>
-            <div><span class="placeholder">€00/m</span></div>
-            <span class="btn sm" style="justify-content:center;">View product</span>
-          </div>
-          <div class="pcard" style="flex:none;width:158px;">
-            <div class="imgbox">[PRODUCT IMAGE]</div>
-            <div class="pname">SHEIREX</div>
-            <div class="annot">2 mm · CR · 140 cm</div>
-            <div><span class="placeholder">€00/m</span></div>
-            <span class="btn sm" style="justify-content:center;">View product</span>
-          </div>
-          <div class="pcard" style="flex:none;width:158px;">
-            <div class="imgbox">[PRODUCT IMAGE]</div>
-            <div class="pname">NATURAL RUBBER</div>
-            <div class="annot">3 mm · NR · 140 cm</div>
-            <div><span class="placeholder">€00/m</span></div>
-            <span class="btn sm" style="justify-content:center;">View product</span>
-          </div>
-        </div>
-      </div>
-      <div style="padding:20px 0;">
-        <div class="row between" style="padding:0 16px;margin-bottom:4px;"><h3 class="h3" style="font-size:20px;">Drysuit Components</h3><span style="font-size:13px;font-weight:600;">See all →</span></div>
-        <div style="padding:0 16px;margin-bottom:14px;font-size:12px;color:#555;">Seals, zippers and repair components</div>
-        <div class="m-band" style="display:flex;gap:12px;overflow-x:auto;padding:0 16px;">
-          <div class="pcard" style="flex:none;width:158px;">
-            <div class="imgbox">[PRODUCT IMAGE]</div>
-            <div class="pname">DYNO WRIST SEAL</div>
-            <div class="annot">latex · pair · Ø 00</div>
-            <div><span class="placeholder">€00</span></div>
-            <span class="btn sm" style="justify-content:center;">View product</span>
-          </div>
-          <div class="pcard" style="flex:none;width:158px;">
-            <div class="imgbox">[PRODUCT IMAGE]</div>
-            <div class="pname">CYNO NECK SEAL</div>
-            <div class="annot">latex · neck · Ø 00</div>
-            <div><span class="placeholder">€00</span></div>
-            <span class="btn sm" style="justify-content:center;">View product</span>
-          </div>
-          <div class="pcard" style="flex:none;width:158px;">
-            <div class="imgbox">[PRODUCT IMAGE]</div>
-            <div class="pname">SILFLEX WRIST SEAL</div>
-            <div class="annot">silicone · pair · Ø 00</div>
-            <div><span class="placeholder">€00</span></div>
-            <span class="btn sm" style="justify-content:center;">View product</span>
-          </div>
-          <div class="pcard" style="flex:none;width:158px;">
-            <div class="imgbox">[PRODUCT IMAGE]</div>
-            <div class="pname">SILICONE NECK SEAL</div>
-            <div class="annot">silicone · neck · Ø 00</div>
-            <div><span class="placeholder">€00</span></div>
-            <span class="btn sm" style="justify-content:center;">View product</span>
-          </div>
-          <div class="pcard" style="flex:none;width:158px;">
-            <div class="imgbox">[PRODUCT IMAGE]</div>
-            <div class="pname">LATEX SOCKS</div>
-            <div class="annot">latex · pair · size 00</div>
-            <div><span class="placeholder">€00</span></div>
-            <span class="btn sm" style="justify-content:center;">View product</span>
-          </div>
-        </div>
-        <div class="annot" style="text-align:center;padding-top:8px;">← swipe · ~2.2 cards in view signals scroll</div>
-      </div>
-    </div>
-
-    <!-- BLOCK 05 — DIY FLAGSHIP (mobile: image first) -->
-    <div class="block shade">
-      <div class="block-label">BLOCK 05 — DIY FLAGSHIP SPOTLIGHT</div>
-      <div style="padding:16px;">
-        <div style="position:relative;margin-bottom:24px;">
-          <div class="imgbox" style="height:240px;">[IMAGE: Split/composite — wetsuit/drysuit repair in progress + self-built technical gear. Annotation arrows to materials: &quot;3mm neoprene panel&quot;, &quot;seam tape&quot;, &quot;custom-cut panel&quot;.]</div>
-          <div class="float-card" style="bottom:-16px;left:10px;border-radius:14px;font-size:11px;">“Finally somewhere that sells me exactly what I need, in the amount I need.”</div>
-        </div>
-        <p class="eyebrow" style="margin-top:14px;">WHY TEXOSHIELD</p>
-        <h2 class="h2" style="font-size:26px;">What is TexoShield?</h2>
-        <p class="support" style="font-size:15px;">Professional-grade technical materials, cut to your meter, sold to the people who actually use them. Whether you're repairing a wetsuit, building your own pack, or making something nobody's made yet — you get the same materials the industry uses, with no minimums and no gatekeeping.</p>
-        <ul class="checklist">
-            <li><span class="check"></span> Industry-grade materials, cut to size</li>
-            <li><span class="check"></span> Technical specs and guidance on every product</li>
-            <li><span class="check"></span> A community of makers and repairers</li>
-        </ul>
-        <span class="btn" style="justify-content:center;width:100%;">Explore the catalogue →</span>
-      </div>
-    </div>
-    <!-- BLOCK 06 — COMMUNITY (mobile 2×2) -->
-    <div class="block">
-      <div class="block-label">BLOCK 06 — COMMUNITY (UGC)</div>
-      <div style="padding:16px;text-align:center;">
-        <p class="eyebrow" style="text-align:center;">#BUILTWITHTEXO</p>
-        <h2 class="h2" style="font-size:26px;text-align:center;">Show us what you make.</h2>
-        <p class="support" style="font-size:15px;margin:0 auto 20px;text-align:center;">Real projects and repairs from the TexoShield community — every one tagged with the materials used.</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
-          <div class="imgbox" style="aspect-ratio:1/1;flex-direction:column;gap:6px;">[UGC: repair in progress]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
-          <div class="imgbox" style="aspect-ratio:1/1;flex-direction:column;gap:6px;">[UGC: self-built gear]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
-          <div class="imgbox" style="aspect-ratio:1/1;flex-direction:column;gap:6px;">[UGC: wetsuit repair]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
-          <div class="imgbox" style="aspect-ratio:1/1;flex-direction:column;gap:6px;">[UGC: custom build]<span class="placeholder" style="font-size:9px;">[material tag]</span></div>
-        </div>
-        <span class="btn" style="justify-content:center;width:100%;">Explore projects</span>
-      </div>
-    </div>
-
-    <!-- BLOCK 07 — BRANDS (mobile 2-row scroll) -->
-    <div class="block shade">
-      <div class="block-label">BLOCK 07 — BRANDS &amp; CERTIFICATIONS</div>
-      <div style="padding:16px;text-align:center;">
-        <p class="eyebrow" style="text-align:center;">Only the best materials</p>
-        <h2 class="h2" style="font-size:24px;text-align:center;">Trusted brands &amp; certifications</h2>
-        <div style="display:grid;grid-rows:2;grid-auto-flow:column;grid-auto-columns:128px;gap:10px;overflow-x:auto;padding:16px 0;justify-content:start;">
-          <div class="logobox" style="height:56px;">[LOGO]<br>Yulex®</div>
-          <div class="logobox" style="height:56px;">[LOGO]<br>FSC Certified</div>
-          <div class="logobox" style="height:56px;">[LOGO]<br><span class="caption">brand</span></div>
-          <div class="logobox" style="height:56px;">[LOGO]<br><span class="caption">brand</span></div>
-          <div class="logobox" style="height:56px;">[LOGO]<br><span class="caption">brand</span></div>
-          <div class="logobox" style="height:56px;">[LOGO]<br><span class="caption">brand</span></div>
-        </div>
-        <div class="annot">← swipe (2-row strip)</div>
-        <p style="font-size:13px;color:#444;margin:12px 0 0;">Distributed by DD Global Store — 35 years in technical materials.</p>
-      </div>
-    </div>
-
-    <!-- BLOCK 08 — B2B BRIDGE (mobile stacked) -->
-    <div class="block dark">
-      <div class="block-label">BLOCK 08 — B2B BRIDGE</div>
-      <div style="padding:32px 16px;text-align:center;">
-        <h2 class="h2" style="font-size:24px;color:#fff;text-align:center;">Ordering in volume, or buying for a business?</h2>
-        <p style="font-size:15px;color:#cfcfcf;margin:0 auto 22px;">Get dedicated pricing and support through DD Global Store — no minimums, no walls.</p>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:32px;">
-          <span class="btn" style="justify-content:center;width:100%;">Discover DD Global Store</span>
-          <span class="btn ghost" style="justify-content:center;width:100%;">Request B2B pricing</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:22px;text-align:left;">
-          <div style="display:flex;gap:12px;"><div class="iconbox" style="width:38px;height:38px;flex:none;border-radius:6px;">[ICON]</div><div><div class="h3" style="font-size:15px;color:#fff;margin-bottom:3px;">Volume pricing</div><div style="font-size:13px;color:#bdbdbd;">Discounts that scale with your order.</div></div></div>
-          <div style="display:flex;gap:12px;"><div class="iconbox" style="width:38px;height:38px;flex:none;border-radius:6px;">[ICON]</div><div><div class="h3" style="font-size:15px;color:#fff;margin-bottom:3px;">Dedicated support</div><div style="font-size:13px;color:#bdbdbd;">Talk to people who know the materials.</div></div></div>
-          <div style="display:flex;gap:12px;"><div class="iconbox" style="width:38px;height:38px;flex:none;border-radius:6px;">[ICON]</div><div><div class="h3" style="font-size:15px;color:#fff;margin-bottom:3px;">Mix &amp; match</div><div style="font-size:13px;color:#bdbdbd;">Combine products to hit volume tiers.</div></div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- BLOCK 09 — REASSURANCE (mobile 2×2) -->
-    <div class="block">
-      <div class="block-label">BLOCK 09 — REASSURANCE STRIP</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:24px 16px;">
-        <div style="display:flex;align-items:center;gap:10px;"><div class="iconbox" style="width:32px;height:32px;border-radius:6px;flex:none;">[ICON]</div><span style="font-weight:600;font-size:13px;">No minimums</span></div>
-        <div style="display:flex;align-items:center;gap:10px;"><div class="iconbox" style="width:32px;height:32px;border-radius:6px;flex:none;">[ICON]</div><span style="font-weight:600;font-size:13px;">Ships across Europe</span></div>
-        <div style="display:flex;align-items:center;gap:10px;"><div class="iconbox" style="width:32px;height:32px;border-radius:6px;flex:none;">[ICON]</div><span style="font-weight:600;font-size:13px;">€5 samples</span></div>
-        <div style="display:flex;align-items:center;gap:10px;"><div class="iconbox" style="width:32px;height:32px;border-radius:6px;flex:none;">[ICON]</div><span style="font-weight:600;font-size:13px;">Custom cut</span></div>
-      </div>
-    </div>
-
-    <!-- BLOCK 10 — NEWSLETTER (mobile stacked) -->
-    <div class="block shade">
-      <div class="block-label">BLOCK 10 — NEWSLETTER</div>
-      <div style="padding:32px 16px;text-align:center;">
-        <h2 class="h2" style="font-size:24px;text-align:center;">Join the community.</h2>
-        <p class="support" style="font-size:15px;margin:0 auto 20px;text-align:center;">Guides, new materials, and projects. No spam.</p>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="border:1px solid var(--grey-4);border-radius:4px;padding:12px 14px;color:var(--grey-5);text-align:left;background:#fff;">your@email.com</div>
-          <span class="btn" style="justify-content:center;width:100%;">Subscribe</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- BLOCK 11 — FOOTER (mobile accordion) -->
-    <div class="block dark">
-      <div class="block-label">BLOCK 11 — FOOTER</div>
-      <div style="padding:24px 16px;">
-        <div style="display:flex;flex-direction:column;">
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #444;font-size:13px;color:#fff;">Account <span style="color:#bdbdbd;">＋</span></div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #444;font-size:13px;color:#fff;">Support <span style="color:#bdbdbd;">＋</span></div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #444;font-size:13px;color:#fff;">Information <span style="color:#bdbdbd;">＋</span></div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #444;font-size:13px;color:#fff;">Community <span style="color:#bdbdbd;">＋</span></div>
-        </div>
-        <div class="annot" style="margin:10px 0 20px;">Accordion-collapsed columns (tap to expand) · Community: Projects · Guides · Get Inspired · Instagram</div>
-        <div style="display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;border-top:1px solid #444;padding-top:20px;">
-          <div class="logobox" style="height:36px;width:140px;background:#3a3a3a;border-color:#555;color:#ccc;">[LOGO]</div>
-          <div style="font-family:var(--mono);font-size:11px;color:#cfcfcf;">EN / IT · € EUR</div>
-          <div style="font-size:11px;color:#bdbdbd;">© 2026 DD Global Store Srl. All rights reserved.</div>
-        </div>
-      </div>
-    </div>
-    <!-- MOBILE_BLOCKS -->
   </div>
 </section>
-
+<section class="section rail">
+  <div class="container">
+    <div class="rail__head">
+      <div><h2 class="section__title">Foams & Rubber</h2><p class="section__sub">Neoprene sheets and foams, cut to your meter</p></div>
+      <a class="link-arrow" href="#">See all <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="rail__wrap">
+      <button class="rail__nav rail__nav--prev" aria-label="Previous" data-rail-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="rail__track" data-rail-track><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">NEOPRENE CR</h3><div class="pcard__spec">3 mm · CR · 140 cm</div><div class="pcard__foot"><span class="pcard__price">€00/m</span><span class="btn btn--sm">View product</span></div></article><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">NEOPRENE 2F</h3><div class="pcard__spec">5 mm · CR · 140 cm</div><div class="pcard__foot"><span class="pcard__price">€00/m</span><span class="btn btn--sm">View product</span></div></article><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">SBR</h3><div class="pcard__spec">3 mm · SBR · 140 cm</div><div class="pcard__foot"><span class="pcard__price">€00/m</span><span class="btn btn--sm">View product</span></div></article><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">SHEIREX</h3><div class="pcard__spec">2 mm · CR · 140 cm</div><div class="pcard__foot"><span class="pcard__price">€00/m</span><span class="btn btn--sm">View product</span></div></article><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">NATURAL RUBBER</h3><div class="pcard__spec">3 mm · NR · 140 cm</div><div class="pcard__foot"><span class="pcard__price">€00/m</span><span class="btn btn--sm">View product</span></div></article><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">NEOPRENE 1F</h3><div class="pcard__spec">4 mm · CR · 140 cm</div><div class="pcard__foot"><span class="pcard__price">€00/m</span><span class="btn btn--sm">View product</span></div></article></div>
+      <button class="rail__nav rail__nav--next" aria-label="Next" data-rail-next><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </div>
+</section>
+<section class="section rail">
+  <div class="container">
+    <div class="rail__head">
+      <div><h2 class="section__title">Drysuit Components</h2><p class="section__sub">Seals, zippers and repair components</p></div>
+      <a class="link-arrow" href="#">See all <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="rail__wrap">
+      <button class="rail__nav rail__nav--prev" aria-label="Previous" data-rail-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="rail__track" data-rail-track><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">DYNO WRIST SEAL</h3><div class="pcard__spec">latex · pair · Ø 00</div><div class="pcard__foot"><span class="pcard__price">€00</span><span class="btn btn--sm">View product</span></div></article><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">CYNO NECK SEAL</h3><div class="pcard__spec">latex · neck · Ø 00</div><div class="pcard__foot"><span class="pcard__price">€00</span><span class="btn btn--sm">View product</span></div></article><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">SILFLEX WRIST SEAL</h3><div class="pcard__spec">silicone · pair · Ø 00</div><div class="pcard__foot"><span class="pcard__price">€00</span><span class="btn btn--sm">View product</span></div></article><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">SILICONE NECK SEAL</h3><div class="pcard__spec">silicone · neck · Ø 00</div><div class="pcard__foot"><span class="pcard__price">€00</span><span class="btn btn--sm">View product</span></div></article><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">LATEX SOCKS</h3><div class="pcard__spec">latex · pair · size 00</div><div class="pcard__foot"><span class="pcard__price">€00</span><span class="btn btn--sm">View product</span></div></article><article class="pcard"><div class="ph pcard__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><div class="pcard__brand">Material</div><h3 class="pcard__name">REPAIR KIT</h3><div class="pcard__spec">kit · patch + glue</div><div class="pcard__foot"><span class="pcard__price">€00</span><span class="btn btn--sm">View product</span></div></article></div>
+      <button class="rail__nav rail__nav--next" aria-label="Next" data-rail-next><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </div>
+</section>
+<section class="section flagship">
+  <div class="container flagship__grid">
+    <div class="flagship__copy">
+      <p class="eyebrow">Why TexoShield</p>
+      <h2 class="section__title section__title--lg">What is TexoShield?</h2>
+      <p class="flagship__text">Professional-grade technical materials, cut to your meter, sold to the people who actually use them. Whether you&rsquo;re repairing a wetsuit, building your own pack, or making something nobody&rsquo;s made yet — you get the same materials the industry uses, with no minimums and no gatekeeping.</p>
+      <ul class="checklist">
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-10"/></svg></span> Industry-grade materials, cut to size</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-10"/></svg></span> Technical specs and guidance on every product</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-10"/></svg></span> A community of makers and repairers</li>
+      </ul>
+      <a class="btn btn--lg" href="#">Explore the catalogue <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="flagship__media">
+      <div class="ph flagship__img" style="aspect-ratio:1 / 1"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div>
+      <div class="float-card float-card--wide"><p>&ldquo;Finally somewhere that sells me exactly what I need, in the amount I need.&rdquo;</p></div>
+    </div>
+  </div>
+</section>
+<section class="section community">
+  <div class="container">
+    <div class="section__head-center">
+      <p class="eyebrow">#BUILTWITHTEXO</p>
+      <h2 class="section__title section__title--lg">Show us what you make.</h2>
+      <p class="section__sub section__sub--center">Real projects and repairs from the TexoShield community — every one tagged with the materials used.</p>
+    </div>
+    <div class="ugc__grid"><figure class="ugc"><div class="ph ugc__img" style="aspect-ratio:3 / 4"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><figcaption>repair in progress</figcaption></figure><figure class="ugc"><div class="ph ugc__img" style="aspect-ratio:3 / 4"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><figcaption>self-built gear</figcaption></figure><figure class="ugc"><div class="ph ugc__img" style="aspect-ratio:3 / 4"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><figcaption>wetsuit repair</figcaption></figure><figure class="ugc"><div class="ph ugc__img" style="aspect-ratio:3 / 4"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><figcaption>custom build</figcaption></figure><figure class="ugc"><div class="ph ugc__img" style="aspect-ratio:3 / 4"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><figcaption>seam repair</figcaption></figure><figure class="ugc"><div class="ph ugc__img" style="aspect-ratio:3 / 4"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span></div><figcaption>DIY project</figcaption></figure></div>
+    <div class="btn-row btn-row--center"><a class="btn" href="#">Explore projects</a><a class="btn btn--ghost" href="#">Share yours</a></div>
+  </div>
+</section>
+<section class="section brands">
+  <div class="container">
+    <div class="section__head-center">
+      <p class="eyebrow">Only the best materials</p>
+      <h2 class="section__title section__title--lg">Trusted brands &amp; certifications</h2>
+    </div>
+    <div class="brands__grid"><div class="brand-logo"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span><span>Yulex®</span></div><div class="brand-logo"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span><span>FSC Certified</span></div><div class="brand-logo"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span><span>material brand</span></div><div class="brand-logo"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span><span>material brand</span></div><div class="brand-logo"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span><span>material brand</span></div><div class="brand-logo"><span class="ph__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg></span><span>material brand</span></div></div>
+    <p class="brands__note">Distributed by DD Global Store — 35 years in technical materials.</p>
+  </div>
+</section>
+<section class="section b2b">
+  <div class="container">
+    <div class="section__head-center">
+      <h2 class="section__title section__title--lg b2b__title">Ordering in volume, or buying for a business?</h2>
+      <p class="section__sub section__sub--center b2b__sub">Get dedicated pricing and support through DD Global Store — no minimums, no walls.</p>
+      <div class="btn-row btn-row--center"><a class="btn btn--light" href="#">Discover DD Global Store</a><a class="btn btn--ghost-light" href="#">Request B2B pricing</a></div>
+    </div>
+    <div class="b2b__grid"><div class="b2b__feat"><span class="b2b__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l8 4v10l-8 4-8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg></span><h3>Volume pricing</h3><p>Discounts that scale with your order.</p></div><div class="b2b__feat"><span class="b2b__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 5h16v11H9l-4 3.5V16H4z"/></svg></span><h3>Dedicated support</h3><p>Talk to people who know the materials.</p></div><div class="b2b__feat"><span class="b2b__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg></span><h3>Mix & match</h3><p>Combine products to hit volume tiers.</p></div></div>
+  </div>
+</section>
+<section class="section reassure"><div class="container reassure__row"><div class="reassure__item"><span class="reassure__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 12V4h8l9 9-8 8-9-9z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg></span><span>No minimums</span></div><div class="reassure__item"><span class="reassure__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="1.5" y="6" width="12" height="10" rx="1"/><path d="M13.5 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></span><span>Ships across Europe</span></div><div class="reassure__item"><span class="reassure__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/></svg></span><span>€5 samples</span></div><div class="reassure__item"><span class="reassure__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7" r="2.4"/><circle cx="6" cy="17" r="2.4"/><path d="M8.2 8.5L20 17M8.2 15.5L20 7"/></svg></span><span>Custom cut</span></div></div></section>
+<section class="section newsletter">
+  <div class="container newsletter__inner">
+    <div><h2 class="section__title section__title--lg">Join the community.</h2><p class="section__sub">Guides, new materials, and projects. No spam.</p></div>
+    <form class="newsletter__form" onsubmit="return false"><input type="email" placeholder="your@email.com" aria-label="Email"><button class="btn btn--lg" type="submit">Subscribe</button></form>
+  </div>
+</section>
+</main>
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand"><a class="logo logo--light" href="#"><span>texo</span>SHIELD</a><p>Pro-grade technical materials, cut to your meter.</p></div>
+      <div class="footer__cols"><div class="footer__col"><h4>Account</h4><ul role="list"><li><a href="#">Login</a></li><li><a href="#">Cart</a></li><li><a href="#">Wishlist</a></li><li><a href="#">Orders</a></li></ul></div><div class="footer__col"><h4>Support</h4><ul role="list"><li><a href="#">Help Center</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Shipping & Returns</a></li><li><a href="#">Samples</a></li></ul></div><div class="footer__col"><h4>Information</h4><ul role="list"><li><a href="#">About Us</a></li><li><a href="#">Yulex® & Sustainability</a></li><li><a href="#">DD Global Store (B2B)</a></li><li><a href="#">Terms of Service</a></li></ul></div><div class="footer__col"><h4>Community</h4><ul role="list"><li><a href="#">Projects</a></li><li><a href="#">Guides</a></li><li><a href="#">Get Inspired</a></li><li><a href="#">Instagram</a></li></ul></div></div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 DD Global Store Srl. All rights reserved.</span>
+      <span class="footer__meta">EN / IT · € EUR</span>
+    </div>
+  </div>
+</footer>
 <script>
 (function(){
-  document.querySelectorAll('.nazzi-header').forEach(function(h){
-    var toggle=h.querySelector('.nazzi-header__toggle');
-    var panel=h.querySelector('.nazzi-header__panel');
-    var search=h.querySelector('.nazzi-header__search');
-    if(toggle&&panel){
-      toggle.addEventListener('click',function(){
-        var open=panel.classList.toggle('is-open');
-        toggle.setAttribute('aria-expanded',open?'true':'false');
-        toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
-        if(open&&search){search.classList.remove('is-open');}
-      });
-    }
-    h.querySelectorAll('[data-nazzi-search-open]').forEach(function(b){
-      b.addEventListener('click',function(e){
-        e.preventDefault();
-        if(!search)return;
-        var open=search.classList.toggle('is-open');
-        if(open){if(panel)panel.classList.remove('is-open');var i=search.querySelector('input');if(i)i.focus();}
-      });
+  "use strict";
+  var $=function(s,c){return (c||document).querySelector(s);};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+
+  /* ---- mobile menu + search ---- */
+  var header=$('#siteHeader');
+  var toggle=$('.header-toggle',header);
+  var panel=$('#NavPanel',header);
+  var search=$('#SearchPanel',header);
+  if(toggle&&panel){
+    toggle.addEventListener('click',function(){
+      var open=panel.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded',open?'true':'false');
+      toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
+      if(open&&search)search.classList.remove('is-open');
+    });
+    $$('.panel__link',panel).forEach(function(a){a.addEventListener('click',function(){panel.classList.remove('is-open');toggle.setAttribute('aria-expanded','false');});});
+  }
+  $$('[data-search-open]').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();
+      if(!search)return;
+      var open=search.classList.toggle('is-open');
+      if(open){if(panel)panel.classList.remove('is-open');var i=$('input',search);if(i)i.focus();}
     });
   });
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Escape')return;
+    if(panel)panel.classList.remove('is-open');
+    if(search)search.classList.remove('is-open');
+    if(toggle)toggle.setAttribute('aria-expanded','false');
+  });
+
+  /* ---- product rails: arrows + drag ---- */
+  function step(track){
+    var card=track.querySelector('.pcard');
+    var gap=parseFloat(getComputedStyle(track).columnGap||getComputedStyle(track).gap)||18;
+    var cw=card?card.getBoundingClientRect().width+gap:track.clientWidth*0.8;
+    var per=Math.max(1,Math.floor(track.clientWidth/cw));
+    return Math.min(per*cw,track.clientWidth);
+  }
+  $$('.rail__wrap').forEach(function(wrap){
+    var track=$('[data-rail-track]',wrap);
+    if(!track)return;
+    var prev=$('[data-rail-prev]',wrap), next=$('[data-rail-next]',wrap);
+    function sync(){
+      if(prev)prev.style.opacity=track.scrollLeft>4?'1':'0';
+      if(prev)prev.style.pointerEvents=track.scrollLeft>4?'auto':'none';
+      var end=track.scrollLeft+track.clientWidth>=track.scrollWidth-4;
+      if(next)next.style.opacity=end?'0':'1';
+      if(next)next.style.pointerEvents=end?'none':'auto';
+    }
+    if(next)next.addEventListener('click',function(){track.scrollBy({left:step(track),behavior:'smooth'});});
+    if(prev)prev.addEventListener('click',function(){track.scrollBy({left:-step(track),behavior:'smooth'});});
+    track.addEventListener('scroll',sync,{passive:true});
+    sync();
+    // drag to scroll (pointer, non-touch)
+    var down=false,sx=0,sl=0,moved=false;
+    track.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;down=true;moved=false;sx=e.clientX;sl=track.scrollLeft;track.setPointerCapture(e.pointerId);});
+    track.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>4){moved=true;track.classList.add('is-drag');}track.scrollLeft=sl-dx;});
+    var end=function(){down=false;track.classList.remove('is-drag');};
+    track.addEventListener('pointerup',end);
+    track.addEventListener('pointercancel',end);
+    track.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();}moved=false;},true);
+  });
 })();
+
 </script>
 </body>
 </html>
